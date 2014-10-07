@@ -41,7 +41,7 @@ end
 gem 'devise'
 gem 'devise-i18n'
 gem 'activeadmin', github: 'activeadmin'
-gem 'slim'
+gem 'slim-rails'
 gem 'omniauth-facebook'
 
 # Use ActiveModel has_secure_password
