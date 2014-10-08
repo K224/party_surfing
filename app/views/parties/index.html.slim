@@ -1,2 +1,9 @@
 h1 Parties#index
-p Find me in app/views/parties/index.html.slim
+div
+  |Список мероприятий:
+  -@parties.each do |party|
+    div
+      div =party.title
+      div =party.summary
+      div =link_to party.host.profile.name, party.host.profile
+      br/

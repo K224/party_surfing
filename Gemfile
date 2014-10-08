@@ -43,6 +43,8 @@ gem 'devise-i18n'
 gem 'activeadmin', github: 'activeadmin'
 gem 'slim-rails'
 gem 'omniauth-facebook'
+gem 'cancan'
+gem 'draper'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

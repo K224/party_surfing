@@ -1,4 +1,6 @@
 class PartiesController < ApplicationController
+  load_and_authorize_resource
+
   def index
   end
 
@@ -18,5 +20,8 @@ class PartiesController < ApplicationController
   end
 
   def create
+  end
+
+  def get_parties_in_zone
   end
 end

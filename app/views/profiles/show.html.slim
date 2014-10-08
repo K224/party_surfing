@@ -1,2 +1,32 @@
 h1 Profiles#show
-p Find me in app/views/profiles/show.html.slim
+-if can? :update, @profile
+  div
+    =link_to "Редактировать", edit_profile_path(current_user)
+div Имя: #{@profile.name}
+div Фамилия: #{@profile.surname}
+div Фото: #{@profile.photo}
+div Возраст: #{@profile.age}
+div Контактная информация: #{@profile.contacts}
+
+br/
+
+div
+  |Мероприятия, которые создавал:
+  -cnt = 0
+  -@profile.user.parties.each do |party|
+    div =link_to party.title, party
+    -cnt += 1
+  -if cnt == 0
+    div Не создавал :(
+
+br/
+
+div
+  |Мероприятия, в которых участвовал:
+  -cnt = 0
+  -@profile.user.participations do |par|
+    -if par.accepted
+      cnt += 1
+      div =link_to par.party.title, par.party
+  -if cnt == 0
+    div Не участвовал :(

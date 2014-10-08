@@ -1,2 +1,4 @@
 h1 Profiles#edit
-p Find me in app/views/profiles/edit.html.slim
+= semantic_form_for @profile do |f|
+  =f.inputs :name, :surname, :age, :contacts
+  =f.actions

@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141007173346) do
     t.text     "summary"
     t.float    "coord_longitude"
     t.float    "coord_latitude"
+    t.date     "date"
     t.integer  "host_id"
     t.integer  "type_id"
     t.datetime "created_at"
@@ -72,10 +73,10 @@ ActiveRecord::Schema.define(version: 20141007173346) do
   add_index "parties", ["type_id"], name: "index_parties_on_type_id"
 
   create_table "profiles", force: true do |t|
-    t.string   "name"
-    t.string   "surname"
+    t.string   "name",       default: "Anonymous"
+    t.string   "surname",    default: "Anonymous"
     t.string   "photo"
-    t.integer  "age"
+    t.date     "birthday",   default: '2014-10-08'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"

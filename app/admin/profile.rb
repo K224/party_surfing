@@ -1,26 +1,10 @@
-ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
+ActiveAdmin.register Profile do
+  permit_params :name, :surname, :birthday, :contacts, :photo
 
   index do
-    column :id
-    column :email
-    column :last_sign_in_at
-    column :created_at
-    column :profile
-
+    column :full_name
+    column :user
     actions
-  end
-
-  filter :created_at
-  filter :email
-
-  form do |f|
-    f.inputs do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-    end
-    f.actions
   end
 
   # See permitted parameters documentation:

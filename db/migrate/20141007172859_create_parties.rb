@@ -5,6 +5,7 @@ class CreateParties < ActiveRecord::Migration
       t.text :summary
       t.float :coord_longitude
       t.float :coord_latitude
+      t.date :date
       t.references :host, index: true
       t.references :type, index: true
 

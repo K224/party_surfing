@@ -6,7 +6,7 @@ PartySurfing::Application.routes.draw do
   resources :parties do
     resources :guests, only: [:index, :create, :update]
   end
-  resources :profile, only: [:show, :edit, :update]
+  resources :profiles, only: [:show, :edit, :update]
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
