@@ -12,5 +12,5 @@ user.profile.update(name: 'lolka', surname: 'lolkin', photo: nil,
 type = Type.create!(title: 'Вписка', description: 'Просто вписка')
 
 user.parties.create(title: 'Вписон', summary: 'Все на вписку',
-                    date: Date.today + 30, coord_latitude: 0,
-                    coord_longitude: 0, type: type);
+                    date: Date.today + 30, coord_latitude: 55.6457,
+                    coord_longitude: 37.67682, type: type);

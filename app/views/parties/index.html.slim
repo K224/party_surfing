@@ -1,9 +1,16 @@
 h1 Parties#index
+
+div
+  |На этой странице будет карта
+br/
+
 div
   |Список мероприятий:
+  br/
+  br/
   -@parties.each do |party|
     div
-      div =party.title
+      div =link_to party.title, party
       div =party.summary
       div =link_to party.host.profile.name, party.host.profile
       br/

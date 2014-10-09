@@ -45,6 +45,7 @@ gem 'slim-rails'
 gem 'omniauth-facebook'
 gem 'cancan'
 gem 'draper'
+#gem 'httparty'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

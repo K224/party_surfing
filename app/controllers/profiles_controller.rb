@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     redirect_to @profile
   end
 
+private
   def profile_params
     params.require(:profile).permit(:name, :surname, :age, :contacts)
   end

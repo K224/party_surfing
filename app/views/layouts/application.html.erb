@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<%- #temp TODO %>
+<%-if user_signed_in?%>
+  <span>
+    Здравствуйте, <%=current_user.profile.name%>
+    <%=link_to "Моя страница", current_user.profile %>
+    <%=link_to "Выйти", destroy_user_session_path, method: :delete%>
+  </span>
+<%-else%>
+    <%=link_to "Войти", new_user_session_path%>
+    или
+    <%=link_to "Зарегистрироваться", new_user_registration_path%>
+<%-end%>
+<br/>
+
 <%= yield %>
 
 </body>

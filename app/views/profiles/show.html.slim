@@ -1,7 +1,9 @@
 h1 Profiles#show
+
 -if can? :update, @profile
-  div
-    =link_to "Редактировать", edit_profile_path(current_user)
+  div =link_to "Редактировать", edit_profile_path(current_user)
+  div =link_to "Создать мероприятие", new_party_path
+  br/
 div Имя: #{@profile.name}
 div Фамилия: #{@profile.surname}
 div Фото: #{@profile.photo}
