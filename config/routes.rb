@@ -4,7 +4,13 @@ PartySurfing::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :parties do
-    resources :guests, only: [:index, :create, :update]
+    member do
+      get :participate
+    end
+    collection do
+      get :get_parties_in_zone
+    end
+    resources :guests, only: [:index, :update]
   end
   resources :profiles, only: [:show, :edit, :update]
   root 'welcome#index'

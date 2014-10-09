@@ -3,12 +3,17 @@ class Ability
 
   def initialize(user)
     can :create, Party unless user.nil?
+    can :participate, Party unless user.nil?
 
     user ||= User.new
 
     can :read, Party
     can :get_parties_in_zone, Party
     can :manage, Party, host_id: user.id
+    cannot :participate, Party, host_id: user.id
+
+    can :read, Guest
+    can :update, Guest, party: {host_id: user.id}
 
     can :read, Profile
     can :manage, Profile, user_id: user.id

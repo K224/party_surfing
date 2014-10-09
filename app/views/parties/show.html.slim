@@ -16,16 +16,29 @@ br/
 div
   |Устраивает:
   =<link_to @party.host.profile.full_name, @party.host.profile
+div
+  |Дата:
+  =<@party.date.to_s
 
 br/
+
+-if can? :participate, @party
+  -unless @party.check_participation(current_user)
+    div
+      =link_to "Участвовать", participate_party_path(@party, a: 'participate')
+    br/
+  -else
+    div
+      =link_to "Отказаться", participate_party_path(@party, a: 'refuse')
+    br/
 
 div
   |Утвержденные гости:
   -cnt = 0
   -@party.guests.each do |guest|
-    =if guest.accepted
+    -if guest.accepted
       div
-        =guest.user.profile.full_name
+        =link_to guest.user.profile.full_name, guest.user.profile
       -cnt += 1
   -if cnt == 0
     div
@@ -35,9 +48,9 @@ div
   |Хотят пойти:
   -cnt = 0
   -@party.guests.each do |guest|
-    =unless guest.accepted
+    -unless guest.accepted
       div
-        =guest.user.profile.full_name
+        =link_to guest.user.profile.full_name, guest.user.profile
       -cnt += 1
   -if cnt == 0
     div

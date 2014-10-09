@@ -1,2 +1,11 @@
 h1 Guests#index
-p Find me in app/views/guests/index.html.slim
+h2 =link_to @party.title, @party
+
+div
+  |Гости:
+  -@guests.each do |guest|
+    div
+      =>link_to guest.user.profile.full_name, guest.user.profile
+      -if can?(:update, guest)
+        =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
+          party_guest_path(@party, guest), method: :put

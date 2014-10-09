@@ -26,9 +26,9 @@ br/
 div
   |Мероприятия, в которых участвовал:
   -cnt = 0
-  -@profile.user.participations do |par|
+  -@profile.user.participations.each do |par|
     -if par.accepted
-      cnt += 1
+      -cnt += 1
       div =link_to par.party.title, par.party
   -if cnt == 0
     div Не участвовал :(

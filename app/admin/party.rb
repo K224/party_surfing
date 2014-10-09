@@ -9,6 +9,10 @@ ActiveAdmin.register Party do
     actions
   end
 
+  sidebar "Guests", only: [:show, :edit] do
+    link_to "Guests list", admin_party_guests_path(party)
+  end
+
   filter :created_at
   filter :updated_at
   filter :type
