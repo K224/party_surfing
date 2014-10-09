@@ -44,6 +44,11 @@ class PartiesController < ApplicationController
   end
 
   def get_parties_in_zone
+    zone = params[:zone].split(',')
+    parties = Party.where(
+      "coord_latitude >= ? AND coord_longitude >= ? AND coord_latitude <= ? AND coord_longitude <= ?",
+      zone[0], zone[1], zone[2], zone[3])
+    render json: parties
   end
 
 private
