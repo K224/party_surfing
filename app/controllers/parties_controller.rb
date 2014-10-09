@@ -27,7 +27,9 @@ class PartiesController < ApplicationController
 
   def create
     params[:party][:host_id] = current_user.id
-    @party = Party.create(party_creation_params)
+    @party = Party.new(party_creation_params)
+    authorize! :create, @party
+    @party.save
     redirect_to @party
   end
 
