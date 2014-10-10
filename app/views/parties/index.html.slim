@@ -23,3 +23,14 @@ div
       div =party.summary
       div =link_to party.host.profile.name, party.host.profile
       br/
+
+div 
+  div show_reiting
+  - if !can? :update, @profile
+    div rate
+div 
+  div show_comments
+  - if !can? :update, @profile
+    div comment
+- if !can? :update, @profile
+  div "кнопка пожаловаться"
