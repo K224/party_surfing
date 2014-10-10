@@ -1,5 +1,15 @@
 h1 Parties#edit
 
+div#map
+
+input#searchbox type='text'
+
+javascript:
+  $('document').on('page:load', init_map_place_selection)
+  $('document').ready(init_map_place_selection)
+
 =semantic_form_for @party do |f|
   =f.inputs :title, :type, :date, :summary
+  /temp
+  =f.inputs :coord_latitude, :coord_longitude, hidden: true
   =f.actions
