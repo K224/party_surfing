@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource only: [:create, :get_parties_in_zone]
+  skip_load_resource only: [:create, :get_parties_in_zone, :index]
 
   def index
   end
@@ -48,7 +48,7 @@ class PartiesController < ApplicationController
     parties = Party.where(
       "coord_latitude >= ? AND coord_longitude >= ? AND coord_latitude <= ? AND coord_longitude <= ?",
       zone[0], zone[1], zone[2], zone[3])
-    render json: parties
+    render json: parties, include: {host: { include: :profile}}
   end
 
 private

@@ -8,10 +8,14 @@ div#map
 br/
 
 div
+  input type="button" value="Искать" onclick="load_parties_in_zone();"
+
+div
   |Список мероприятий:
   br/
-  br/
-  -@parties.each do |party|
+  div#parties
+
+  /-@parties.each do |party|
     div
       div =link_to party.title, party
       div =party.summary
