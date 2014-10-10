@@ -1,7 +1,8 @@
 h1 Parties#index
 
 javascript:
-  google.maps.event.addDomListener(window, 'load', init_map);
+  $('document').on('page:load', init_map)
+  $('document').ready(init_map)
 
 div#map
   |На этой странице будет карта
