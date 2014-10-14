@@ -1,6 +1,8 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
+  acts_as_commentable
+
   def full_name
     "#{name} #{surname}"
   end

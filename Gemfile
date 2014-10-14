@@ -46,6 +46,7 @@ gem 'slim-rails'
 gem 'omniauth-facebook'
 gem 'cancan'
 gem 'draper'
+gem 'acts_as_commentable'
 #gem 'httparty'
 
 # Use ActiveModel has_secure_password

@@ -31,3 +31,21 @@ div
       div =link_to par.party.title, par.party
   -if cnt == 0
     div Не участвовал :(
+
+br/
+
+div
+  |Комментарии
+  -if user_signed_in?
+    div
+      |Оставить комментарий
+      =semantic_form_for @comment, url: comment_profile_path do |f|
+        =f.inputs :title, :comment
+        =f.actions
+    hr/
+  -@profile.comments.each do |comment|
+    div
+      div =comment.title
+      div =comment.comment
+      div =comment.user.profile.full_name
+    hr/
