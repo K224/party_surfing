@@ -6,6 +6,7 @@ class PartiesController < ApplicationController
   end
 
   def show
+    @comment = current_user.comments.new if can? :comment, @party
     @party = @party.decorate
   end
 
@@ -40,6 +41,15 @@ class PartiesController < ApplicationController
       p = @party.guests.find_by(user_id: current_user.id)
       p.destroy if p != nil
     end
+    redirect_to :back
+  end
+
+  def comment
+    comment = @party.comments.create(
+      title: params[:comment][:title],
+      comment: params[:comment][:comment],
+      user: current_user
+    )
     redirect_to :back
   end
 

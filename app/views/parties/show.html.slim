@@ -59,3 +59,21 @@ div
 br/
 div
   =link_to "Полный список гостей", party_guests_path(@party)
+
+br/
+
+div
+  |Комментарии
+  -if can? :comment, @party
+    div
+      |Оставить комментарий
+      =semantic_form_for @comment, url: comment_party_path do |f|
+        =f.inputs :title, :comment
+        =f.actions
+    hr/
+  -@party.comments.each do |comment|
+    div
+      div =comment.title
+      div =comment.comment
+      div =comment.user.profile.full_name
+    hr/

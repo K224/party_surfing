@@ -6,17 +6,20 @@ PartySurfing::Application.routes.draw do
   resources :parties do
     member do
       get :participate
+      post :comment
     end
     collection do
       get :get_parties_in_zone
     end
     resources :guests, only: [:index, :update]
   end
+
   resources :profiles, only: [:show, :edit, :update] do
     member do
       post :comment
     end
   end
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

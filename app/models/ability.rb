@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     can :create, Party unless user.nil?
     can :participate, Party unless user.nil?
+    can :comment, Profile unless user.nil?
 
     user ||= User.new
 
@@ -11,6 +12,10 @@ class Ability
     can :get_parties_in_zone, Party
     can :manage, Party, host_id: user.id
     cannot :participate, Party, host_id: user.id
+    can :comment, Party do |party|
+      guest = party.guests.find_by(user_id: user.id)
+      !guest.nil? && guest.accepted
+    end
 
     can :read, Guest
     can :update, Guest, party: {host_id: user.id}

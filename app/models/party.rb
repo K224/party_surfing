@@ -3,6 +3,8 @@ class Party < ActiveRecord::Base
   belongs_to :type
   has_many :guests, dependent: :destroy
 
+  acts_as_commentable
+
   def check_participation(user)
     guests.find_by(user_id: user.id) != nil
   end

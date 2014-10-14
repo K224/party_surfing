@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @comment = current_user.profile.comments.new if user_signed_in?
+    @comment = current_user.comments.new if user_signed_in?
   end
 
   def edit
@@ -21,7 +21,6 @@ class ProfilesController < ApplicationController
     )
     redirect_to :back
   end
-
 
 private
   def profile_params
