@@ -9,16 +9,6 @@ div Фамилия: #{@profile.surname}
 div Фото: #{@profile.photo}
 div Возраст: #{@profile.age}
 div Контактная информация: #{@profile.contacts}
-div 
-  div show_reiting
-  - if !can? :update, @profile
-    div rate
-div 
-  div show_comments
-  - if !can? :update, @profile
-    div comment
-- if !can? :update, @profile
-  div "кнопка пожаловаться"
 br/
 
 div
