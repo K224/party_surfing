@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20141014080326) do
     t.string   "name",       default: "Anonymous"
     t.string   "surname",    default: "Anonymous"
     t.string   "photo"
-    t.date     "birthday",   default: '2014-10-14'
+    t.date     "birthday",   default: '2014-10-09'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20141014080326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

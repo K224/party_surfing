@@ -11,7 +11,6 @@ window.init_map = () ->
   }
   window.map = new google.maps.Map(document.getElementById('map'), map_options)
   window.markers = []
-  window.infoWindows = []
   input = document.getElementById('searchbox')
   if input != null
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
@@ -48,7 +47,6 @@ window.load_parties_in_zone = () ->
   for marker in window.markers
     marker.setMap(null)
   window.markers = []
-  window.infoWindows = []
   bounds = window.map.getBounds()
   $.ajax(url: "/parties/get_parties_in_zone?zone="+bounds.toUrlValue()).done (json) ->
     parties = json
@@ -58,22 +56,27 @@ window.load_parties_in_zone = () ->
       div.innerHTML = "Ничего не найдено в данной области :("
     for party in parties
       content =
-        "<div style='min-width:300px'>
-          <a href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
-          <p>#{party.summary}</p>
-          <span>#{party.date}</span>
+        "<div>
+          <div></div>
+          <div style='min-width:300px'>
+            <a href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
+            <p>#{party.summary}</p>
+            <span>#{party.date}</span>
+          </div>
         </div>"
       div.innerHTML += content
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
-      window.markers.push (marker = new google.maps.Marker({
+      marker = new google.maps.Marker({
         position: coords,
-        map: window.map
-      }) )
-      window.infoWindows.push (infoWindow = new google.maps.InfoWindow({
+        map: window.map,
         content: content
-      }) )
+      })
+      window.markers.push(marker)
       google.maps.event.addListener marker, 'click', () ->
-        infoWindow.open(window.map, marker)
+        infoWindow = new google.maps.InfoWindow({
+          content: this.content
+        })
+        infoWindow.open(window.map, this)
 
 
