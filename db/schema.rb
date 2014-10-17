@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014080326) do
+ActiveRecord::Schema.define(version: 20141017113019) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20141014080326) do
     t.integer  "type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "blocked",         default: false
+    t.text     "block_message"
   end
 
   add_index "parties", ["host_id"], name: "index_parties_on_host_id"

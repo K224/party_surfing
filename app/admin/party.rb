@@ -1,5 +1,5 @@
 ActiveAdmin.register Party do
-  permit_params :title, :type, :coor_latitude, :coord_longitude, :date
+  permit_params :title, :type, :summary, :blocked, :block_message
 
   actions :all, except: [:new]
 
@@ -10,6 +10,18 @@ ActiveAdmin.register Party do
     column :created_at
     column :updated_at
     actions
+  end
+  
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :type
+      f.input :summary
+      f.input :blocked
+      f.input :block_message
+    end
+    
+    f.actions
   end
 
   sidebar "Guests", only: [:show, :edit] do
