@@ -17,3 +17,7 @@ type = Type.create!(title: 'Вписка', description: 'Просто вписк
 user.parties.create(title: 'Вписон', summary: 'Все на вписку',
                     date: Date.today + 30, coord_latitude: 55.6457,
                     coord_longitude: 37.67682, type: type);
+
+if AdminUser.find_by(id: 1).nil?
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+end
