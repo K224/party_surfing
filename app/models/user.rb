@@ -14,15 +14,19 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook]
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+    user = where(provider: auth.provider, uid: auth.uid).first
+    if user.nil?
+      user = User.create!(email: auth.info.email,
+                         password: Devise.friendly_token[0,20])
+      user.profile.update(name: auth.info.first_name,
+                         surname: auth.info.last_name)
     end
+    return user
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"]["info"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      if data = session["devise.facebook_data"]["info"]
         user.email = data["email"] if user.email.blank?
         user.profile.update(name: data["first_name"], lastname: data["last_name"])
       end
