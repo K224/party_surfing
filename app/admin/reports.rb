@@ -1,8 +1,6 @@
 ActiveAdmin.register Party do
   permit_params :title, :type, :coor_latitude, :coord_longitude, :date
 
-  actions :all, except: [:new]
-
   index do
     column :title
     column :host
