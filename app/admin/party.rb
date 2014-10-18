@@ -28,6 +28,7 @@ ActiveAdmin.register Party do
     link_to "Guests list", admin_party_guests_path(party)
   end
 
+  filter :id
   filter :created_at
   filter :updated_at
   filter :type
