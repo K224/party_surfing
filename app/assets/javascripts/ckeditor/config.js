@@ -123,12 +123,4 @@ CKEDITOR.editorConfig = function( config )
       }
     }
   });*/
-alert();
- CKEDITOR.on('ready',function(){
-alert();
-  if ( $('#ckeditor').length ) 
-    CKEDITOR.replace( 'ckeditor' );
-  if ( $('#ckeditor').prev('label').length ) 
-    $('#ckeditor').prev('label').css('float','none');
-});
 };

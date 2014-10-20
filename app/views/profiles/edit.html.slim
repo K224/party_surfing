@@ -1,4 +1,6 @@
 h1 Profiles#edit
 = semantic_form_for @profile do |f|
-  =f.inputs :name, :surname, :birthday, :contacts
+  =f.inputs :name, :surname, :birthday
+  =f.inputs do
+    =f.input :contacts, :as => 'ckeditor', :label => false
   =f.actions

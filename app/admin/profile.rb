@@ -16,11 +16,27 @@ ActiveAdmin.register Profile do
       f.input :name
       f.input :surname
       f.input :birthday
-      f.input :contacts
       f.input :photo
+      f.input :contacts, :as => :ckeditor, :label => false
     end
     
     f.actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :surname
+      row :photo
+      row :birthday
+      row :user
+      row :created_at
+      row :updated_at
+      row :contacts do |instance| 
+        raw instance.contacts
+      end
+    end 
   end
 
   filter :name
