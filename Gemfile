@@ -48,6 +48,7 @@ gem 'cancan'
 gem 'draper'
 gem 'acts_as_commentable'
 #gem 'httparty'
+gem 'ckeditor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

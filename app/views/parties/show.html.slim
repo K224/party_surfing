@@ -14,7 +14,7 @@ h2
     div =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
     br/
   div
-    =@party.summary
+    =raw @party.summary
   div
     =@party.map_image
 

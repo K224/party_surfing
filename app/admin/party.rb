@@ -16,7 +16,7 @@ ActiveAdmin.register Party do
     f.inputs do
       f.input :title
       f.input :type
-      f.input :summary
+      f.input :summary, :as => 'ckeditor', :label => false
       f.input :blocked
       f.input :block_message
     end
@@ -24,6 +24,25 @@ ActiveAdmin.register Party do
     f.actions
   end
 
+  show do
+    attributes_table do
+      row :id
+      row :title
+      row :coord_longitude
+      row :coord_latitude
+      row :date
+      row :host
+      row :type
+      row :created_at
+      row :updated_at
+      row :blocked
+      row :block_message
+      row :summary do |instance| 
+        raw instance.summary
+      end
+    end 
+  end
+  
   sidebar "Guests", only: [:show, :edit] do
     link_to "Guests list", admin_party_guests_path(party)
   end

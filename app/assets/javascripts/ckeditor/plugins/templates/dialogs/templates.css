@@ -1,0 +1,89 @@
+/*
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+
+body.active_admin .cke_tpl_list
+{
+	border: #dcdcdc 2px solid;
+	background-color: #ffffff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+	height: 220px;
+}
+
+body.active_admin .cke_tpl_list a {
+	diplay: block;
+}
+
+body.active_admin .cke_tpl_item
+{
+	display: block;
+	margin: 10px;
+	padding: 7px;
+	border: #eeeeee 1px solid;
+	*width: 88%;
+}
+
+body.active_admin .cke_tpl_preview
+{
+	border-collapse: separate;
+	text-indent:0;
+	width: 100%;
+}
+body.active_admin .cke_tpl_preview td
+{
+	padding: 2px;
+	vertical-align: middle;
+}
+body.active_admin .cke_tpl_preview .cke_tpl_preview_img
+{
+	width: 100px;
+}
+body.active_admin .cke_tpl_preview span
+{
+	white-space: normal;
+}
+
+body.active_admin .cke_tpl_title
+{
+	font-weight: bold;
+}
+
+body.active_admin .cke_tpl_list a:hover .cke_tpl_item,
+body.active_admin .cke_tpl_list a:focus .cke_tpl_item,
+body.active_admin .cke_tpl_list a:active .cke_tpl_item
+{
+	border: #ff9933 1px solid;
+	background-color: #fffacd;
+}
+
+body.active_admin .cke_tpl_list a:hover *,
+body.active_admin .cke_tpl_list a:focus *,
+body.active_admin .cke_tpl_list a:active *
+{
+	cursor: pointer;
+}
+
+/* IE6 contextual selectors childs won't get :hover transition until,
+	the hover style of the link itself contains certain CSS declarations.*/
+body.active_admin .cke_browser_ie6 .cke_tpl_list a:active,
+body.active_admin .cke_browser_ie6 .cke_tpl_list a:hover,
+body.active_admin .cke_browser_ie6 .cke_tpl_list a:focus
+{
+	background-position: 0 0;
+}
+
+body.active_admin .cke_hc .cke_tpl_list a:hover .cke_tpl_item,
+body.active_admin .cke_hc .cke_tpl_list a:focus .cke_tpl_item,
+body.active_admin .cke_hc .cke_tpl_list a:active .cke_tpl_item
+{
+	border-width: 3px;
+}
+
+body.active_admin .cke_tpl_empty, body.active_admin .cke_tpl_loading
+{
+	text-align: center;
+	padding: 5px;
+}
