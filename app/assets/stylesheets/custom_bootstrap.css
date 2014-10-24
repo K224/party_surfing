@@ -1,3 +1,7 @@
+.navbar-without-margin{
+  margin: 0;
+}
+
 .btn-black{
   background-color: black;
   color: white;
@@ -24,7 +28,6 @@
 .party-background{
   background-image: url('/party_background.jpg');
   text-align: center;
-  margin-top: -50px;
 }
 
 .main-page-line{
