@@ -49,3 +49,7 @@
 .with-buffer{
   padding-bottom: 50px;
 }
+
+.navbar-logo:hover{
+  background-color: #FF5300;
+}
