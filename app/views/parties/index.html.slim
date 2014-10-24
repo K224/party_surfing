@@ -1,18 +1,17 @@
-h1 Parties#index
-
 javascript:
   $('document').on('page:load', init_map)
   $('document').ready(init_map)
 
-div#map
-  |На этой странице будет карта
-input#searchbox type='text'
-br/
+.container
 
-div
-  input type="button" value="Искать" onclick="load_parties_in_zone();"
+  .row
+    .col-md-4
+      input#btnSearch.btn.btn-orange type="button" value="Искать" onclick="load_parties_in_zone();"
+  .row
+    .col-md-3#parties
+      |Выберите область на карте и нажмите кнопку "Искать"
 
-div
-  |Список мероприятий:
-  br/
-  div#parties
+    #map.col-md-9
+      |На этой странице будет карта
+
+  input#searchbox type='text'
