@@ -11,6 +11,8 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 # Use SCSS for stylesheets
@@ -54,7 +56,6 @@ gem 'ckeditor'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

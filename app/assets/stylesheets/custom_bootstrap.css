@@ -11,6 +11,7 @@
 
 .btn-orange{
   background-color: #FF5300;
+  border: none;
   color: white;
   font-weight: bold;
 }
@@ -18,4 +19,33 @@
 .btn-orange:hover{
   color:white;
   background-color: gray;
+}
+
+.party-background{
+  background-image: url('/party_background.jpg');
+  margin-top: -30px;
+  text-align: center;
+}
+
+.main-page-line{
+  padding-top: 250px;
+  padding-bottom: 300px;
+  color: dark-gray;
+}
+
+.big-letters{
+  font-size: 40pt;
+}
+
+.btn-superbig{
+  font-size: 30pt;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: -100px;
+}
+
+.with-buffer{
+  padding-bottom: 50px;
 }
