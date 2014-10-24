@@ -1,0 +1,21 @@
+.btn-black{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-black:hover{
+  color:white;
+  background-color: gray;
+}
+
+.btn-orange{
+  background-color: #FF5300;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-orange:hover{
+  color:white;
+  background-color: gray;
+}
