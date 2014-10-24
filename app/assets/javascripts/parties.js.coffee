@@ -26,6 +26,9 @@ window.init_map = () ->
       for place in places
         bounds.extend(place.geometry.location)
       map.fitBounds(bounds) )
+  input = document.getElementById('btnSearch')
+  if input != null
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
 
 window.init_map_place_selection = () ->
   init_map()
@@ -58,7 +61,7 @@ window.load_parties_in_zone = () ->
       content =
         "<div>
           <div></div>
-          <div style='min-width:300px'>
+          <div>
             <a href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
             <p>#{party.summary}</p>
             <span>#{party.date}</span>
