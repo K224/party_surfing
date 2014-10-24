@@ -18,12 +18,12 @@
         <%-if user_signed_in?%>
           <span>
             Здравствуйте, <%=current_user.profile.name%>
-            <%=link_to "Профиль", current_user.profile, class: "btn btn-default navbar-btn btn-orange" %>
-            <%=link_to "Выйти", destroy_user_session_path, class: "btn btn-default navbar-btn btn-black", method: :delete %>
+            <%=link_to "Профиль", current_user.profile, class: "btn btn-default navbar-btn btn-orange btn-lg" %>
+            <%=link_to "Выйти", destroy_user_session_path, class: "btn btn-default navbar-btn btn-black btn-lg", method: :delete %>
           </span>
         <%-else%>
-            <%=link_to "Вход", new_user_session_path, class:"btn btn-default navbar-btn btn-black"%>
-            <%=link_to "Зарегистрироваться", new_user_registration_path, class:"btn btn-default navbar-btn btn-orange"%>
+            <%=link_to "Вход", new_user_session_path, class:"btn btn-default navbar-btn btn-black btn-lg"%>
+            <%=link_to "Зарегистрироваться", new_user_registration_path, class:"btn btn-default navbar-btn btn-orange btn-lg"%>
         <%-end%>
       </div>
     </div>
