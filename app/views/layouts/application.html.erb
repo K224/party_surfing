@@ -17,7 +17,6 @@
       <div class="nav navbar-nav navbar-right">
         <%-if user_signed_in?%>
           <span>
-            Здравствуйте, <%=current_user.profile.name%>
             <%=link_to "Профиль", current_user.profile, class: "btn btn-default navbar-btn btn-orange btn-lg" %>
             <%=link_to "Выйти", destroy_user_session_path, class: "btn btn-default navbar-btn btn-black btn-lg", method: :delete %>
           </span>
