@@ -1,19 +1,6 @@
-h1 Party Surfing
-
-=link_to "Найти вписку", parties_path
-
-h3 style="text-align:center;"
-  | Добро пожаловать на уникальный сервис по поиску вечеринок - Party Surfing.
-  br
-h3 style="text-indent: 20px;"
-  small
-    С его помощью у вас больше не возникнет вопроса: "Где бы оторваться сегодня ночью?" Всего за пару минут вы найдете ближайшую к вам вечеринку.
-h3 style="text-indent: 20px;"
-  small
-    | Или может, у Вас уехали родители, и вы не хотите скучать в одиночестве? Тогда смело приглашайте всех желающих на свою собственную вечеринку!
-h3 style="text-indent: 20px;"
-  small
-    Убедитесь, насколько всё просто!
-h3 style="text-indent: 20px;"
-  small
-    | Присоединяйтесь!
+.container-fluid.party-background
+  .row.main-page-line
+    .big-letters
+      |Are you searching for a party tonight?
+  .row.with-buffer
+    =link_to "Let's Party", parties_path, class: "btn btn-default btn-orange btn-superbig"
