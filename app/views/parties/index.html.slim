@@ -2,16 +2,15 @@ javascript:
   $('document').on('page:load', init_map)
   $('document').ready(init_map)
 
-.container
-
-  .row
-    .col-md-4
-      input#btnSearch.btn.btn-orange type="button" value="Искать" onclick="load_parties_in_zone();"
+.container-fluid
   .row
     .col-md-3#parties
       |Выберите область на карте и нажмите кнопку "Искать"
 
-    #map.col-md-9
-      |На этой странице будет карта
-
   input#searchbox type='text'
+
+.map-container
+  #map
+    |На этой странице будет карта
+
+input#btnSearch.btn.btn-orange type="button" value="Искать" onclick="load_parties_in_zone();"

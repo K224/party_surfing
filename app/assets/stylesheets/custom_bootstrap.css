@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Century Gothic Bold'; /*a name to be used later*/
+  src: url('/fonts/Century Gothic Bold.ttf'); /*URL to font*/
+}
+
 .btn-black{
   background-color: black;
   color: white;
@@ -18,7 +23,7 @@
 
 .btn-orange:hover{
   color:white;
-  background-color: gray;
+  background-color: #F0B000
 }
 
 .party-background{
@@ -28,13 +33,14 @@
 }
 
 .main-page-line{
-  padding-top: 250px;
-  padding-bottom: 300px;
+  padding-top: 85px;
+  padding-bottom: 570px;
   color: dark-gray;
 }
 
 .big-letters{
   font-size: 40pt;
+  font-family: 'Century Gothic Bold';
 }
 
 .btn-superbig{
@@ -47,9 +53,5 @@
 }
 
 .with-buffer{
-  padding-bottom: 50px;
-}
-
-.navbar-logo:hover{
-  background-color: #FF5300;
+  padding-bottom: 80px;
 }
