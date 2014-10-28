@@ -3,6 +3,8 @@ class PartiesController < ApplicationController
   skip_load_resource only: [:create, :get_parties_in_zone, :index]
 
   def index
+    @padding_top = '78px'
+    @navbar_style = 'navbar-fixed-top'
   end
 
   def show
@@ -14,6 +16,8 @@ class PartiesController < ApplicationController
   end
 
   def new
+    @padding_top = '80px'
+    @navbar_style = 'navbar-fixed-top'
   end
 
   def update
