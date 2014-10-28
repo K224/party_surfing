@@ -1,18 +1,30 @@
-h1 Parties#new
-
-div#map
-
-input#searchbox type='text'
-
 javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
 
-=semantic_form_for @party do |f|
-  =f.inputs :title, :type, :date, :summary
-  /temp
-  =f.inputs :coord_latitude, :coord_longitude, hidden: true
-  =f.actions
+.container-fluid
+  .row
+    .col-md-3
+      =form_for @party do |f|
+        fieldset
+          =f.hidden_field :coord_longitude
+          =f.hidden_field :coord_latitude
+        .form-group
+          =f.text_field :title, class: 'form-control', placeholder: 'Название'
+        .form-group
+          label Тип
+          =f.select :type, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
+        .form-group
+          label Дата
+          =f.date_field :date, class: 'form-control'
+        .form-group
+          =f.text_area :summary, class: 'form-control', placeholder: 'Описание'
+        .form-group
+          =f.submit "Создать", class: 'btn btn-orange btn-lg'
 
 = javascript_include_tag "ckeditor/init", "data-turbolinks-track" => true
 
+input#searchbox type='text'
+
+.map-container
+  div#map
