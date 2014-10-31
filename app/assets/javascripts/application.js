@@ -17,4 +17,3 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap.min
-//= require ckeditor/ckeditor

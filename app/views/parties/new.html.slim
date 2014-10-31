@@ -22,9 +22,11 @@ javascript:
         .form-group
           =f.submit "Создать", class: 'btn btn-orange btn-lg'
 
-= javascript_include_tag "ckeditor/init", "data-turbolinks-track" => true
-
 input#searchbox type='text'
 
 .map-container
   div#map
+
+javascript:
+  var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
+  $.getScript("/javascripts/ckeditor/ckeditor.js", function() {CKEDITOR.replace( 'party[summary]' ); })

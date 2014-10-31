@@ -8,12 +8,16 @@ javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
 
+
 =semantic_form_for @party do |f|
   =f.inputs :title, :type, :date
   =f.inputs do
-    =f.input :summary, :as => 'ckeditor', :label => false
+    =f.input :summary, :label => false
   /temp
   =f.inputs :coord_latitude, :coord_longitude, hidden: true
   =f.actions
 
-= javascript_include_tag "ckeditor/init", "data-turbolinks-track" => true
+javascript:
+  var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
+  $.getScript("/javascripts/ckeditor/ckeditor.js", function() {CKEDITOR.replace( 'party[summary]' ); })
+  
