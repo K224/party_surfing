@@ -19,7 +19,7 @@ javascript:
 
 javascript:
   var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
-  $.getScript("/javascripts/ckeditor/ckeditor.js", function() {CKEDITOR.replace( 'party[summary]' ); })
+
   jQuery.cachedScript = function( url, options ) {
     options = $.extend( options || {}, {
       dataType: "script",
@@ -28,5 +28,5 @@ javascript:
     });
     return jQuery.ajax( options );
   };
-  $.cachedScript( "ajax/test.js" )
+  $.cachedScript( "/javascripts/ckeditor/ckeditor.js" )
   
