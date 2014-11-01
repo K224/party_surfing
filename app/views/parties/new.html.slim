@@ -29,4 +29,4 @@ input#searchbox type='text'
 
 javascript:
   var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
-  $.getScript("/javascripts/ckeditor/ckeditor.js", function() {CKEDITOR.replace( 'party[summary]' ); })
+  $.getScript("/javascripts/ckeditor/ckeditor.js", function() {$('document').ready(CKEDITOR.replace( 'party[summary]' )); })
