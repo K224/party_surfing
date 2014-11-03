@@ -7,26 +7,13 @@ input#searchbox type='text'
 javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
-
+  $(document).on('page:load', function(){window['rangy'].initialized = false})
 
 =semantic_form_for @party do |f|
   =f.inputs :title, :type, :date
   =f.inputs do
-    =f.input :summary, :label => false
+    =f.input :summary, :as => wysihtml5
   /temp
   =f.inputs :coord_latitude, :coord_longitude, hidden: true
   =f.actions
-
-javascript:
-  var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
-
-  jQuery.cachedScript = function( url, options ) {
-    options = $.extend( options || {}, {
-      dataType: "script",
-      cache: true,
-      url: url
-    });
-    return jQuery.ajax( options );
-  };
-  $.cachedScript( "/javascripts/ckeditor/ckeditor.js" )
   

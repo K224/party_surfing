@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
+  revision: 1c7cb98c6aafbf4e67125c1dea1c9c910319c9be
+  specs:
+    bootstrap-wysihtml5-rails (0.3.3.1)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/activeadmin/activeadmin.git
   revision: 0c83cfe0b9b43a4a27a63c13f27d6682b0ff6cae
   specs:
@@ -52,9 +59,6 @@ GEM
       thor
     builder (3.1.4)
     cancan (1.6.10)
-    ckeditor (4.0.11)
-      mime-types
-      orm_adapter (~> 0.5.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -226,8 +230,8 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_commentable
+  bootstrap-wysihtml5-rails!
   cancan
-  ckeditor
   coffee-rails (~> 4.0.0)
   devise
   devise-i18n
