@@ -1,8 +1,12 @@
+script src="/nicedit/nicEdit.js"
+
+javascript:
+  $(document).on('page:load', function(){window['rangy'].initialized = false;})
+  bkLib.onDomLoaded(function() {  new nicEditor().panelInstance('profile_contacts'); });
+
 h1 Profiles#edit
 = semantic_form_for @profile do |f|
   =f.inputs :name, :surname, :birthday
   =f.inputs do
-    =f.input :contacts, :as => 'ckeditor', :label => false
+    =f.input :contacts, :label => false
   =f.actions
-
-= javascript_include_tag "ckeditor/init", "data-turbolinks-track" => true

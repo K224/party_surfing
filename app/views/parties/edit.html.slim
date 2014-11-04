@@ -4,15 +4,18 @@ div#map
 
 input#searchbox type='text'
 
+script src="/nicedit/nicEdit.js"
+
 javascript:
   $('document').on('page:load', init_map_place_selection)
-  $('document').ready(init_map_place_selection)
-  $(document).on('page:load', function(){window['rangy'].initialized = false})
+  $('document').ready(init_map_place_selection) 
+  $(document).on('page:load', function(){window['rangy'].initialized = false;})
+  bkLib.onDomLoaded(function() {  new nicEditor().panelInstance('party_summary'); });
 
 =semantic_form_for @party do |f|
   =f.inputs :title, :type, :date
-  =f.inputs do
-    =f.input :summary, :as => wysihtml5
+
+  =f.input :summary, :label => false
   /temp
   =f.inputs :coord_latitude, :coord_longitude, hidden: true
   =f.actions

@@ -1,6 +1,10 @@
+script src="/nicedit/nicEdit.js"
+
 javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
+  $(document).on('page:load', function(){window['rangy'].initialized = false;})
+  bkLib.onDomLoaded(function() {  new nicEditor().panelInstance('party_summary'); });
 
 .container-fluid
   .row
@@ -26,23 +30,3 @@ input#searchbox type='text'
 
 .map-container
   div#map
-
-javascript:
-  var CKEDITOR_BASEPATH = "/javascripts/ckeditor/"
-  jQuery.cachedScript = function( url, options ) {
- 
-  options = $.extend( options || {}, {
-    dataType: "script",
-    cache: true,
-    url: 'ajax/test.js'
-  });
- 
-  // Use $.ajax() since it is more flexible than $.getScript
-  // Return the jqXHR object so we can chain callbacks
-  return jQuery.ajax( options );
-};
- 
-// Usage
-$.cachedScript( "ajax/test.js" ).done(function( script, textStatus ) {
-  console.log( textStatus );
-});
