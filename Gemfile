@@ -50,7 +50,6 @@ gem 'cancan'
 gem 'draper'
 gem 'acts_as_commentable'
 #gem 'httparty'
-gem 'bootstrap-wysihtml5-rails', :git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

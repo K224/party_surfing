@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
-  revision: 1c7cb98c6aafbf4e67125c1dea1c9c910319c9be
-  specs:
-    bootstrap-wysihtml5-rails (0.3.3.1)
-      railties (>= 3.0)
-
-GIT
   remote: git://github.com/activeadmin/activeadmin.git
   revision: 0c83cfe0b9b43a4a27a63c13f27d6682b0ff6cae
   specs:
@@ -230,7 +223,6 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_commentable
-  bootstrap-wysihtml5-rails!
   cancan
   coffee-rails (~> 4.0.0)
   devise
