@@ -1,10 +1,7 @@
-script src="/nicedit/nicEdit.js"
-
 javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
-  $(document).on('page:load', function(){window['rangy'].initialized = false;})
-  bkLib.onDomLoaded(function() {  new nicEditor().panelInstance('party_summary'); });
+  initNicEditor('party_summary')
 
 .container-fluid
   .row

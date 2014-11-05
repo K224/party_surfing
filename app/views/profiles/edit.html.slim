@@ -1,8 +1,5 @@
-script src="/nicedit/nicEdit.js"
-
 javascript:
-  $(document).on('page:load', function(){window['rangy'].initialized = false;})
-  $(document).ready(function() {  new nicEditor().panelInstance('profile_contacts'); });
+  initNicEditor('profile_contacts')
 
 h1 Profiles#edit
 = semantic_form_for @profile do |f|
