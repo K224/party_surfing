@@ -50,7 +50,6 @@ class PartiesController < ApplicationController
 
   def comment
     comment = @party.comments.create(
-      title: params[:comment][:title],
       comment: params[:comment][:comment],
       user: current_user
     )
