@@ -75,14 +75,13 @@ h2
       div
         |Оставить комментарий
         =semantic_form_for @comment, url: comment_party_path do |f|
-          =f.inputs :title, :comment
+          =f.inputs :comment
           =f.actions
       hr/
     -@party.comments.each do |comment|
       div
-        div =comment.title
         div =comment.comment
-        div =comment.user.profile.full_name
+        div =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
       hr/
 -else 
   | Мероприятие заблокированно администратором.

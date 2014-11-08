@@ -15,7 +15,6 @@ class ProfilesController < ApplicationController
 
   def comment
     comment = @profile.comments.create(
-      title: params[:comment][:title],
       comment: params[:comment][:comment],
       user: current_user
     )

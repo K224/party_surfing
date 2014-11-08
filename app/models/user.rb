@@ -11,11 +11,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: [:facebook, :vkontakte]
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
     if user.nil?
+      user = User.find_by(email: auth.info.email)
+      return nil unless user.nil?
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
                          provider: auth.provider, uid: auth.uid)
@@ -27,7 +29,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if session["devise.facebook_data"] != nil && data = session["devise.facebook_data"]["info"]
+      if session["devise.user_data"] != nil && data = session["devise.user_data"]["info"]
         user.email = data["email"] if user.email.blank?
         user.profile.update(name: data["first_name"], lastname: data["last_name"])
       end
