@@ -1,9 +1,13 @@
 javascript:
   initNicEditor('profile_contacts')
 
-h1 Profiles#edit
-= semantic_form_for @profile do |f|
-  =f.inputs :name, :surname, :birthday
-  =f.inputs do
-    =f.input :contacts, :label => false
-  =f.actions
+.container
+  h1.textCenter Редактирование профиля
+  .row
+    .col-md-4
+    .col-md-8
+      = semantic_form_for @profile do |f|
+        =f.inputs :name, :surname, :birthday
+        =f.inputs do
+          =f.input :contacts, :label => false
+        =f.actions

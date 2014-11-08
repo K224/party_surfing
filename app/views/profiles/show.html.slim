@@ -1,50 +1,48 @@
-h1 Profiles#show
+.container
+  .row
+    .col-md-4
+      div.ava.margin10 
+      -if can? :update, @profile
+        div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать", edit_profile_path(current_user)
+        div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
+      div.BlackBox.textCenter.margin10bot
+        |Принимал участие
+        -cnt = 0
+        -@profile.user.participations.each do |par|
+          -if par.accepted
+            -cnt += 1
+            div.WhiteBox =link_to par.party.title, par.party
+        -if cnt == 0
+          div.WhiteBox Не участвовал :(
 
--if can? :update, @profile
-  div =link_to "Редактировать", edit_profile_path(current_user)
-  div =link_to "Создать мероприятие", new_party_path
-  br/
-div Имя: #{@profile.name}
-div Фамилия: #{@profile.surname}
-div Фото: #{@profile.photo}
-div Возраст: #{@profile.age}
-div Контактная информация: #{raw @profile.contacts}
-br/
+      div.BlackBox.textCenter.margin10bot
+        |Мои мероприятия
+        -cnt = 0
+        -@profile.user.parties.each do |party|
+          div.WhiteBox =link_to party.title, party
+          -cnt += 1
+        -if cnt == 0
+          div.WhiteBox Не создавал :(
 
-div
-  |Мероприятия, которые создавал:
-  -cnt = 0
-  -@profile.user.parties.each do |party|
-    div =link_to party.title, party
-    -cnt += 1
-  -if cnt == 0
-    div Не создавал :(
 
-br/
-
-div
-  |Мероприятия, в которых участвовал:
-  -cnt = 0
-  -@profile.user.participations.each do |par|
-    -if par.accepted
-      -cnt += 1
-      div =link_to par.party.title, par.party
-  -if cnt == 0
-    div Не участвовал :(
-
-br/
-
-div
-  |Комментарии
-  -if user_signed_in?
-    div
-      |Оставить комментарий
-      =semantic_form_for @comment, url: comment_profile_path do |f|
-        =f.inputs :comment
-        =f.actions
-    hr/
-  -@profile.comments.each do |comment|
-    div
-      div =comment.comment
-      div =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-    hr/
+    .col-md-7.col-md-offset-1
+      div.margin10
+        h1 #{@profile.name} #{@profile.surname}
+      div.margin10 #{@profile.age}
+      div.margin10
+        | Контактная информация:
+        div=raw @profile.contacts
+      div.margin10
+        -if user_signed_in?
+          div
+            |Оставить комментарий
+            =semantic_form_for @comment, url: comment_profile_path do |f|
+              =f.inputs :comment
+              =f.actions
+          hr/
+        |Комментарии:
+        -@profile.comments.each do |comment|
+          div
+            div =comment.comment
+            div =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+          hr/
