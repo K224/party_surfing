@@ -31,7 +31,7 @@
       div.margin10 #{@profile.age}
       div.margin10 
         | Контактная информация:
-        div=raw @profile.contacts
+        /div=raw @profile.contacts
       div.margin10
         -if user_signed_in?
           div
