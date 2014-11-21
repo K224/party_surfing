@@ -1,48 +1,58 @@
-.container
+﻿.container#container
   .row
     .col-md-4
-      div.ava.margin10 
+      div.ava
+        img.avatar src="/ava.jpg"
       -if can? :update, @profile
-        div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать", edit_profile_path(current_user)
+        div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
         div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
-      div.BlackBox.textCenter.margin10bot
-        |Принимал участие
-        -cnt = 0
-        -@profile.user.participations.each do |par|
-          -if par.accepted
-            -cnt += 1
-            div.WhiteBox =link_to par.party.title, par.party
-        -if cnt == 0
-          div.WhiteBox Не участвовал :(
+        div.btn.btn-primary#StartSurf.margin10bot =link_to "Start Surfing"
 
-      div.BlackBox.textCenter.margin10bot
+      div.BlackBox.textCenter
         |Мои мероприятия
-        -cnt = 0
-        -@profile.user.parties.each do |party|
-          div.WhiteBox =link_to party.title, party
+      -cnt = 0
+      -@profile.user.parties.each do |party|
+        div.WhiteBox.textCenter =link_to party.title, party
+        -cnt += 1
+      -if cnt == 0
+        div.WhiteBox.textCenter Не создавал
+
+      div.BlackBox.textCenter
+        |Принимал участие
+      -cnt = 0
+      -@profile.user.participations.each do |par|
+        -if par.accepted
           -cnt += 1
-        -if cnt == 0
-          div.WhiteBox Не создавал :(
+          div.WhiteBox.textCenter =link_to par.party.title, par.party
+      -if cnt == 0
+        div.WhiteBox.textCenter Не участвовал
 
+    .col-md-6.col-md-offset-1
 
-    .col-md-7.col-md-offset-1
-      div.margin10
+      div.margin20bot
         h1 #{@profile.name} #{@profile.surname}
-      div.margin10 #{@profile.age}
-      div.margin10
+        h5 #{@profile.age}
+
+      div.margin5bot
         | Контактная информация:
+      div.iconsPlace.margin5bot
+          img.icons src="/skype.png"
+      div.iconsPlace.margin20bot
+          img.icons src="/phone.png"
+
+      div.margin20bot 
+        | О себе:
         div=raw @profile.contacts
-      div.margin10
+      div.margin20bot
         -if user_signed_in?
           div
-            |Оставить комментарий
             =semantic_form_for @comment, url: comment_profile_path do |f|
               =f.inputs :comment
               =f.actions
-          hr/
-        |Комментарии:
-        -@profile.comments.each do |comment|
-          div
-            div =comment.comment
-            div =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-          hr/
+        .wall
+          -@profile.comments.each do |comment|
+            div.message
+              div.miniava.fl
+                img.miniavatar src="/ava.jpg"
+              div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+              div =comment.comment

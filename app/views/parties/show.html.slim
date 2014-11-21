@@ -1,34 +1,75 @@
-.container
+﻿.container#container
   -if (can? :manage, @party) && @party.blocked
       .blocked style="position:absolute"
         = @party.block_message
-    
+  .row
+    .col-md-4
+      h2
+        =@party.title
+      div.margin10bot
+        |Организатор:
+        =<link_to @party.host.profile.full_name, @party.host.profile
+      div.margin10bot
+        |Информация:
+        .div
+          =raw @party.summary
+      div.margin10bot
+        |Дата:
+        =<@party.date.to_s
+      div.margin10bot
+        |Участники
+        -cnt = 0
+        -@party.guests.each do |guest|
+          -if guest.accepted
+            div
+              =<link_to @party.host.profile.full_name, @party.host.profile
+            -cnt += 1
+        -if cnt == 0
+          div
+            |Никто не идет
+      div
+        |Хотят пойти
+        -cnt = 0
+        -@party.guests.each do |guest|
+          -unless guest.accepted
+            div
+              =link_to guest.user.profile.full_name, guest.user.profile
+            -cnt += 1
+        -if cnt == 0
+          div
+            |Никто не хочет
 
-  h1 Parties#show
 
-  h2
-    =@party.title
+    .col-md-4
+      div
+        -if can? :comment, @party
+          div
+            =semantic_form_for @comment, url: comment_party_path do |f|
+              =semantic_form_for @comment, url: comment_party_path do |f|
+              =f.inputs :comment
+              =f.actions
+        .wall
+          -@party.comments.each do |comment|
+            div.message
+              div.miniava.fl
+                img.miniavatar src="/ava.jpg"
+              div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+              div =comment.comment
+    .col-md-4
+      div.ava
+        img.avatar src="/ava.jpg"
+      div.ava
+        =@party.map_image
+
 
   -if !@party.blocked || (can? :manage, @party)
     -if can? :manage, @party
-      div =link_to "Редактировать", edit_party_path(@party)
-      div =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
-      br/
-    div
-      =raw @party.summary
-    div
-      =@party.map_image
+      div.black =link_to "Редактировать", edit_party_path(@party)
+      div.black =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
+ 
+    
+    
 
-    br/
-
-    div
-      |Устраивает:
-      =<link_to @party.host.profile.full_name, @party.host.profile
-    div
-      |Дата:
-      =<@party.date.to_s
-
-    br/
 
     -if can? :participate, @party
       -unless @party.check_participation(current_user)
@@ -40,29 +81,6 @@
           =link_to "Отказаться", participate_party_path(@party, a: 'refuse')
         br/
 
-    div
-      |Утвержденные гости:
-      -cnt = 0
-      -@party.guests.each do |guest|
-        -if guest.accepted
-          div
-            =link_to guest.user.profile.full_name, guest.user.profile
-          -cnt += 1
-      -if cnt == 0
-        div
-          |Никто не идет :(
-    br/
-    div
-      |Хотят пойти:
-      -cnt = 0
-      -@party.guests.each do |guest|
-        -unless guest.accepted
-          div
-            =link_to guest.user.profile.full_name, guest.user.profile
-          -cnt += 1
-      -if cnt == 0
-        div
-          |Никто не хочет :(
 
     br/
     div
@@ -70,20 +88,8 @@
 
     br/
 
-  div
-    |Комментарии
-    -if can? :comment, @party
-      div
-        |Оставить комментарий
-        =semantic_form_for @comment, url: comment_party_path do |f|
-          =f.inputs :comment
-          =f.actions
-      hr/
-    -@party.comments.each do |comment|
-      div
-        div =comment.comment
-        div =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-      hr/
--else 
-  | Мероприятие заблокированно администратором.
+   
+  -else 
+    | Мероприятие заблокированно администратором.
+
 

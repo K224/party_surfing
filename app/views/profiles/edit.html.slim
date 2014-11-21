@@ -1,13 +1,17 @@
-javascript:
+﻿javascript:
   initNicEditor('profile_contacts')
 
-.container
+.container#container
   h1.textCenter Редактирование профиля
   .row
     .col-md-4
-    .col-md-8
+      div.ava
+        img.avatar src="/ava.jpg"
+      div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
+    .col-md-6.col-md-offset-1
       = semantic_form_for @profile do |f|
         =f.inputs :name, :surname, :birthday
         =f.inputs do
           =f.input :contacts, :label => false
         =f.actions
+
