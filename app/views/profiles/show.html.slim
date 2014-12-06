@@ -31,14 +31,19 @@
 
       div.margin20bot
         h1 #{@profile.name} #{@profile.surname}
-        h5 #{@profile.age}
-
+        h5 Возраст #{@profile.age}
+      .container-fluid.ads
+        <script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"></script>
       div.margin5bot
         | Контактная информация:
-      div.iconsPlace.margin5bot
+      -if !@profile.skype_hidden
+        div.iconsPlace.margin5bot
           img.icons src="/skype.png"
-      div.iconsPlace.margin20bot
+          | #{@profile.skype}
+      -if !@profile.phone_hidden
+        div.iconsPlace.margin20bot
           img.icons src="/phone.png"
+          | #{@profile.phone}
 
       div.margin20bot 
         | О себе:

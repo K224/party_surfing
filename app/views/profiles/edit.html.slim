@@ -4,14 +4,60 @@
 .container#container
   h1.textCenter Редактирование профиля
   .row
-    .col-md-4
+    .col-md-3
       div.ava
         img.avatar src="/ava.jpg"
       div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
-    .col-md-6.col-md-offset-1
-      = semantic_form_for @profile do |f|
-        =f.inputs :name, :surname, :birthday
-        =f.inputs do
-          =f.input :contacts, :label => false
-        =f.actions
+    .col-md-8.col-md-offset-1
+      = form_for @profile do |f|
+        .form-group
+          label 
+            | name
+          =f.text_field :name, class: "form-control"        
+        .form-group
+          label 
+            | дата рождения
+          .input-group
+            =f.date_field :birthday, class: "form-control"
+            span.input-group-addon
+              =f.check_box :birthday_hidden
+              | &nbsp;скрыть
+        .form-group
+          label
+            div.iconsPlace
+              img.icons src="/skype.png"
+              | skype
+          div.input-group
+            =f.text_field :skype, class: "form-control"
+            span.input-group-addon
+              =f.check_box :skype_hidden
+              | &nbsp;скрыть
+        .form-group
+          label
+            div.iconsPlace.margin20bot
+              img.icons src="/phone.png" 
+              | &nbsp; phone
+          div.input-group
+            =f.text_field :phone, class: "form-control"
+            span.input-group-addon
+              =f.check_box :phone_hidden
+              | &nbsp;скрыть
+        .form-group
+          label 
+            | vk
+          div.input-group
+            =f.text_field :vk, class: "form-control"
+            span.input-group-addon
+              =f.check_box :vk_hidden
+              | &nbsp;скрыть
+        .form-group
+          label 
+            | fb
+          div.input-group
+            =f.text_field :fb, class: "form-control"
+            span.input-group-addon
+              =f.check_box :fb_hidden
+              | &nbsp;скрыть
+        =f.text_area :contacts, class: "form-control"
+        =f.submit "Сохранить"
 

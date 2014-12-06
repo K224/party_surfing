@@ -23,6 +23,7 @@ class ProfilesController < ApplicationController
 
 private
   def profile_params
-    params.require(:profile).permit(:name, :surname, :birthday, :contacts)
+    params.require(:profile).permit(:name, :surname, :birthday, :contacts, :birthday_hidden, 
+                    :skype, :skype_hidden, :phone, :phone_hidden, :vk, :vk_hidden, :fb, :fb_hidden)
   end
 end
