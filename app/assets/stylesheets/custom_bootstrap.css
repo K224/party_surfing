@@ -4,7 +4,7 @@
 }
 
 #container{
-width:960px;
+  width:960px;
 }
 
 .btn-black{
@@ -70,12 +70,12 @@ width:960px;
 }
 
 a,a:visited,a:hover,a:active{
-color:white;
-text-decoration: none;
+  color:white;
+  text-decoration: none;
 }
 .black a,a:visited,a:hover,a:active{
-color:black;
-text-decoration: none;
+  color:black;
+  text-decoration: none;
 }
 
 #StartSurf{
@@ -102,7 +102,7 @@ text-decoration: none;
 }
 
 .BlackBox{
-padding: 0;
+  padding: 0;
   width:100%
   color: #232323;
   border: 2px solid #232323;
@@ -123,8 +123,8 @@ padding: 0;
 }
 
 .WhiteBox a,.WhiteBox a:visited,.WhiteBox a:hover,.WhiteBox a:active{
-color:black;
-text-decoration: none;
+  color:black;
+  text-decoration: none;
 }
 
 .textCenter{
@@ -140,40 +140,40 @@ color:#333;
 }
 
 .ava{
-width:100%;
-background-color:black;
-margin-bottom:10px;
+  width:100%;
+  background-color:black;
+  margin-bottom:10px;
 }
 
 .avatar, .miniavatar{
-width:100%;
+  width:100%;
 }
 .miniava{
-width:40px;
-margin-right:10px;
+  width:40px;
+  margin-right:10px;
 }
 .fl{
-float:left;
+  float:left;
 }
 
 
 .iconsPlace{
-height:32px;
+  height:32px;
 }
 .icons{
-height:100%
+  height:100%
 }
 
 .wall{
-border: 1px solid #232323;
+  border: 1px solid #232323;
 }
 
 .message{
-padding:10px;
+  padding:10px;
 }
 
 .bold{
-font-weight: bold;
+  font-weight: bold;
 }
 
 .ads{
