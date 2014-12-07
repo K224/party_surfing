@@ -44,10 +44,9 @@
       div
         -if can? :comment, @party
           div
-            =semantic_form_for @comment, url: comment_party_path do |f|
-              =semantic_form_for @comment, url: comment_party_path do |f|
-              =f.inputs :comment
-              =f.actions
+            =form_for @comment, url: comment_party_path do |f|
+              =f.text_area :comment, placeholder: "Оставьте комментарий"
+              =f.submit "Отправить"
         .wall
           -@party.comments.each do |comment|
             div.message

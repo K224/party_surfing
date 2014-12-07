@@ -51,9 +51,9 @@
       div.margin20bot
         -if user_signed_in?
           div
-            =semantic_form_for @comment, url: comment_profile_path do |f|
-              =f.inputs :comment
-              =f.actions
+            =form_for @comment, url: comment_profile_path do |f|
+              =f.text_area :comment, placeholder: "Оставьте комментарий"
+              =f.submit "Отправить"
         .wall
           -@profile.comments.each do |comment|
             div.message
