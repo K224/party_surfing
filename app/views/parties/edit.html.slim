@@ -1,19 +1,29 @@
-h1 Parties#edit
-
-div#map
-
-input#searchbox type='text'
-
 javascript:
   $('document').on('page:load', init_map_place_selection)
   $('document').ready(init_map_place_selection)
   initNicEditor('party_summary')
 
-=semantic_form_for @party do |f|
-  =f.inputs :title, :type, :date
+.container-fluid
+  .row
+    .col-md-3
+      =form_for @party do |f|
+        fieldset
+          =f.hidden_field :coord_longitude
+          =f.hidden_field :coord_latitude
+        .form-group
+          =f.text_field :title, class: 'form-control', placeholder: 'Название'
+        .form-group
+          label Тип
+          =f.select :type, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
+        .form-group
+          label Дата
+          =f.date_field :date, class: 'form-control'
+        .form-group
+          =f.text_area :summary, class: 'form-control', placeholder: 'Описание'
+        .form-group
+          =f.submit "Сохранить", class: 'btn btn-orange btn-lg'
 
-  =f.input :summary, :label => false
-  /temp
-  =f.inputs :coord_latitude, :coord_longitude, hidden: true
-  =f.actions
-  
+input#searchbox type='text'
+
+.map-container
+  div#map
