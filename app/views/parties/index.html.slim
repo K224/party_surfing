@@ -5,6 +5,9 @@ javascript:
 .container-fluid
   .row
     .col-md-3#parties
+      input.btn.btn-orange.btn-lg.btn-block.btn-big type="button" value="Искать" onclick="load_parties_in_zone();"
+  .row
+    .col-md-3#parties
       |Выберите область на карте и нажмите кнопку "Искать"
 
   input#searchbox type='text'
@@ -13,4 +16,4 @@ javascript:
   #map
     |На этой странице будет карта
 
-input#btnSearch.btn.btn-orange type="button" value="Искать" onclick="load_parties_in_zone();"
+input#btnSearch.btn.btn-orange type="button" value="Показать место" onclick=""
