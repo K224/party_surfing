@@ -6,7 +6,8 @@ class Profile < ActiveRecord::Base
     :default_url => "/images/ava.jpg",
     :storage => :dropbox,
     :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
-    :dropbox_visibility => "public"
+    :dropbox_visibility => "public",
+    :path => ":style/:id_:filename"
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
