@@ -61,4 +61,6 @@ gem 'acts_as_commentable'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+# gem 'debugger', group: [:development, :test
+gem "paperclip-dropbox", ">=1.1.7"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
