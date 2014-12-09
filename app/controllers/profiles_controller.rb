@@ -21,9 +21,14 @@ class ProfilesController < ApplicationController
     redirect_to :back
   end
 
+  def erase_avatar
+    @profile.avatar = nil
+    @profile.save
+  end
+
 private
   def profile_params
-    params.require(:profile).permit(:name, :surname, :birthday, :contacts, :birthday_hidden, 
-                    :skype, :skype_hidden, :phone, :phone_hidden, :vk, :vk_hidden, :fb, :fb_hidden)
+    params.require(:profile).permit(:name, :surname, :birthday, :contacts, :birthday_hidden,
+                    :skype, :skype_hidden, :phone, :phone_hidden, :vk, :vk_hidden, :fb, :fb_hidden, :avatar)
   end
 end
