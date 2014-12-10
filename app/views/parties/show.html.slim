@@ -51,12 +51,12 @@
           -@party.comments.each do |comment|
             div.message
               div.miniava.fl
-                img.miniavatar src="/ava.jpg"
+                img.miniavatar src=@comment.user.profile.avatar.url(:thumb)
               div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
               div =comment.comment
     .col-md-4
       div.ava
-        img.avatar src="/ava.jpg"
+        img.avatar src=@party.host.profile.avatar.url
       div.ava
         =@party.map_image
 

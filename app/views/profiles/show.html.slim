@@ -59,6 +59,6 @@
           -@profile.comments.each do |comment|
             div.message
               div.miniava.fl
-                img.miniavatar src="/ava.jpg"
+                img.miniavatar src=@profile.avatar.url(:thumb)
               div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
               div =comment.comment
