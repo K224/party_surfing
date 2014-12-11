@@ -56,7 +56,7 @@
               div =comment.comment
     .col-md-4
       div.ava
-        img.avatar src=@party.host.profile.avatar.url(:medium)
+        img.avatar src=@party.avatar.url(:medium)
       div
         #minimap =@party.map_image
 
@@ -71,7 +71,7 @@
       .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
 
     br/
-  
+
     -if can? :participate, @party
       -unless @party.check_participation(current_user)
         div
