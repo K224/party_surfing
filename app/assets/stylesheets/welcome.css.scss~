@@ -27,25 +27,4 @@
   padding-bottom: 570px;
   color: dark-gray;
 }
-.btn-black{
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
 
-.btn-black:hover{
-  color:white;
-  background-color: gray;
-}
-
-.btn-orange{
-  background-color: #F5BE00;
-  border: none;
-  color: white;
-  font-weight: bold;
-}
-
-.btn-orange:hover{
-  color:white;
-  background-color: #F0B000
-}

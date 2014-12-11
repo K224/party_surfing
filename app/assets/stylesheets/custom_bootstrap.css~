@@ -7,6 +7,4 @@
   width:960px;
 }
 
-div{
-  word-wrap: break-word;
-}
+

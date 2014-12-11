@@ -81,9 +81,7 @@ input#searchbox
 width:100%;
 }
 .btns_center{
-margin: auto;
-left:0px;
-right:0px;
+
 }
 #minimap{
 width:100%;

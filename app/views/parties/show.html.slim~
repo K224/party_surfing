@@ -75,11 +75,9 @@
   
     -if can? :participate, @party
       -unless @party.check_participation(current_user)
-        div
           .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
         br/
       -else
-        div
           .btn.btn-primary#btns_prty_del=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
         br/
    

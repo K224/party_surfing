@@ -14,20 +14,6 @@
 .margin5bot{
   margin-bottom:5px;
 }
-
-.margin20top{
-  margin-top:20px;
-}
-.margin15top{
-  margin-top:15px;
-}
-.margin10top{
-  margin-top:10px;
-}
-.margin5top{
-  margin-top:5px;
-}
-
 #editProfile, #editAva, #creatParty{
 	background-color:#FEC63D;
 	border: 5px solid #FEC63D;	

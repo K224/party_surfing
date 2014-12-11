@@ -37,7 +37,7 @@
               | &nbsp;скрыть
         .margin20top.form-group
           label
-            div.iconsPlace.margin5bot
+            div.iconsPlace
               img.icons src="/phone.png" 
               | &nbsp; Phone
           div.input-group
