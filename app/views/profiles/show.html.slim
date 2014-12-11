@@ -6,7 +6,8 @@
       -if can? :update, @profile
         div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
         div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
-        div.btn.btn-primary#StartSurf.margin10bot =link_to "Start Surfing"
+        div 
+          =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-primary margin10bot btn-lg"
 
       div.BlackBox.textCenter
         |Мои мероприятия

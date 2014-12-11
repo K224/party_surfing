@@ -65,7 +65,7 @@
 	border: 5px solid #FEC63D;	
   padding: 0;
   width: 100%;
-  font-size: 15pt;
+  font-size: 12pt;
   color:white;
 }
 
@@ -83,7 +83,7 @@ a,a:visited,a:hover,a:active{
 	background-color:#2A9E0C;
 	border: 5px solid #2A9E0C;	
   padding: 0;
-  font-size: 15pt;
+  font-size: 20pt;
   color:white;
 }
 
@@ -165,6 +165,10 @@ color:#333;
 }
 .icons{
   height:100%;
+}
+
+div{
+  word-wrap: break-word;
 }
 
 .wall{
