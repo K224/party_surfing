@@ -1,3 +1,51 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.party-background{
+  background-image: url('/party_background.jpg');
+  margin-top: -30px;
+  text-align: center;
+}
+.big-letters{
+  font-size: 40pt;
+  font-family: 'Century Gothic Bold';
+}
+.btn-superbig{
+  font-size: 30pt;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: -100px;
+}
+.with-buffer{
+  padding-bottom: 80px;
+}
+.main-page-line{
+  padding-top: 85px;
+  padding-bottom: 570px;
+  color: dark-gray;
+}
+.btn-black{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-black:hover{
+  color:white;
+  background-color: gray;
+}
+
+.btn-orange{
+  background-color: #F5BE00;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-orange:hover{
+  color:white;
+  background-color: #F0B000
+}

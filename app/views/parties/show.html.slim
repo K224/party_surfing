@@ -7,17 +7,17 @@
       h2
         =@party.title
       div.margin10bot
-        |Организатор:
+        .textBold Организатор:
         =<link_to @party.host.profile.full_name, @party.host.profile
       div.margin10bot
-        |Информация:
+        .textBold Информация:
         .div
           =raw @party.summary
       div.margin10bot
-        |Дата:
+        .textBold Дата:
         =<@party.date.to_s
       div.margin10bot
-        |Участники
+        .textCenter.textBold Участники:
         -cnt = 0
         -@party.guests.each do |guest|
           -if guest.accepted
@@ -28,7 +28,7 @@
           div
             |Никто не идет
       div
-        |Хотят пойти
+        .textCenter.textBold Хотят пойти:
         -cnt = 0
         -@party.guests.each do |guest|
           -unless guest.accepted
@@ -56,37 +56,31 @@
               div =comment.comment
     .col-md-4
       div.ava
-        img.avatar src=@party.avatar.url(:medium)
-      div.ava
-        =@party.map_image
-
+        img.avatar src=@party.host.profile.avatar.url(:medium)
+      div
+        #minimap =@party.map_image
 
   -if !@party.blocked || (can? :manage, @party)
     -if can? :manage, @party
-      div.black =link_to "Редактировать", edit_party_path(@party)
       div.black =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
-
-
-
-
-    -if can? :participate, @party
-      -unless @party.check_participation(current_user)
-        div
-          =link_to "Участвовать", participate_party_path(@party, a: 'participate')
-        br/
-      -else
-        div
-          =link_to "Отказаться", participate_party_path(@party, a: 'refuse')
-        br/
-
+      .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
+      .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
 
     br/
     div
-      =link_to "Полный список гостей", party_guests_path(@party)
+      .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
 
     br/
-
-
+  
+    -if can? :participate, @party
+      -unless @party.check_participation(current_user)
+        div
+          .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
+        br/
+      -else
+        div
+          .btn.btn-primary#btns_prty_del=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
+        br/
   -else 
     | Мероприятие заблокированно администратором.
 

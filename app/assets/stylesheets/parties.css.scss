@@ -22,3 +22,69 @@ input#searchbox
 	font-size: 14pt;
 	margin-right: 5px;
 }
+#btns_prty_ed{
+  margin: 5px;
+	background-color:#FEC63D;
+	border: 5px solid #FEC63D;	
+  font-size: 12pt;
+  color:white;
+}
+#btns_prty_ed:hover{
+  border: 5px solid #F0B000;
+	background-color:#F0B000;
+}
+
+#btns_prty_ed a{
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+}
+#btns_prty_del{
+  margin: 5px;
+	background-color:#B22222;
+	border: 5px solid #B22222;	
+  font-size: 12pt;
+  color:white;
+}
+#btns_prty_del:hover{
+  border: 5px solid #B20000;
+	background-color:#B20000;
+}
+
+#btns_prty_del a{
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+}
+#btns_prty_full{
+  margin: 5px;
+	background-color:#2A9E0C;
+	border: 5px solid #2A9E0C;	
+  font-size: 12pt;
+  color:white;
+}
+#btns_prty_full:hover{
+  border: 5px solid #209000;
+	background-color:#209000;
+}
+
+#btns_prty_full a{
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.textBold{
+  font-weight: bold;
+}
+.btns_100{
+width:100%;
+}
+.btns_center{
+margin: auto;
+left:0px;
+right:0px;
+}
+#minimap{
+width:100%;
+}
