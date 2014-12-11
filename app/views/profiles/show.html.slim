@@ -2,7 +2,7 @@
   .row
     .col-md-4
       div.ava
-        img.avatar src=@profile.avatar.url
+        img.avatar src=@profile.avatar.url(:medium)
       -if can? :update, @profile
         div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
         div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path

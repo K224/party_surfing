@@ -63,6 +63,7 @@ window.load_parties_in_zone = () ->
           <div></div>
           <div>
             <a href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
+            <img class='miniavatar' src='#{party.get_thumb_url}'>
             <p>#{party.summary}</p>
             <span>#{party.date}</span>
           </div>

@@ -6,7 +6,7 @@
   .row
     .col-md-3
       div.ava
-        img.avatar src=@profile.avatar.url(:thumb)
+        img.avatar src=@profile.avatar.url(:medium)
       div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
     .col-md-8.col-md-offset-1
       = form_for @profile, :html => { :multipart => true } do |f|

@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
     :storage => :dropbox,
     :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
     :dropbox_visibility => "public",
-    :path => ":style/:id_:filename"
+    :path => "profiles/:style/:id_:filename"
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 

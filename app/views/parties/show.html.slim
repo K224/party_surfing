@@ -56,7 +56,7 @@
               div =comment.comment
     .col-md-4
       div.ava
-        img.avatar src=@party.host.profile.avatar.url
+        img.avatar src=@party.avatar.url(:medium)
       div.ava
         =@party.map_image
 
@@ -65,9 +65,8 @@
     -if can? :manage, @party
       div.black =link_to "Редактировать", edit_party_path(@party)
       div.black =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
- 
-    
-    
+
+
 
 
     -if can? :participate, @party
@@ -87,7 +86,7 @@
 
     br/
 
-   
+
   -else 
     | Мероприятие заблокированно администратором.
 
