@@ -16,7 +16,6 @@ private
       u.permit(:email, :password, :password_confirmation,
                 profile_attributes: [:id, :name, :surname, :birthday])
     end
-    p "!!!!!!!!!!!!!!!!!!!!!!!!LOLOLOLOLOLOL"
   end
 
 end
