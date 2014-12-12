@@ -37,11 +37,11 @@
         h5 Возраст #{@profile.age}
       div.margin5bot
         | Контактная информация:
-      -if !@profile.skype_hidden && !@profile.skype.nil?
+      -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
         div.iconsPlace.margin5bot
           img.icons src="/skype.png"
           | #{@profile.skype}
-      -if !@profile.phone_hidden && !@profile.phone.nil?
+      -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
         div.iconsPlace.margin20bot
           img.icons src="/phone.png"
           | #{@profile.phone}
