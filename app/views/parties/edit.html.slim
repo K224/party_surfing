@@ -14,7 +14,7 @@ javascript:
           =f.text_field :title, class: 'form-control', placeholder: 'Название'
         .form-group
           label Тип
-          =f.select :type, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
+          =f.select :type_id, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
         .form-group
           label Дата
           =f.date_field :date, class: 'form-control'
