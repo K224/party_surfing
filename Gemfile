@@ -50,6 +50,7 @@ gem 'omniauth-vkontakte'
 gem 'cancan'
 gem 'draper'
 gem 'acts_as_commentable'
+gem 'capybara'
 #gem 'httparty'
 
 # Use ActiveModel has_secure_password
