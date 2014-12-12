@@ -13,7 +13,9 @@
         |Мои мероприятия
       -cnt = 0
       -@profile.user.parties.each do |party|
-        div.WhiteBox.textCenter =link_to party.title, party
+        div.WhiteBox.textCenter
+          img.miniava src=party.avatar.url(:thumb)
+          =link_to party.title, party
         -cnt += 1
       -if cnt == 0
         div.WhiteBox.textCenter Не создавал
@@ -33,15 +35,13 @@
       div.margin20bot
         h1 #{@profile.name} #{@profile.surname}
         h5 Возраст #{@profile.age}
-      .container-fluid.ads
-        <script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"></script>
       div.margin5bot
         | Контактная информация:
-      -if !@profile.skype_hidden
+      -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
         div.iconsPlace.margin5bot
           img.icons src="/skype.png"
           | #{@profile.skype}
-      -if !@profile.phone_hidden
+      -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
         div.iconsPlace.margin20bot
           img.icons src="/phone.png"
           | #{@profile.phone}
