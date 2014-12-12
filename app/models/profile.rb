@@ -11,6 +11,8 @@ class Profile < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  validate :validate_birthday
+
   acts_as_commentable
 
   def full_name
@@ -20,4 +22,12 @@ class Profile < ActiveRecord::Base
   def age
     ((Date.today - birthday) / 365.0).to_i
   end
+
+private
+  def validate_birthday
+    if age < 1 || age > 100
+      errors.add(:birthday, "is incorrect")
+    end
+  end
+
 end
