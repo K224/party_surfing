@@ -45,7 +45,7 @@
         div.iconsPlace.margin20bot
           img.icons src="/phone.png"
           | #{@profile.phone}
-      -if !@profile.vk && !@profile.vk.nil? && @profile.vk.length > 0
+      -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
         div.iconsPlace.margin20bot
           img.icons src="/vk.png"
           | #{@profile.vk}
