@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource.with_profile, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
@@ -11,6 +11,17 @@
 
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <%= f.fields_for :profile do |f1| %>
+    <div><%= f1.label :name %><br/>
+    <%= f1.text_field :name %></div>
+
+    <div><%= f1.label :surname %><br/>
+    <%= f1.text_field :surname %></div>
+
+    <div><%= f1.label :birthday %><br/>
+    <%= f1.date_field :birthday %></div>
+  <% end %>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

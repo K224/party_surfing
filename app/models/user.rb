@@ -5,13 +5,20 @@ class User < ActiveRecord::Base
   has_many :participations, class_name: 'Guest'
   has_many :comments
 
-  before_create :create_profile
+  accepts_nested_attributes_for :profile
+
+  #before_create :create_profile
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :vkontakte]
+
+  def with_profile
+    self.build_profile
+    self
+  end
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
