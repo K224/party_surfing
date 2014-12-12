@@ -46,4 +46,22 @@ class SessionControllerTest < ActionController::TestCase
     click_on "Log in"
     assert_equal "/users/sign_in", current_path
   end
+
+  test "login long long" do
+    visit "/users/sign_in"
+    s = ""
+    for i in 0..1000
+      s << i.to_s
+    end
+    fill_in "Email", with: s
+    fill_in "Password", with: "asdads"
+    click_on "Log in"
+    assert_equal "/users/sign_in", current_path
+  end
+
+  test "login partner links" do
+    visit "/users/sign_in"
+    assert has_link? "Sign in with Facebook"
+    assert has_link? "Sign in with Vkontakte"
+  end
 end
