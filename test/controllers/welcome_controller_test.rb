@@ -1,15 +1,21 @@
 require 'test_helper'
 
 class WelcomeControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
+  test "sign_in button" do
+    visit "/"
+    click_on "Вход"
+    assert_equal "/users/sign_in", current_path
+  end
 
-    assert_select "a" do
-      assert_select "img"
-    end
-    assert_select "a[href=/users/sign_in]"
-    assert_select "a[href=/users/sign_up]"
-    assert_select "a[href=/parties]"
+  test "sign_up button" do
+    visit "/"
+    click_on "Зарегистрироваться"
+    assert_equal "/users/sign_up", current_path
+  end
+
+  test "let's party button" do
+    visit "/"
+    click_on "Let's Party"
+    assert_equal "/parties", current_path
   end
 end
