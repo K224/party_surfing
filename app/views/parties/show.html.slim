@@ -65,7 +65,6 @@
 
   -if !@party.blocked || (can? :manage, @party)
     -if can? :manage, @party
-      div.black =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
       .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
       .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
 
