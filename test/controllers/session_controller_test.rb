@@ -46,15 +46,23 @@ class SessionControllerTest < ActionController::TestCase
     click_on "Log in"
     assert_equal "/users/sign_in", current_path
   end
-
-  test "login long long" do
+  
+  test "login witout email" do
     visit "/users/sign_in"
-    s = ""
-    for i in 0..1000
-      s << i.to_s
-    end
-    fill_in "Email", with: s
-    fill_in "Password", with: "asdads"
+    fill_in "Password", with: "lolkalolkaa"
+    click_on "Log in"
+    assert_equal "/users/sign_in", current_path
+  end
+
+  test "login without password" do
+    visit "/users/sign_in"
+    fill_in "Email", with: "lol@lol.lola"
+    click_on "Log in"
+    assert_equal "/users/sign_in", current_path
+  end
+
+  test "login without all" do
+    visit "/users/sign_in"
     click_on "Log in"
     assert_equal "/users/sign_in", current_path
   end
