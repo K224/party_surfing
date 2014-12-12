@@ -19,12 +19,12 @@
       <div class="nav navbar-nav navbar-right">
         <%-if user_signed_in?%>
           <span>
-            <%=link_to "Профиль", current_user.profile, class: "btn btn-default navbar-btn btn-orange btn-lg" %>
-            <%=link_to "Выйти", destroy_user_session_path, class: "btn btn-default navbar-btn btn-black btn-lg", method: :delete %>
+            <%=link_to "Профиль", current_user.profile, class: "btn btn-default navbar-btn btn-orange btn-lg btn-header" %>
+            <%=link_to "Выйти", destroy_user_session_path, class: "btn btn-default navbar-btn btn-black btn-lg btn-header", method: :delete %>
           </span>
         <%-else%>
-            <%=link_to "Вход", new_user_session_path, class:"btn btn-default navbar-btn btn-black btn-lg"%>
-            <%=link_to "Зарегистрироваться", new_user_registration_path, class:"btn btn-default navbar-btn btn-orange btn-lg"%>
+            <%=link_to "Вход", new_user_session_path, class:"btn btn-default navbar-btn btn-black btn-lg btn-header"%>
+            <%=link_to "Зарегистрироваться", new_user_registration_path, class:"btn btn-default navbar-btn btn-orange btn-lg btn-header"%>
         <%-end%>
       </div>
     </div>

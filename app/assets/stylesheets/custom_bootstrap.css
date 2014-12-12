@@ -7,6 +7,10 @@
   width:960px;
 }
 
+.btn-header{
+	margin-top: 15px;
+}
+
 div{
   word-wrap: break-word;
 }
