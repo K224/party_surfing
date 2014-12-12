@@ -6,11 +6,16 @@ javascript:
 .container-fluid
   .row
     .col-md-3
+      div.ava
+        img.avatar src=@party.avatar.url(:medium)
       =form_for @party do |f|
         fieldset
           =f.hidden_field :coord_longitude
           =f.hidden_field :coord_latitude
+        label Аватар
+        =f.file_field :avatar
         .form-group
+          label Название
           =f.text_field :title, class: 'form-control', placeholder: 'Название'
         .form-group
           label Тип
