@@ -93,5 +93,36 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal "/", current_path
     assert has_link? "Выйти"
     assert has_link? "Профиль"
+    click_on "Выйти"
+  end
+
+  test "signup user exists" do
+    visit "/users/sign_up"
+    fill_in "Email", with: "joker@world.com"
+    fill_in "Password", with: "jokerworld"
+    fill_in "Password confirmation", with: "jokerworld"
+    fill_in "Birthday", with: "01-01-1992"
+    click_on "Sign up"
+    assert_equal "/", current_path
+    assert has_link? "Выйти"
+    assert has_link? "Профиль"
+    click_on "Выйти"
+    click_on "Вход"
+    fill_in "Email", with: "joker@world.com"
+    fill_in "Password", with: "jokerworld"
+    click_on "Log in"
+    assert_equal "/", current_path
+    assert has_link? "Выйти"
+    assert has_link? "Профиль"
+    click_on "Выйти"
+    visit "/users/sign_up"
+    fill_in "Email", with: "joker@world.com"
+    fill_in "Password", with: "jokerworld1"
+    fill_in "Password confirmation", with: "jokerworld1"
+    fill_in "Birthday", with: "01-01-1992"
+    click_on "Sign up"
+    assert_equal "/users", current_path
+    assert has_content? "1 error prohibited this user from being saved:"
+    assert has_content? "Email has already been taken"
   end
 end
