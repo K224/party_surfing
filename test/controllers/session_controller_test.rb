@@ -26,7 +26,7 @@ class SessionControllerTest < ActionController::TestCase
   test "login wrong password" do
     visit "/users/sign_in"
     fill_in "Email", with: "lol@lol.lol"
-    fill_in "Password", with: "lolkalolkaa"
+    fill_in "Password", with: "araaraara"
     click_on "Log in"
     assert_equal "/users/sign_in", current_path
   end
