@@ -13,7 +13,9 @@
         |Мои мероприятия
       -cnt = 0
       -@profile.user.parties.each do |party|
-        div.WhiteBox.textCenter =link_to party.title, party
+        div.WhiteBox.textCenter
+          img.miniava src=party.avatar.url(:thumb)
+          =link_to party.title, party
         -cnt += 1
       -if cnt == 0
         div.WhiteBox.textCenter Не создавал
