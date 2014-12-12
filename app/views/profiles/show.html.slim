@@ -45,6 +45,14 @@
         div.iconsPlace.margin20bot
           img.icons src="/phone.png"
           | #{@profile.phone}
+      -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+        div.iconsPlace.margin20bot
+          img.icons src="/vk.png"
+          | #{@profile.vk}
+      -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+        div.iconsPlace.margin20bot
+          img.icons src="/fb.png"
+          | #{@profile.fb}
 
       div.margin20bot 
         | О себе:
