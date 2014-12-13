@@ -93,6 +93,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal "/", current_path
     assert has_link? "Выйти"
     assert has_link? "Профиль"
+    click_on "Профиль"
+    assert_not_equal "/", current_path
     click_on "Выйти"
   end
 
