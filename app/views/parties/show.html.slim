@@ -4,8 +4,13 @@
         = @party.block_message
   .row
     .col-md-4
-      h2
-        =@party.title
+      .row
+        h2
+          =@party.title
+      .row
+        -if can? :manage, @party
+          .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
+          .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
       div.margin10bot
         .textBold Организатор:
         img.miniava src=@party.host.profile.avatar.url(:thumb)
@@ -41,7 +46,24 @@
         -if cnt == 0
           div
             |Никто не хочет
+      -if !@party.blocked || (can? :manage, @party)
+        br/
+        div
+          .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
 
+        br/
+
+        -if can? :participate, @party
+          -unless @party.check_participation(current_user)
+            div
+              .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
+            br/
+          -else
+            div
+              .btn.btn-primary#btns_prty_del=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
+            br/
+        -else 
+        | Мероприятие заблокированно администратором.  
 
     .col-md-4
       div
@@ -63,27 +85,6 @@
       div
         #minimap =@party.map_image
 
-  -if !@party.blocked || (can? :manage, @party)
-    -if can? :manage, @party
-      .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
-      .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
 
-    br/
-    div
-      .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
-
-    br/
-
-    -if can? :participate, @party
-      -unless @party.check_participation(current_user)
-        div
-          .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
-        br/
-      -else
-        div
-          .btn.btn-primary#btns_prty_del=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
-        br/
-  -else 
-    | Мероприятие заблокированно администратором.
 
 
