@@ -14,3 +14,33 @@
 div{
   word-wrap: break-word;
 }
+
+.SRcon{
+  position: relative:
+  width:100%;
+  height:100%;
+}
+
+.SRcen{
+ display: table;
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  top: 100px; left: 0; bottom: 0; right: 0;
+}
+
+.SREcon{
+  position: relative:
+  width:100%;
+  height:100%;
+}
+
+.SREcen{
+ display: table;
+  margin: auto;
+  position: relative;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.SRLcen{
+  text-align:center;
+}
