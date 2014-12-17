@@ -90,6 +90,7 @@
   color:black;
   margin-bottom:5px;
   border: 2px solid #232323;
+  padding:5px;
 }
 .textCenter{
   text-align: center;
@@ -99,6 +100,7 @@
 }
 .icons{
   height:100%;
+margin-right:20px;
 }
 .wall{
 }
@@ -109,4 +111,44 @@
 width:100%;
 resize:none;
 }
-
+.fl{
+position: relative;
+float:left;
+}
+.fr{
+position: relative;
+float:right;
+}
+.fn{
+position: relative;
+float:none;
+}
+.AvaCol{
+display:table-cell;
+position: relative;
+left:0;
+width:40px;
+height:100%
+}
+.MessageCon{
+display:table-cell;
+}
+.MessageConParty{
+display:table-cell;
+width:250px;
+word-wrap: break-word;
+}
+.RightBottomWall{
+width: 450px;
+height: 30px;
+}
+.RightBottomWallParty{
+width: 290px;
+height: 30px;
+}
+.margin20top{
+margin-top:20px;
+}
+.margin10top{
+margin-top:10px;
+}

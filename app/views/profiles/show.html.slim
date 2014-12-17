@@ -35,38 +35,42 @@
       div.margin20bot
         h1 #{@profile.name} #{@profile.surname}
         h5 Возраст #{@profile.age}
-      div.margin5bot
+      hr
+      div.iconsPlace.margin5bot
         | Контактная информация:
       -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
-        div.iconsPlace.margin5bot
+        div.iconsPlace.margin10bot
           img.icons src="/skype.png"
           | #{@profile.skype}
       -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
-        div.iconsPlace.margin20bot
+        div.iconsPlace.margin10bot
           img.icons src="/phone.png"
           | #{@profile.phone}
       -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
-        div.iconsPlace.margin20bot
+        div.iconsPlace.margin10bot
           img.icons src="/vk.png"
           | #{@profile.vk}
       -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
-        div.iconsPlace.margin20bot
+        div.iconsPlace.margin10bot
           img.icons src="/fb.png"
           | #{@profile.fb}
-
-      div.margin20bot 
+      hr
         | О себе:
         div=raw @profile.contacts
-      div.margin20bot
+      hr
         -if user_signed_in?
           div
             =form_for @comment, url: comment_profile_path do |f|
-              =f.text_area :comment, placeholder: "Оставьте комментарий"
-              =f.submit "Отправить"
-        .wall
+              .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"   
+              .RightBottomWall             
+                .fr =f.submit "Отправить"
+        .margin20top.wall
           -@profile.comments.each do |comment|
             div.message
-              div.miniava.fl
-                img.miniavatar src=@profile.avatar.url(:thumb)
-              div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-              div =comment.comment
+              div.AvaCol.fl
+                div.miniava
+                  img.miniavatar src=@profile.avatar.url(:thumb) 
+              div.MessageCon              
+                div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                div =comment.comment
+            hr

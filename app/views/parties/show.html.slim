@@ -6,23 +6,27 @@
     .col-md-4
       .row
         h2
-          =@party.title
+          .textCenter =@party.title
       .row
         -if can? :manage, @party
           .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
           .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
-      div.margin10bot
+        hr
+      .row
         .textBold Организатор:
         img.miniava src=@party.host.profile.avatar.url(:thumb)
         =<link_to @party.host.profile.full_name, @party.host.profile
-      div.margin10bot
+        hr
+      .row
         .textBold Информация:
         .div
           =raw @party.summary
-      div.margin10bot
+        hr
+      .row
         .textBold Дата:
         =<@party.date.to_s
-      div.margin10bot
+        hr
+      .row
         .textCenter.textBold Участники:
         -cnt = 0
         -@party.guests.each do |guest|
@@ -34,7 +38,8 @@
         -if cnt == 0
           div
             |Никто не идет
-      div
+        hr
+      .row
         .textCenter.textBold Хотят пойти:
         -cnt = 0
         -@party.guests.each do |guest|
@@ -48,8 +53,8 @@
             |Никто не хочет
       -if !@party.blocked || (can? :manage, @party)
         br/
-        div
-          .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
+      .row
+        .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
 
         br/
 
@@ -66,23 +71,29 @@
         | Мероприятие заблокированно администратором.  
 
     .col-md-4
-      div
+      div.margin20top.wall
         -if can? :comment, @party
           div
             =form_for @comment, url: comment_party_path do |f|
-              =f.text_area :comment, placeholder: "Оставьте комментарий"
-              =f.submit "Отправить"
+              .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
+              .RightBottomWallParty    
+                .fr =f.submit "Отправить"
+      hr
         .wall
           -@party.comments.each do |comment|
             div.message
-              div.miniava.fl
-                img.miniavatar src=comment.user.profile.avatar.url(:thumb)
-              div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-              div =comment.comment
+              div.AvaCol.fl
+                div.miniava
+                  img.miniavatar src=comment.user.profile.avatar.url(:thumb)
+              div.MessageConParty  
+                div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                div =comment.comment
+            hr
     .col-md-4
-      div.ava
-        img.avatar src=@party.avatar.url(:medium)
-      div
+      div.MapBox.margin20top.wall
+        div.ava
+          img.avatar src=@party.avatar.url(:medium)
+      div.MapBox
         #minimap =@party.map_image
 
 

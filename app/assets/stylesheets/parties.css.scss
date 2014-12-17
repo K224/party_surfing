@@ -28,6 +28,8 @@ input#searchbox
 	border: 5px solid #FEC63D;	
   font-size: 12pt;
   color:white;
+  padding:0;
+  width:150px;
 }
 #btns_prty_ed:hover{
   border: 5px solid #F0B000;
@@ -45,6 +47,8 @@ input#searchbox
 	border: 5px solid #B22222;	
   font-size: 12pt;
   color:white;
+  padding:0;
+  width:150px;
 }
 #btns_prty_del:hover{
   border: 5px solid #B20000;
@@ -62,6 +66,8 @@ input#searchbox
 	border: 5px solid #2A9E0C;	
   font-size: 12pt;
   color:white;
+  padding:0;
+  width: 310px;
 }
 #btns_prty_full:hover{
   border: 5px solid #209000;
@@ -87,4 +93,8 @@ right:0px;
 }
 #minimap{
 width:100%;
+}
+.MapBox{
+width:300px;
+margin-left:-5px;
 }
