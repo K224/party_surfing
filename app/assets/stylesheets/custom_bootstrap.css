@@ -35,6 +35,17 @@ div{
   height:100%;
 }
 
+.SRCHcon{
+  position: relative:
+  width:100%;
+  height:100%;
+}
+
+.SRCHcen{
+  width: 100%;
+  margin-left: 25%;margin-right:25%;
+}
+
 .SREcen{
  display: table;
   margin: auto;
@@ -49,4 +60,8 @@ div{
 overflow:hidden;
 min-height:100px;
 white-space:pre-wrap;
+}
+
+#parties{
+
 }

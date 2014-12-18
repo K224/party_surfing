@@ -60,14 +60,13 @@ window.load_parties_in_zone = () ->
     for party in parties
       content =
         "<div>
-          <div></div>
           <div>
-            <a href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
-            <img class='miniavatar' src='#{party.get_thumb_url}'>
-            <p>#{party.summary}</p>
-            <span>#{party.date}</span>
+            <a class='CenTex' href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
+            <h5 class='CenTex'>#{party.date}</h5>
+            <div class='SRCHcon'><div class='SRCHcen'><img class='miniavatarSRCH' src='#{party.get_thumb_url}'></div></div>
+            <h5 class='CenTex'>Описание: #{party.summary}</h5>
           </div>
-        </div>"
+        </div><hr>"
       div.innerHTML += content
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
