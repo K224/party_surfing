@@ -44,3 +44,9 @@ div{
 .SRLcen{
   text-align:center;
 }
+
+#comment_comment{
+overflow:hidden;
+min-height:100px;
+white-space:pre-wrap;
+}

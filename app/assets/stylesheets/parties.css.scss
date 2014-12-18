@@ -60,6 +60,25 @@ input#searchbox
   font-weight: bold;
   text-decoration: none;
 }
+#btns_prty_can{
+  margin: 5px;
+	background-color:#B22222;
+	border: 5px solid #B22222;	
+  font-size: 12pt;
+  color:white;
+  padding:0;
+  width:310px;
+}
+#btns_prty_can:hover{
+  border: 5px solid #B20000;
+	background-color:#B20000;
+}
+
+#btns_prty_can a{
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+}
 #btns_prty_full{
   margin: 5px;
 	background-color:#2A9E0C;

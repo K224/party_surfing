@@ -65,7 +65,7 @@
             br/
           -else
             div
-              .btn.btn-primary#btns_prty_del=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
+              .btn.btn-primary#btns_prty_can=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
             br/
         -else 
         | Мероприятие заблокированно администратором.  
@@ -78,7 +78,7 @@
               .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
               .RightBottomWallParty    
                 .fr =f.submit "Отправить"
-      hr
+
         .wall
           -@party.comments.each do |comment|
             div.message
