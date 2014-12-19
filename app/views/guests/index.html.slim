@@ -1,18 +1,17 @@
-<div class="SRcon">
-  <div class="SRcen">
-    <div class="SREcon"><div class="SREcen">
-      h2 =link_to @party.title, @party
-    </div></div>
-    <div class="SREcon"><div class="SREcen">
-      div
-        |Гости:
-        -@guests.each do |guest|
-          div
-            img.miniava src=guest.user.profile.avatar.url(:thumb)
-            =>link_to guest.user.profile.full_name, guest.user.profile
-            -if can?(:update, guest)
-              =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
-                party_guest_path(@party, guest), method: :put
-    </div></div>
-  </div>
-</div>
+.container#containerCen
+  .raw
+    .col-md-4.col-md-offset-4
+      #centerBlock
+        h2 =link_to @party.title, @party
+
+
+        div
+          |Гости:
+          -@guests.each do |guest|
+            div
+              img.miniava src=guest.user.profile.avatar.url(:thumb)
+              =>link_to guest.user.profile.full_name, guest.user.profile
+              -if can?(:update, guest)
+                =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
+                  party_guest_path(@party, guest), method: :put
+
