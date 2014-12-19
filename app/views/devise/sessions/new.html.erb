@@ -1,52 +1,38 @@
-<div class="SRcon">
-  <div class="SRcen">
-    <div class="SREcon">
-      <div class="SREcen">
+<div class="container" id="containerCen">
+    <div class="raw">
+      <div class="col-md-4 col-md-offset-4"><div id="centerBlock">
         <h2>Log in</h2>
-      </div>
-    </div>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="SREcon">
-      <div class="SREcen">
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
         <div>
-          <%= f.label :email %>
-          <br />
-          <%= f.email_field :email, autofocus: true %>
+        <%= f.label :email %>
+        <br />
+        <%= f.email_field :email, autofocus: true %>
         </div>
-      </div>
-    </div>
-    <br>
-    <div class="SREcon">
-      <div class="SREcen">
+
+        <br>
+
         <div>
-          <%= f.label :password %>
-          <br />
-          <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.label :password %>
+        <br />
+        <%= f.password_field :password, autocomplete: "off" %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
-          <div>
-            <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-          </div>
-        <% end -%>
-      </div>
-    </div>
-    <br>
-    <div class="SREcon">
-      <div class="SREcen">
         <div>
-          <%= f.submit "Log in" %>
+        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
         </div>
-      </div>
-    </div>
-  <% end %>
-  <br>
-    <div class="SREcon">
-      <div class="SREcen">
-        <div class="SRLcen">
-          <%= render "devise/shared/links" %>
+        <% end -%>
+
+        <br>
+
+        <div>
+        <%= f.submit "Log in" %>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+        <% end %>
+        <br>
+
+        <%= render "devise/shared/links" %>
+</div></div></div>
