@@ -16,7 +16,7 @@ div{
 }
 
 .SRcon{
-  position: relative:
+  position: relative;
   width:100%;
   height:100%;
 }
@@ -26,17 +26,20 @@ div{
   width: 100%;
   margin: auto;
   position: absolute;
-  top: 100px; left: 0; bottom: 0; right: 0;
+  top: 100px; 
+  left: 0; 
+  bottom: 0; 
+  right: 0;
 }
 
 .SREcon{
-  position: relative:
+  position: relative;
   width:100%;
   height:100%;
 }
 
 .SRCHcon{
-  position: relative:
+  position: relative;
   width:100%;
   height:100%;
 }
