@@ -65,7 +65,7 @@
               .RightBottomWall             
                 .fr =f.submit "Отправить"
         .margin20top.wall
-          -@profile.comments.each do |comment|
+          -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
             div.message
               div.AvaCol.fl
                 div.miniava

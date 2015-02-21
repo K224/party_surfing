@@ -80,12 +80,12 @@
                 .fr =f.submit "Отправить"
 
         .wall
-          -@party.comments.each do |comment|
+          -@party.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
             div.message
               div.AvaCol.fl
                 div.miniava
                   img.miniavatar src=comment.user.profile.avatar.url(:thumb)
-              div.MessageConParty  
+              div.MessageConParty
                 div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                 div =comment.comment
             hr
