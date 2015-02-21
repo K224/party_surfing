@@ -52,7 +52,9 @@
               | &nbsp;скрыть
         .margin20top.form-group
           label
-            | Vkontakte
+            div.iconsPlace.margin5bot
+              img.icons src="/vk.png" 
+                | &nbsp; Vkontakte
           div.input-group
             =f.text_field :vk, class: "form-control"
             span.input-group-addon
@@ -60,7 +62,9 @@
               | &nbsp;скрыть
         .margin20top.form-group
           label
-            | Facebook
+            div.iconsPlace.margin5bot
+              img.icons src="/fb.png" 
+                | &nbsp; Facebook
           div.input-group
             =f.text_field :fb, class: "form-control"
             span.input-group-addon
