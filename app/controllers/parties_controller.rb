@@ -5,6 +5,7 @@ class PartiesController < ApplicationController
   def index
     @padding_top = '78px'
     @navbar_style = 'navbar-fixed-top'
+    @party = Party.new
   end
 
   def show
@@ -37,7 +38,6 @@ class PartiesController < ApplicationController
   def create
     params[:party][:host_id] = current_user.id
     @party = Party.new(party_creation_params)
-    authorize! :create, @party
     unless @party.save
       flash[:errors] = @party.errors.to_a
       redirect_to :back

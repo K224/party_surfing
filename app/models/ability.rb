@@ -10,7 +10,7 @@ class Ability
 
     can :read, Party
     can :get_parties_in_zone, Party
-    can :manage, Party, host_id: user.id
+    can :manage, Party, host_id: user.id unless user.id.nil?
     cannot :participate, Party, host_id: user.id
     can :comment, Party do |party|
       guest = party.guests.find_by(user_id: user.id)

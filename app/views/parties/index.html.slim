@@ -16,8 +16,9 @@ javascript:
     br
     a.btn.btn-orange.btn-lg.btn-big onclick="load_parties_in_zone();"
       span.glyphicon.glyphicon-repeat
-    a.btn.btn-success.btn-lg.btn-big.btn-new-party href="#{new_party_path}"
-      span.glyphicon.glyphicon-plus
+    -if can? :create, @party
+      a.btn.btn-success.btn-lg.btn-big.btn-new-party href="#{new_party_path}"
+        span.glyphicon.glyphicon-plus
 
 .map-container
   #map
