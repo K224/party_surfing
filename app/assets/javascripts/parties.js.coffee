@@ -12,8 +12,10 @@ window.init_map = () ->
   window.map = new google.maps.Map(document.getElementById('map'), map_options)
   window.markers = []
   input = document.getElementById('searchbox')
+  inputDiv = document.getElementById('searchdiv')
+  button = document.getElementById('searchbutton')
   if input != null
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputDiv)
     searchBox = new google.maps.places.SearchBox(input)
     google.maps.event.addListener(map, 'bounds_changed', () ->
       bounds = map.getBounds()
@@ -26,6 +28,16 @@ window.init_map = () ->
       for place in places
         bounds.extend(place.geometry.location)
       map.fitBounds(bounds) )
+    button.onclick = () ->
+      location = {address: document.getElementById('searchbox').value}
+      geocoder = new google.maps.Geocoder()
+      geocoder.geocode(location, (data) ->
+        lat = data[0].geometry.location.lat()
+        lng = data[0].geometry.location.lng()
+        origin = new google.maps.LatLng(lat, lng)
+        bounds = new google.maps.LatLngBounds()
+        bounds.extend(origin)
+        map.fitBounds(bounds) )
   input = document.getElementById('btnSearch')
   if input != null
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)

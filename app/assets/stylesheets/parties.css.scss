@@ -18,10 +18,16 @@ div#map
 
 input#searchbox
 {
-	width: 40%;
+	width: 100%;
 	font-size: 14pt;
-	margin-right: 5px;
 }
+
+div#searchdiv
+{
+	margin: 5px;
+	width: 40%;
+}
+
 #btns_prty_ed{
   margin: 5px;
 	background-color:#FEC63D;

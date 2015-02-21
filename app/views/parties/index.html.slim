@@ -4,16 +4,19 @@ javascript:
 
 .container-fluid
   .row
-    .col-md-3
-      input.btn.btn-orange.btn-lg.btn-block.btn-big type="button" value="Искать" onclick="load_parties_in_zone();"
-  .row
     .col-md-3#parties
       |Выберите область на карте и нажмите кнопку "Искать"
 
-  input#searchbox type='text'
+  #searchdiv
+    .input-group
+      input#searchbox type='text'
+      span.input-group-btn
+        button.btn.btn-default#searchbutton
+          span.glyphicon.glyphicon-search
+    br
+    a.btn.btn-orange.btn-lg.btn-big type="button" onclick="load_parties_in_zone();"
+      span.glyphicon.glyphicon-repeat
 
 .map-container
   #map
     |На этой странице будет карта
-
-input#btnSearch.btn.btn-orange type="button" value="Показать место" onclick=""

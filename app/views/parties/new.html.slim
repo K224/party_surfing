@@ -26,7 +26,12 @@ javascript:
         .form-group
           =f.submit "Создать", class: 'btn btn-orange btn-lg'
 
-input#searchbox type='text'
+#searchdiv
+  .input-group
+    input#searchbox type='text'
+    span.input-group-btn
+      button.btn.btn-default#searchbutton
+        span.glyphicon.glyphicon-search
 
 .map-container
   div#map
