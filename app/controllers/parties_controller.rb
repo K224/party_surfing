@@ -21,8 +21,12 @@ class PartiesController < ApplicationController
   end
 
   def update
-    @party.update(party_params)
-    redirect_to @party
+    unless @party.update(party_params)
+      flash[:errors] = @party.errors.to_a
+      redirect_to :back
+    else
+      redirect_to @party
+    end
   end
 
   def destroy
@@ -34,8 +38,12 @@ class PartiesController < ApplicationController
     params[:party][:host_id] = current_user.id
     @party = Party.new(party_creation_params)
     authorize! :create, @party
-    @party.save
-    redirect_to @party
+    unless @party.save
+      flash[:errors] = @party.errors.to_a
+      redirect_to :back
+    else
+      redirect_to @party
+    end
   end
 
   def participate

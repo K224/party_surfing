@@ -6,10 +6,11 @@ javascript:
 .container-fluid
   .row
     .col-md-3
+      div =flash[:errors]
       =form_for @party do |f|
         fieldset
-          =f.hidden_field :coord_longitude
-          =f.hidden_field :coord_latitude
+          =f.hidden_field :coord_longitude, value: 1000
+          =f.hidden_field :coord_latitude, value: 1000
         label Аватар
         = f.file_field :avatar
         .form-group

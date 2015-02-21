@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
 
   def update
     unless @profile.update(profile_params)
-      flash[:errors] = @profile.errors.to_a 
+      flash[:errors] = @profile.errors.to_a
       redirect_to :back
     else
       redirect_to @profile

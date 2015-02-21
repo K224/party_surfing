@@ -12,6 +12,8 @@ class Party < ActiveRecord::Base
     :path => "parties/:style/:id_:filename"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  validate :validate_coor, :validate_date, :validate_title
+
   acts_as_commentable
 
   def check_participation(user)
@@ -22,5 +24,29 @@ class Party < ActiveRecord::Base
     return avatar.url(:thumb)
   end
 
+private
+  def validate_coor
+    if(coord_latitude < -180 || coord_latitude > 180 ||
+      coord_longitude < -180 || coord_longitude > 180)
+      errors.add(:base, "coordinates are incorrect")
+    end
+  end
+
+  def validate_date
+    if date.nil?
+      errors.add(:date, "is not set")
+    elsif Date.today >= date
+      errors.add(:date, "must be at least tomorrow")
+    end
+  end
+
+  def validate_title
+    if title.length < 1
+      errors.add(:title, "must not be blank")
+    end
+    if title.length > 255
+      errors.add(:title, "is too long")
+    end
+  end
 
 end
