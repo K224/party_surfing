@@ -51,24 +51,6 @@
         -if cnt == 0
           div
             |Никто не хочет
-      -if !@party.blocked || (can? :manage, @party)
-        br/
-      .row
-        .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
-
-        br/
-
-        -if can? :participate, @party
-          -unless @party.check_participation(current_user)
-            div
-              .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
-            br/
-          -else
-            div
-              .btn.btn-primary#btns_prty_can=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
-            br/
-        -else 
-          | Мероприятие заблокированно администратором.  
 
     .col-md-4
       div.margin20top.wall
@@ -93,6 +75,26 @@
       div.MapBox.margin20top.wall
         div.ava
           img.avatar src=@party.avatar.url(:medium)
+
+      -if !@party.blocked || (can? :manage, @party)
+        br/
+        .row
+          .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
+
+          br/
+
+          -if can? :participate, @party
+            -unless @party.check_participation(current_user)
+              div
+                .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
+              br/
+            -else
+              div
+                .btn.btn-primary#btns_prty_can=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
+              br/
+      -else 
+         | Мероприятие заблокированно администратором.  
+
       div.MapBox
         #minimap =@party.map_image
 
