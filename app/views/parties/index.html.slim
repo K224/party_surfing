@@ -14,8 +14,10 @@ javascript:
         button.btn.btn-default#searchbutton
           span.glyphicon.glyphicon-search
     br
-    a.btn.btn-orange.btn-lg.btn-big type="button" onclick="load_parties_in_zone();"
+    a.btn.btn-orange.btn-lg.btn-big onclick="load_parties_in_zone();"
       span.glyphicon.glyphicon-repeat
+    a.btn.btn-success.btn-lg.btn-big.btn-new-party href="#{new_party_path}"
+      span.glyphicon.glyphicon-plus
 
 .map-container
   #map
