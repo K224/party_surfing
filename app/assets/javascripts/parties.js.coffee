@@ -78,7 +78,7 @@ window.load_parties_in_zone = () ->
             <div class='SRCHcon'><div class='SRCHcen'><img class='miniavatarSRCH' src='#{party.get_thumb_url}'></div></div>
             <h5 class='CenTex'>Описание: #{party.summary}</h5>
           </div>
-        </div><hr>"
+        </div>"
       div.innerHTML += content
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
@@ -89,9 +89,11 @@ window.load_parties_in_zone = () ->
       })
       window.markers.push(marker)
       google.maps.event.addListener marker, 'click', () ->
-        infoWindow = new google.maps.InfoWindow({
+        if window.infoWindow?
+          window.infoWindow.close()
+        window.infoWindow = new google.maps.InfoWindow({
           content: this.content
         })
-        infoWindow.open(window.map, this)
+        window.infoWindow.open(window.map, this)
 
 
