@@ -14,8 +14,9 @@
         hr
       .row
         .textBold Организатор:
-        img.miniava src=@party.host.profile.avatar.url(:thumb)
-        =<link_to @party.host.profile.full_name, @party.host.profile
+        =<link_to @party.host.profile do
+          img.miniava src=@party.host.profile.avatar.url(:thumb)
+          =@party.host.profile.full_name
         hr
       .row
         .textBold Информация:
@@ -32,8 +33,9 @@
         -@party.guests.each do |guest|
           -if guest.accepted
             div
-              img.miniava src=guest.user.profile.avatar.url(:thumb)
-              =<link_to guest.user.profile.full_name, guest.user.profile
+              =<link_to guest.user.profile do
+                img.miniava src=guest.user.profile.avatar.url(:thumb)
+                =guest.user.profile.full_name
             -cnt += 1
         -if cnt == 0
           div
@@ -45,8 +47,9 @@
         -@party.guests.each do |guest|
           -unless guest.accepted
             div
-              img.miniava src=guest.user.profile.avatar.url(:thumb)
-              =link_to guest.user.profile.full_name, guest.user.profile
+              =<link_to guest.user.profile do
+                img.miniava src=guest.user.profile.avatar.url(:thumb)
+                =guest.user.profile.full_name
             -cnt += 1
         -if cnt == 0
           div

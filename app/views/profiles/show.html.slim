@@ -14,8 +14,9 @@
       -cnt = 0
       -@profile.user.parties.each do |party|
         div.WhiteBox.textCenter
-          img.miniava src=party.avatar.url(:thumb)
-          =link_to party.title, party
+          =link_to party do
+            img.miniava src=party.avatar.url(:thumb)
+            =party.title
         -cnt += 1
       -if cnt == 0
         div.WhiteBox.textCenter Не создавал
@@ -27,8 +28,9 @@
         -if par.accepted
           -cnt += 1
           div.WhiteBox.textCenter
-            img.miniava src=par.party.avatar.url(:thumb)
-            =link_to par.party.title, par.party
+            =link_to par.party do
+              img.miniava src=par.party.avatar.url(:thumb)
+              =par.party.title
       -if cnt == 0
         div.WhiteBox.textCenter Не участвовал
 
