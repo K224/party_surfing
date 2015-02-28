@@ -26,7 +26,9 @@
       -@profile.user.participations.each do |par|
         -if par.accepted
           -cnt += 1
-          div.WhiteBox.textCenter =link_to par.party.title, par.party
+          div.WhiteBox.textCenter
+            img.miniava src=par.party.avatar.url(:thumb)
+            =link_to par.party.title, par.party
       -if cnt == 0
         div.WhiteBox.textCenter Не участвовал
 
@@ -61,8 +63,8 @@
         -if user_signed_in?
           div
             =form_for @comment, url: comment_profile_path do |f|
-              .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"   
-              .RightBottomWall             
+              .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
+              .RightBottomWall
                 .fr =f.submit "Отправить"
         .margin20top.wall
           -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
@@ -70,7 +72,7 @@
               div.AvaCol.fl
                 div.miniava
                   img.miniavatar src=@profile.avatar.url(:thumb) 
-              div.MessageCon              
+              div.MessageCon
                 div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                 div =comment.comment
             hr
