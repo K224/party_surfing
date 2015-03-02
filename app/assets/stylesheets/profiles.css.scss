@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.collapse-xs
+{
+	display:block;
+	height:auto !important;
+}
+@media (max-width:767px){
+	.collapse-xs
+	{
+		display:none;
+	}
+}
+
 .margin20bot{
   margin-bottom:20px;
 }

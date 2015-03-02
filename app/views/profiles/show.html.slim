@@ -1,44 +1,55 @@
 ﻿.container-fluid
+  .row.visible-xs-block
+    .img-responsive.col-xs-6
+      img.avatar src=@profile.avatar.url(:medium)
+    .margin20bot.col-xs-6.col-sm-12
+      h1 #{@profile.name} #{@profile.surname}
+      h5 Возраст #{@profile.age}
   .row
-    .col-md-4
-      div.ava
+    .col-sm-5.col-md-4
+      div.ava.hidden-xs
         img.avatar src=@profile.avatar.url(:medium)
       -if can? :update, @profile
-        div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
-        div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
-        div 
-          =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-primary margin10bot btn-lg"
+        .collapse.navbar-collapse#other-menu
+          div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
+          div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
+          div 
+            =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-primary margin10bot btn-lg"
+ 
+        .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
+            |Мои мероприятия
+        .hidden-xs.BlackBox.textCenter
+          |Мои мероприятия
+        .collapse-xs#collapseParties
+          -cnt = 0
+          -@profile.user.parties.each do |party|
+            div.WhiteBox.textCenter
+              =link_to party do
+                img.miniava src=party.avatar.url(:thumb)
+                =party.title
+            -cnt += 1
+          -if cnt == 0
+            div.WhiteBox.textCenter Не создавал
 
-      div.BlackBox.textCenter
-        |Мои мероприятия
-      -cnt = 0
-      -@profile.user.parties.each do |party|
-        div.WhiteBox.textCenter
-          =link_to party do
-            img.miniava src=party.avatar.url(:thumb)
-            =party.title
-        -cnt += 1
-      -if cnt == 0
-        div.WhiteBox.textCenter Не создавал
+        .hidden-xs.BlackBox.textCenter
+          |Принимал участие
+        .collapse#collapseparties
+          -cnt = 0
+          -@profile.user.participations.each do |par|
+            -if par.accepted
+              -cnt += 1
+              div.WhiteBox.textCenter
+                =link_to par.party do
+                  img.miniava src=par.party.avatar.url(:thumb)
+                  =par.party.title
+          -if cnt == 0
+            div.WhiteBox.textCenter Не участвовал
 
-      div.BlackBox.textCenter
-        |Принимал участие
-      -cnt = 0
-      -@profile.user.participations.each do |par|
-        -if par.accepted
-          -cnt += 1
-          div.WhiteBox.textCenter
-            =link_to par.party do
-              img.miniava src=par.party.avatar.url(:thumb)
-              =par.party.title
-      -if cnt == 0
-        div.WhiteBox.textCenter Не участвовал
-
-    .col-md-6.col-md-offset-1
-
-      div.margin20bot
-        h1 #{@profile.name} #{@profile.surname}
-        h5 Возраст #{@profile.age}
+    .col-sm-7.col-md-6.col-md-offset-1
+      .row.hidden-xs
+        .margin20bot
+          h1 #{@profile.name} #{@profile.surname}
+          h5 Возраст #{@profile.age}
       hr
       div.iconsPlace.margin5bot
         | Контактная информация:
