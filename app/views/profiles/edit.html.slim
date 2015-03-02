@@ -1,19 +1,21 @@
 ﻿javascript:
   initNicEditor('profile_contacts')
 
-.container#container
-  h1.textCenter Редактирование профиля
-  .row
-    .col-md-3
-      div.ava
-        img.avatar src=@profile.avatar.url(:medium)
-      /div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
-    .col-md-8.col-md-offset-1
-      div =flash[:errors]
-      = form_for @profile, :html => { :multipart => true } do |f|
+.container
+  = form_for @profile, :html => { :multipart => true } do |f|
+    h1.textCenter Редактирование профиля
+    .row
+      .col-sm-3.col-lg-4
+        div.ava
+          img.avatar.img-responsive src=@profile.avatar.url(:medium)
         label
           | Аватар
         = f.file_field :avatar
+        /div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
+      .col-sm-8.col-sm-offset-1.col-lg-7.col-lg-offset-1.
+	    div =flash[:errors]
+
+
         .margin20top.form-group
           label
             | Имя

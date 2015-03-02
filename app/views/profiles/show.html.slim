@@ -1,21 +1,20 @@
-﻿.container-fluid
-  .row.visible-xs-block
-    .img-responsive.col-xs-6
-      img.avatar src=@profile.avatar.url(:medium)
-    .margin20bot.col-xs-6.col-sm-12
-      h1 #{@profile.name} #{@profile.surname}
-      h5 Возраст #{@profile.age}
+﻿.container
   .row
+    .visible-xs-block
+	  .img-responsive.col-xs-6
+        img.avatar src=@profile.avatar.url(:medium)
+      .margin20bot.col-xs-6.col-sm-12
+        h1 #{@profile.name} #{@profile.surname}
+        h5 Возраст #{@profile.age}
     .col-sm-5.col-md-4
-      div.ava.hidden-xs
+      .ava.hidden-xs
         img.avatar src=@profile.avatar.url(:medium)
       -if can? :update, @profile
-        .collapse.navbar-collapse#other-menu
+        div
           div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
           div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
-          div 
+          div
             =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-primary margin10bot btn-lg"
- 
         .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
             |Мои мероприятия
         .hidden-xs.BlackBox.textCenter
@@ -46,7 +45,7 @@
                   =par.party.title
           -if cnt == 0
             div.WhiteBox.textCenter Не участвовал
-
+          script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"
     .col-sm-7.col-md-6.col-md-offset-1
       .row.hidden-xs
         .margin20bot
