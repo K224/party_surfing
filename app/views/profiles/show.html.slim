@@ -31,9 +31,11 @@
           -if cnt == 0
             div.WhiteBox.textCenter Не создавал
 
+        .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParticipates" aria-expanded="false" aria-controls="#collapseParticipates"
+          |Принимал участие
         .hidden-xs.BlackBox.textCenter
           |Принимал участие
-        .collapse#collapseparties
+        .collapse-xs#collapseParticipates
           -cnt = 0
           -@profile.user.participations.each do |par|
             -if par.accepted
@@ -50,34 +52,42 @@
         .margin20bot
           h1 #{@profile.name} #{@profile.surname}
           h5 Возраст #{@profile.age}
-      hr
-      div.iconsPlace.margin5bot
+        hr
+      div.iconsPlace.margin5bot.hidden-xs
         | Контактная информация:
-      -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
-        div.iconsPlace.margin10bot
-          img.icons src="/skype.png"
-          | #{@profile.skype}
-      -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
-        div.iconsPlace.margin10bot
-          img.icons src="/phone.png"
-          | #{@profile.phone}
-      -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
-        div.iconsPlace.margin10bot
-          img.icons src="/vk.png"
-          | #{@profile.vk}
-      -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
-        div.iconsPlace.margin10bot
-          img.icons src="/fb.png"
-          | #{@profile.fb}
-      hr
+      .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseContacts" aria-expanded="false" aria-controls="#collapseContacts"
+        | Контактная информация:
+      .collapse-xs#collapseContacts
+        -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
+          div.iconsPlace.margin10bot
+            img.icons src="/skype.png"
+            | #{@profile.skype}
+        -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
+          div.iconsPlace.margin10bot
+            img.icons src="/phone.png"
+            | #{@profile.phone}
+        -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+          div.iconsPlace.margin10bot
+            img.icons src="/vk.png"
+            | #{@profile.vk}
+        -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+          div.iconsPlace.margin10bot
+            img.icons src="/fb.png"
+            | #{@profile.fb}
+      .hidden-xs
+        hr
+          | О себе:
+      .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseInfo" aria-expanded="false" aria-controls="#collapseInfo"
         | О себе:
-        div=raw @profile.contacts
-      hr
+      .collapse-xs#collapseInfo
+        =raw @profile.contacts
+      div
+        hr
         -if user_signed_in?
           div
             =form_for @comment, url: comment_profile_path do |f|
               .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
-              .RightBottomWall
+              div
                 .fr =f.submit "Отправить"
         .margin20top.wall
           -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
