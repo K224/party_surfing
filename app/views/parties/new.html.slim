@@ -5,7 +5,7 @@ javascript:
 
 .container-fluid
   .row
-    .col-md-3
+    .col-xs-8.col-sm-5.col-md-3.col-xs-offset-2.col-sm-offset-0
       div =flash[:errors]
       =form_for @party do |f|
         fieldset
@@ -27,6 +27,9 @@ javascript:
         .form-group
           =f.submit "Создать", class: 'btn btn-orange btn-lg'
 
+    .col-xs-12.col-sm-7.col-md-9
+      .map-container-party
+        div#map
 #searchdiv
   .input-group
     input#searchbox type='text'
@@ -34,5 +37,3 @@ javascript:
       button.btn.btn-default#searchbutton
         span.glyphicon.glyphicon-search
 
-.map-container
-  div#map

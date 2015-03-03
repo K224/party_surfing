@@ -5,15 +5,19 @@ javascript:
 
 .container-fluid
   .row
-    .col-md-3
-      div.ava
-        img.avatar src=@party.avatar.url(:medium)
+    .col-xs-8.col-sm-5.col-md-3.col-xs-offset-2.col-sm-offset-0
       =form_for @party do |f|
+        .row
+          .col-xs-10.col-xs-offset-1.col-sm-offset-0.col-sm-12
+            div.ava
+              img.avatar src=@party.avatar.url(:medium)
+          .col-xs-12
+            label Аватар
+            =f.file_field :avatar
         fieldset
           =f.hidden_field :coord_longitude
           =f.hidden_field :coord_latitude
-        label Аватар
-        =f.file_field :avatar
+        
         .form-group
           label Название
           =f.text_field :title, class: 'form-control', placeholder: 'Название'
@@ -27,6 +31,9 @@ javascript:
           =f.text_area :summary, class: 'form-control', placeholder: 'Описание'
         .form-group
           =f.submit "Сохранить", class: 'btn btn-orange btn-lg'
+    .col-xs-12.col-sm-7.col-md-9
+      .map-container-party
+        div#map
 
 #searchdiv
   .input-group
@@ -35,5 +42,4 @@ javascript:
       button.btn.btn-default#searchbutton
         span.glyphicon.glyphicon-search
 
-.map-container
-  div#map
+
