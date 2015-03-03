@@ -76,11 +76,12 @@ private
   def party_params
     params.require(:party).permit(:title, :type, :date, :summary,
                                   :description, :coord_latitude,
-                                  :coord_longitude, :avatar)
+                                  :coord_longitude, :avatar, :tag_list => [])
   end
 
   def party_creation_params
     params.require(:party).permit(:title, :host_id, :coord_latitude,
-                                  :coord_longitude, :date, :type_id, :summary, :avatar)
+                                  :coord_longitude, :date, :type_id,
+                                  :summary, :avatar, :tag_list => [])
   end
 end

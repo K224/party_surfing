@@ -52,6 +52,7 @@ gem 'draper'
 gem 'acts_as_commentable'
 gem 'capybara'
 gem 'acts-as-taggable-on'
+gem 'tagsinput-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

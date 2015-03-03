@@ -16,6 +16,7 @@
 
  *= require bootstrap.min
 
+ *= require jquery.tagsinput
  */
  
  body{
