@@ -69,7 +69,7 @@ class PartiesController < ApplicationController
     parties = Party.where(
       "date >= ? AND coord_latitude >= ? AND coord_longitude >= ? AND coord_latitude <= ? AND coord_longitude <= ?",
       Date.today, zone[0], zone[1], zone[2], zone[3])
-    render json: parties.to_json(:methods => :get_thumb_url, :include => {host: { include: :profile}})
+    render json: parties.to_json(:methods => [:get_thumb_url, :tag_list], :include => {host: { include: :profile}})
   end
 
 private
