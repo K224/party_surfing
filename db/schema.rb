@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303090855) do
+ActiveRecord::Schema.define(version: 20150303102144) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20150303090855) do
   create_table "parties", force: true do |t|
     t.string   "title"
     t.text     "summary"
-    t.float    "coord_longitude"
-    t.float    "coord_latitude"
+    t.float    "coord_longitude",     default: 1000.0
+    t.float    "coord_latitude",      default: 1000.0
     t.date     "date"
     t.integer  "host_id"
     t.integer  "type_id"
