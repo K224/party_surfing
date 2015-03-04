@@ -15,6 +15,7 @@ class Party < ActiveRecord::Base
   validate :validate_coor, :validate_date, :validate_title
 
   acts_as_commentable
+  acts_as_taggable
 
   def check_participation(user)
     guests.find_by(user_id: user.id) != nil

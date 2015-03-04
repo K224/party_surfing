@@ -76,7 +76,7 @@ window.load_parties_in_zone = () ->
             <a class='CenTex' href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
             <h5 class='CenTex'>#{party.date}</h5>
             <a href='/parties/#{party.id}'><div class='SRCHcon'><div class='SRCHcen'><img class='miniavatarSRCH' src='#{party.get_thumb_url}'></div></div></a>
-            <h5 class='CenTex'>Описание: #{party.summary}</h5>
+            <h5 class='CenTex'>Tags: #{party.tag_list.join(', ')}</h5>
           </div>
         </div>"
       div.innerHTML += content
