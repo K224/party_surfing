@@ -9,6 +9,7 @@ class Ability
     user ||= User.new
 
     can :read, Party
+    can :autocomplete_tags, Party
     can :get_parties_in_zone, Party
     can :manage, Party, host_id: user.id unless user.id.nil?
     cannot :participate, Party, host_id: user.id
