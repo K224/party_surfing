@@ -1,0 +1,45 @@
+javascript:
+  $('document').on('page:load', init_map_place_selection)
+  $('document').ready(init_map_place_selection)
+  initNicEditor('party_summary')
+
+.container-fluid
+  .row
+    .col-md-3
+      div =flash[:errors]
+      =form_for @party do |f|
+        fieldset
+          =f.hidden_field :coord_longitude
+          =f.hidden_field :coord_latitude
+        label Аватар
+        = f.file_field :avatar
+        .form-group
+          label Название
+          =f.text_field :title, class: 'form-control', placeholder: 'Название'
+        .form-group
+          label Tags
+          =f.text_field :tag_list, class: 'form-control', multiple: true
+        .form-group
+          label Тип
+          =f.select :type_id, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
+        .form-group
+          label Дата
+          =f.date_field :date, class: 'form-control'
+        .form-group
+          =f.text_area :summary, class: 'form-control', placeholder: 'Описание'
+        .form-group
+          =f.submit locals[:button_text], class: 'btn btn-orange btn-lg'
+
+#searchdiv
+  .input-group
+    input#searchbox type='text'
+    span.input-group-btn
+      button.btn.btn-default#searchbutton
+        span.glyphicon.glyphicon-search
+
+.map-container
+  div#map
+
+javascript:
+  $('#party_tag_list').tagsInput({'width': '100%'})
+  $('#party_tag_list_tagsinput').addClass('form-control')

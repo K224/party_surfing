@@ -19,6 +19,12 @@
           =@party.host.profile.full_name
         hr
       .row
+        .textBold Tags:
+        .div
+          -@party.tag_list.each do |tag|
+            =>tag
+        hr
+      .row
         .textBold Информация:
         .div
           =raw @party.summary
