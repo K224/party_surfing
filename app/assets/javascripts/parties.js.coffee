@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.init_map = () ->
+  init_tag_field()
   map_options = {
     zoom: 10,
     center: new google.maps.LatLng(55.65, 37.67),
@@ -42,6 +43,10 @@ window.init_map = () ->
   if input != null
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
 
+window.init_map_load_parties = () ->
+  init_map()
+  google.maps.event.addListenerOnce(map, 'idle', () -> load_parties_in_zone() )
+
 window.init_map_place_selection = () ->
   init_map()
   google.maps.event.addListener(window.map, 'click', (e) ->
@@ -52,10 +57,6 @@ window.init_map_place_selection = () ->
       map: window.map
     })
     window.map.panTo(e.latLng)
-    foo = document.getElementById('party_coord_latitude')
-    foo.value = e.latLng.lat()
-    foo = document.getElementById('party_coord_longitude')
-    foo.value = e.latLng.lng()
   )
 
 window.load_parties_in_zone = () ->
@@ -79,7 +80,8 @@ window.load_parties_in_zone = () ->
             <h5 class='CenTex'>Tags: #{party.tag_list.join(', ')}</h5>
           </div>
         </div>"
-      div.innerHTML += content
+      div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ')}' >" +
+        content + "</div>"
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
       marker = new google.maps.Marker({
@@ -95,5 +97,31 @@ window.load_parties_in_zone = () ->
           content: this.content
         })
         window.infoWindow.open(window.map, this)
+    do_search()
 
+window.init_tag_field = () ->
+  params =
+    'autocomplete_url': "/parties/autocomplete_tags",
+    'class': 'form-control',
+    'width': '100%',
+    'height': '100%'
+  window.tags = []
+  if $('#party_tag_list').data('with-search')
+    params.onAddTag = (tag) ->
+      tags.push(tag)
+      do_search()
+    params.onRemoveTag = (tag) ->
+      tags.splice(tags.indexOf(tag), 1)
+      do_search()
+  $('#party_tag_list').tagsInput(params)
+  $('#party_tag_list_tagsinput').addClass('form-control')
 
+window.do_search = () ->
+  $("div[name='party']").each () ->
+    this.hidden = false
+    for tag in tags
+      if this.dataset['tags'].indexOf(tag) > -1
+        continue
+      else
+        this.hidden = true
+        break
