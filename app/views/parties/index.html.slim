@@ -1,12 +1,14 @@
 javascript:
-  $('document').on('page:load', init_map)
-  $('document').ready(init_map)
+  $('document').on('page:load', init_map_load_parties)
+  $('document').ready(init_map_load_parties)
 .map-container
   #map
     |На этой странице будет карта
-    
 
 .container-fluid
+  .row
+    .col-sm-3
+      input#party_tag_list type="text" multiple="true" data-with-search="true"
   .row
     .col-sm-3#parties
       |Выберите область на карте и нажмите кнопку "Искать"
@@ -23,5 +25,3 @@ javascript:
     -if can? :create, @party
       a.btn.btn-success.btn-lg.btn-big.btn-new-party href="#{new_party_path}"
         span.glyphicon.glyphicon-plus
-
-
