@@ -8,6 +8,7 @@ class Ability
 
     user ||= User.new
 
+    can :vote, Profile
     can :read, Party
     can :autocomplete_tags, Party
     can :get_parties_in_zone, Party

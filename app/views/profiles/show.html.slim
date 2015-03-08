@@ -1,10 +1,14 @@
 ﻿.container
   .panel.panel-default
     .panel-heading
-      h1 
+      h1
         | #{@profile.name} #{@profile.surname}
-        small  
+        small
           | , #{@profile.age}
+      .row Общее количество голосов #{@profile.votes_for.size}. Средний рейтинг #{@profile.get_likes(:vote_scope => 'rank').sum(:vote_weight)} / 5.
+      .row Оценить пользователя как участника
+      -for i in 1..5
+        =link_to " #{i} ", "/profiles/#{@profile.id}/vote?weight=#{i}"
     .panel-body
       .col-sm-6.col-md-4
         img.avatar src=@profile.avatar.url(:medium)
@@ -84,3 +88,4 @@
                     div.MessageCon
                       div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                       div =comment.comment
+

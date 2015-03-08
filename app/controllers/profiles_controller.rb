@@ -30,6 +30,11 @@ class ProfilesController < ApplicationController
     @profile.save
   end
 
+  def vote
+    @profile.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => 'rank'
+    redirect_to @profile
+  end
+
 private
   def profile_params
     params.require(:profile).permit(:name, :surname, :birthday, :contacts, :birthday_hidden,

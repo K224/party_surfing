@@ -20,6 +20,7 @@ PartySurfing::Application.routes.draw do
 
   resources :profiles, only: [:show, :edit, :update] do
     member do
+      get :vote
       post :comment
     end
   end

@@ -14,6 +14,7 @@ class Profile < ActiveRecord::Base
   validate :validate_birthday, :validate_name
 
   acts_as_commentable
+  acts_as_votable
 
   def full_name
     "#{name} #{surname}"
