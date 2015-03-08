@@ -12,7 +12,7 @@ elif len(sys.argv) == 2 and sys.argv[1] == "testing":
   readme.write("Для добавления автоматического тестирования при коммите запустите autotest.py\n\n" +
                 "ВНИМАНИЕ! Генерация хука для автотеста затрёт существующий!\n\n")
   author_info = subprocess.check_output(["git", "var", "GIT_AUTHOR_IDENT"]).decode("utf-8")
-  readme.write("**Информация о последнем протестированном коммите**\n")
+  readme.write("**Информация о последнем протестированном коммите:**\n")
   readme.write("* Автор : " + author_info.split(" ")[0] + "\n")
   readme.write("* Дата : " + subprocess.check_output(["date", "+%H:%M  %d.%m.%y"]).decode("utf-8"))
   test_results = ""
@@ -20,9 +20,9 @@ elif len(sys.argv) == 2 and sys.argv[1] == "testing":
     test_results = subprocess.check_output(["bundle", "exec", "rake", "test"])
   except subprocess.CalledProcessError as error:
     test_results = error.output
-  readme.write("* " + test_results.decode("utf-8").split("\n")[-2] + "\n")
-  readme.write("После тестирования выполняется команда 'git add -A', следите за актуальность списка игнорируемых файлов")
-  readme.write("\nДля коммита без тестирования используйте параметр --no-verify")
+  readme.write("* " + test_results.decode("utf-8").split("\n")[-2] + "\n\n")
+  readme.write("После тестирования выполняется команда 'git add -A', следите за актуальность списка игнорируемых файлов.\n")
+  readme.write("\nДля коммита без тестирования используйте параметр --no-verify.")
   readme.close()
   subprocess.call(["git", "add", "-A"])
 else:
