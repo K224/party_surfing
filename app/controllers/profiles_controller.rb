@@ -31,6 +31,12 @@ class ProfilesController < ApplicationController
   end
 
   def vote
+    if params[:weight].to_i > 5 then
+      params[:weight] = 5
+    end
+    if params[:weight].to_i < 1 then
+      params[:weight] = 1
+    end
     @profile.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => 'rank'
     redirect_to @profile
   end
