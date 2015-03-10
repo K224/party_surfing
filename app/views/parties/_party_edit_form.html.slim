@@ -19,7 +19,7 @@ javascript:
         .form-group
           label Tags
           =f.text_field :tag_list, class: 'form-control', multiple: true
-        .form-group
+        .form-group hidden="true"
           label Тип
           =f.select :type_id, options_from_collection_for_select(Type.all, :id, :title), {}, {class: 'form-control'}
         .form-group
