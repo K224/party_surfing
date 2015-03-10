@@ -6,6 +6,8 @@ window.init_map = () ->
   init_tag_field()
   map_options = {
     zoom: 10,
+    minZoom: 10,
+    maxZoom: 16,
     center: new google.maps.LatLng(55.65, 37.67),
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -28,7 +30,15 @@ window.init_map = () ->
       bounds = new google.maps.LatLngBounds()
       for place in places
         bounds.extend(place.geometry.location)
-      map.fitBounds(bounds) )
+      map.fitBounds(bounds)
+      zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', (event) ->
+        if this.getZoom()
+          this.setZoom(16) )
+      setTimeout(() ->
+        google.maps.event.removeListener(zoomChangeBoundsListener)
+      , 2000)
+      if autoloadParties == true
+        load_parties_in_zone() )
     button.onclick = () ->
       location = {address: document.getElementById('searchbox').value}
       geocoder = new google.maps.Geocoder()
@@ -38,13 +48,22 @@ window.init_map = () ->
         origin = new google.maps.LatLng(lat, lng)
         bounds = new google.maps.LatLngBounds()
         bounds.extend(origin)
-        map.fitBounds(bounds) )
+        map.fitBounds(bounds)
+        zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', (event) ->
+          if this.getZoom()
+            this.setZoom(16) )
+        setTimeout(() ->
+          google.maps.event.removeListener(zoomChangeBoundsListener)
+        , 2000)
+        if autoloadParties == true
+          load_parties_in_zone() )
   input = document.getElementById('btnSearch')
   if input != null
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
 
 window.init_map_load_parties = () ->
   init_map()
+  window.autoloadParties = true
   google.maps.event.addListenerOnce(map, 'idle', () -> load_parties_in_zone() )
 
 window.init_map_place_selection = () ->
