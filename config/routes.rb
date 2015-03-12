@@ -13,6 +13,7 @@ PartySurfing::Application.routes.draw do
     end
     collection do
       get :get_parties_in_zone
+      get :autocomplete_tags
     end
     resources :guests, only: [:index, :update]
   end

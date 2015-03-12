@@ -15,6 +15,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test do
+  gem 'capybara'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
@@ -29,6 +33,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -50,7 +55,6 @@ gem 'omniauth-vkontakte'
 gem 'cancan'
 gem 'draper'
 gem 'acts_as_commentable'
-gem 'capybara'
 gem 'acts-as-taggable-on'
 gem 'tagsinput-rails'
 

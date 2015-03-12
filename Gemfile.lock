@@ -270,6 +270,7 @@ DEPENDENCIES
   draper
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails
   omniauth-facebook
   omniauth-vkontakte
   paperclip!

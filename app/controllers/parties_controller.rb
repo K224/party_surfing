@@ -72,6 +72,13 @@ class PartiesController < ApplicationController
     render json: parties.to_json(:methods => [:get_thumb_url, :tag_list], :include => {host: { include: :profile}})
   end
 
+  def autocomplete_tags
+    q = params[:term] || ""
+    tags = ActsAsTaggableOn::Tag.where("name LIKE ?", "%#{q}%")
+      .most_used.collect { |tag| tag.name }
+    render json: tags
+  end
+
 private
   def party_params
     params.require(:party).permit(:title, :type, :date, :summary,
