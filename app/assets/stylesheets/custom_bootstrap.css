@@ -1,3 +1,36 @@
+.panel1{
+  border-color: Gainsboro !important;
+}
+.panel1 .panel-heading{
+  background-color: Gainsboro !important;
+  color:DarkTurquoise !important;
+  font-weight:bold;
+}
+.panel1 .panel-body{
+  background-color: WhiteSmoke !important;
+}
+
+.backcolor1{
+  background-color: Gainsboro !important;
+  color:DarkTurquoise !important;
+  font-weight:bold;
+}
+
+.btn-style{
+  width:100%;
+  margin:5px 1px;
+  background-color: black;
+  color:white;
+  font-weight:bold;
+}
+
+@media (min-width:768px){
+  .well-margin{
+    margin:5px 4.15%;
+  }
+}
+
+
 @font-face {
   font-family: 'Century Gothic Bold'; /*a name to be used later*/
   src: url('/fonts/Century Gothic Bold.ttf'); /*URL to font*/
@@ -23,6 +56,22 @@
 
 div{
   word-wrap: break-word;
+}
+
+.comment-well{
+  margin:3px 6px;
+  padding:5px;
+}
+.comment-ava{
+  background-color: white;
+  height:80px;
+  width:80px;
+  border:1px solid black;
+  margin-right:6px;
+  float:left;
+}
+.block{
+  display:block;
 }
 
 .SRcon{
