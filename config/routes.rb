@@ -10,6 +10,7 @@ PartySurfing::Application.routes.draw do
     member do
       get :participate
       post :comment
+      get :vote
     end
     collection do
       get :get_parties_in_zone

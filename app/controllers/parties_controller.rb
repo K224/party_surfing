@@ -79,6 +79,17 @@ class PartiesController < ApplicationController
     render json: tags
   end
 
+  def vote
+    if params[:weight].to_i > 5 then
+      params[:weight] = 5
+    end
+    if params[:weight].to_i < 1 then
+      params[:weight] = 1
+    end
+    @party.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => 'rank'
+    redirect_to @party
+  end
+
 private
   def party_params
     params.require(:party).permit(:title, :type, :date, :summary,

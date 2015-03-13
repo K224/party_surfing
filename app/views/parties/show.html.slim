@@ -7,6 +7,13 @@
       .row
         h2
           .textCenter =@party.title
+      -if @party.votes_for.size == 0
+        .row Никто не оценил данное мероприятие
+      -else
+        .row Общее количество голосов #{@party.votes_for.size}. Средний рейтинг #{@party.get_likes(:vote_scope => 'rank').sum(:vote_weight)/@party.votes_for.size} / 5
+        .row Оценить мероприятие
+      -for i in 1..5
+        =link_to " #{i} ", "/parties/#{@party.id}/vote?weight=#{i}"
       .row
         -if can? :manage, @party
           .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
