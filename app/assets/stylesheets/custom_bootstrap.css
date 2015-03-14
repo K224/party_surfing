@@ -1,25 +1,25 @@
 .panel1{
-  border-color: Gainsboro !important;
+  border-color: rgba(0,0,0,0.06) !important;
 }
 .panel1 .panel-heading{
-  background-color: Gainsboro !important;
-  color:DarkTurquoise !important;
+  background-color: rgba(0,0,0,0.06) !important;
+  color: black !important;
   font-weight:bold;
 }
 .panel1 .panel-body{
-  background-color: WhiteSmoke !important;
+  background-color: rgba(0,0,0,0.03) !important;
 }
 
 .backcolor1{
-  background-color: Gainsboro !important;
-  color:DarkTurquoise !important;
+  background-color: rgba(0,0,0,0.06) !important;
+  color:black !important;
   font-weight:bold;
 }
 
 .btn-style{
   width:100%;
   margin:5px 1px;
-  background-color: black;
+  background-color: rgba(0,0,0,0.8);
   color:white;
   font-weight:bold;
 }
@@ -50,6 +50,34 @@
   text-align:center;
 }
 
+.party-long{
+  background-color:gold;
+  display:block;
+  margin: 5px 0px 0px 0px;
+  padding:3px;
+}
+
+.party-long-ava{
+    max-width:100px;
+    position:relative;
+    float:left;
+}
+.party-long-content{
+  text-align:center;
+}
+.party-long-name{
+  margin:2px;
+}
+.party-long-tag{
+  
+}
+.party-long-date{
+  margin:2px;
+}
+party-long-host{
+  margin:2px;
+}
+
 .btn-header{
 	margin-top: 15px;
 }
@@ -58,6 +86,9 @@ div{
   word-wrap: break-word;
 }
 
+.no-padding{
+  padding:0px;
+}
 .comment-well{
   margin:3px 6px;
   padding:5px;

@@ -10,11 +10,12 @@ div#map
 	width: 100%;
 }
 .map-container
-	{
-		height: auto;
-		min-width:370px;
-		width: 100%;
-	}
+{
+	height: auto;
+	min-width:370px;
+	width: 90%;
+}
+
 @media (min-width:768px){
 	.map-container
 	{
@@ -22,7 +23,7 @@ div#map
 		top: 76px;
 		right: 0;
 		height: 100%;
-		width: 75%;
+		width: 66.66666667%;
 	}
 	div#map
 	{
@@ -30,6 +31,9 @@ div#map
 		min-height:500px;
 		min-width:370px;
 		width: 100%;
+	}
+	.party-list{
+		padding:5px 8px;
 	}
 }
 

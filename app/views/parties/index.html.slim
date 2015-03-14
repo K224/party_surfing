@@ -4,14 +4,12 @@ javascript:
 .map-container
   #map
     |На этой странице будет карта
-
-.container-fluid
-  .row
-    .col-sm-3
+.container-fluid.no-padding
+  .col-sm-4
+    .container-fluid.no-padding
       input#party_tag_list type="text" multiple="true" data-with-search="true"
-  .row
-    .col-sm-3#parties
-      |Выберите область на карте и нажмите кнопку "Искать"
+    .container-fluid#parties.no-padding
+        |Выберите область на карте и нажмите кнопку "Искать"
 
   #searchdiv
     .input-group

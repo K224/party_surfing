@@ -91,12 +91,19 @@ window.load_parties_in_zone = () ->
       div.innerHTML = "Ничего не найдено в данной области :("
     for party in parties
       content =
-        "<div>
-          <div>
-            <a class='CenTex' href='/parties/#{party.id}'><h3>#{party.title}</h3></a>
-            <h5 class='CenTex'>#{party.date}</h5>
-            <a href='/parties/#{party.id}'><div class='SRCHcon'><div class='SRCHcen'><img class='miniavatarSRCH' src='#{party.get_thumb_url}'></div></div></a>
-            <h5 class='CenTex'>Tags: #{party.tag_list.join(', ')}</h5>
+        "<div class='well row party-long'>
+          <div class='party-long-ava'>
+            <a href='/parties/#{party.id}'>
+              <img class='img-responsive' src='#{party.get_thumb_url}'>
+            </a>
+          </div>
+          <div class='party-long-content'>
+            <a class='party-long-name h3' href='/parties/#{party.id}'>#{party.title}</a>
+            <h5 class='party-long-date'>#{party.date}</h5>
+            <div class='CenTex'>Tags: #{party.tag_list.join(', ')}</div>
+            <a class='party-long-host h4' href='/profiles/#{party.host_id}'>
+              #{party.host.profile.name}&nbsp;#{party.host.profile.surname}
+            </a>
           </div>
         </div>"
       div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ')}' >" +
