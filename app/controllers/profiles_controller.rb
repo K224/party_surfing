@@ -45,7 +45,6 @@ class ProfilesController < ApplicationController
     @profile.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => @current_user.id.to_s
     @profile.profile_rating_num += 1
     @profile.profile_rating_sum += params[:weight].to_i
-    puts "LOLKA"
     @profile.save
     redirect_to @profile
   end
