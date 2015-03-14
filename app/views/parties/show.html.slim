@@ -7,11 +7,15 @@
       .row
         h2
           .textCenter =@party.title
-      -if @party.votes_for.size == 0
+      -if @party.host.profile.host_rating_num == 0
+        .row Никто не оценил ни одно мероприятие, организованного этим атором
+      -else
+        .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
+        .row Оценить мероприятие
+      -if @party.party_rating_num == 0
         .row Никто не оценил данное мероприятие
       -else
-        .row Общее количество голосов #{@party.votes_for.size}. Средний рейтинг #{@party.get_likes(:vote_scope => 'rank').sum(:vote_weight)/@party.votes_for.size} / 5
-        .row Оценить мероприятие
+        .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
       -for i in 1..5
         =link_to " #{i} ", "/parties/#{@party.id}/vote?weight=#{i}"
       .row

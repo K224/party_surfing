@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308155121) do
+ActiveRecord::Schema.define(version: 20150314103457) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150308155121) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "party_rating_sum",    default: 0
+    t.integer  "party_rating_num",    default: 0
   end
 
   add_index "parties", ["host_id"], name: "index_parties_on_host_id"
@@ -116,6 +118,10 @@ ActiveRecord::Schema.define(version: 20150308155121) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "host_rating_sum",     default: 0
+    t.integer  "host_rating_num",     default: 0
+    t.integer  "profile_rating_sum",  default: 0
+    t.integer  "profile_rating_num",  default: 0
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"

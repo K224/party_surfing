@@ -86,7 +86,20 @@ class PartiesController < ApplicationController
     if params[:weight].to_i < 1 then
       params[:weight] = 1
     end
-    @party.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => 'rank'
+    votes = @party.get_likes(:vote_scope => @current_user.id.to_s)
+    if votes.size == 1 then
+      @party.host.profile.host_rating_sum -= votes[0].vote_weight
+      @party.host.profile.host_rating_num -= 1
+      @party.party_rating_sum -= votes[0].vote_weight
+      @party.party_rating_num -= 1
+    end
+    @party.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => @current_user.id.to_s
+    @party.host.profile.host_rating_num += 1
+    @party.host.profile.host_rating_sum += params[:weight].to_i
+    @party.party_rating_sum += params[:weight].to_i
+    @party.party_rating_num += 1
+    @party.save
+    @party.host.profile.save
     redirect_to @party
   end
 

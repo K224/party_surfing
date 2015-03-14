@@ -32,12 +32,21 @@ class ProfilesController < ApplicationController
 
   def vote
     if params[:weight].to_i > 5 then
-      params[:weight] = 5
+      params[:weight] = "5"
     end
     if params[:weight].to_i < 1 then
-      params[:weight] = 1
+      params[:weight] = "1"
     end
-    @profile.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => 'rank'
+    votes = @profile.get_likes(:vote_scope => @current_user.id.to_s)
+    if votes.size == 1 then
+      @profile.profile_rating_sum -= votes[0].vote_weight
+      @profile.profile_rating_num -= 1
+    end
+    @profile.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => @current_user.id.to_s
+    @profile.profile_rating_num += 1
+    @profile.profile_rating_sum += params[:weight].to_i
+    puts "LOLKA"
+    @profile.save
     redirect_to @profile
   end
 

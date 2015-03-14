@@ -5,10 +5,12 @@
         | #{@profile.name} #{@profile.surname}
         small
           | , #{@profile.age}
-      -if @profile.votes_for.size == 0
+      -if @profile.host_rating_num != 0
+        .row Количество голосов за пользователя в качестве организатора #{@profile.host_rating_num}. Средняя оценка пользоваталя как организатора #{@profile.host_rating_sum / @profile.host_rating_num} / 5.
+      -if @profile.profile_rating_num == 0
         .row Никто не оценивал участие данного пользователя
       -else
-        .row Общее количество голосов #{@profile.votes_for.size}. Средний рейтинг #{@profile.get_likes(:vote_scope => 'rank').sum(:vote_weight)/@profile.votes_for.size} / 5.
+        .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
       .row Оценить пользователя как участника
       -for i in 1..5
         =link_to " #{i} ", "/profiles/#{@profile.id}/vote?weight=#{i}"
