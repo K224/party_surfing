@@ -76,6 +76,10 @@ window.init_map_place_selection = () ->
       map: window.map
     })
     window.map.panTo(e.latLng)
+    foo = document.getElementById('party_coord_latitude')
+    foo.value = e.latLng.lat()
+    foo = document.getElementById('party_coord_longitude')
+    foo.value = e.latLng.lng()
   )
 
 window.load_parties_in_zone = () ->
