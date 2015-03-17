@@ -58,9 +58,15 @@
 }
 
 .party-long-ava{
-    max-width:100px;
+    width:78px;
+    height:78px;
     position:relative;
     float:left;
+    border:1px black solid;
+}
+.party-long-img{
+  max-height:78px;
+  max-width:78px;
 }
 .party-long-content{
   text-align:center;

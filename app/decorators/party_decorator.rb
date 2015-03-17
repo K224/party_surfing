@@ -4,7 +4,7 @@ class PartyDecorator < Draper::Decorator
   def map_image
     markers="markers=color:blue|#{coord_latitude},#{coord_longitude}"
     parameters = "center=#{coord_latitude},#{coord_longitude}&size=300x300&zoom=14&sensor=false"
-    h.image_tag "https://maps.googleapis.com/maps/api/staticmap?#{parameters}&#{markers}"
+    h.image_tag "https://maps.googleapis.com/maps/api/staticmap?#{parameters}&#{markers}", class: "img-responsive"
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

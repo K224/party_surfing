@@ -98,7 +98,7 @@ window.load_parties_in_zone = () ->
         "<div class='well row party-long'>
           <div class='party-long-ava'>
             <a href='/parties/#{party.id}'>
-              <img class='img-responsive' src='#{party.get_thumb_url}'>
+              <img class='party-long-img' src='#{party.get_thumb_url}'>
             </a>
           </div>
           <div class='party-long-content'>

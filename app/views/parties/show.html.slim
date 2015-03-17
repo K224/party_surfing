@@ -1,112 +1,96 @@
-﻿.container#container
-  -if (can? :manage, @party) && @party.blocked
-      .blocked style="position:absolute"
+﻿.container
+    -if (can? :manage, @party) && @party.blocked
+      .well.blocked style="position:absolute"
         = @party.block_message
-  .row
-    .col-md-4
-      .row
-        h2
-          .textCenter =@party.title
-      .row
-        -if can? :manage, @party
-          .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
-          .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
-        hr
-      .row
-        .textBold Организатор:
-        =<link_to @party.host.profile do
+    .panel
+      .panel-heading.backcolor1
+        h1
+          =@party.title
+          small
+            | , #{@party.date.to_s}
+    .col-sm-6.col-md-4
+      img.avatar src=@party.avatar.url(:medium)
+        div
+      -if can? :manage, @party
+        =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style"
+        =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?", class: "btn btn-style"
+      -elsif can? :participate, @party
+        =link_to "Участвовать", participate_party_path(@party, a: 'participate'), class: "btn btn-style"
+      -else
+        =link_to "Отказаться", participate_party_path(@party, a: 'refuse'), class: "btn btn-style"
+      .textBold 
+        | Организатор
+        br
+        =link_to @party.host.profile do
           img.miniava src=@party.host.profile.avatar.url(:thumb)
-          =@party.host.profile.full_name
-        hr
+        =@party.host.profile.full_name
+      .textBold Tags:
+      .div
+        -@party.tag_list.each do |tag|
+          | &nbsp;
+          =tag
+    .col-sm-6.col-md-8
       .row
-        .textBold Tags:
-        .div
-          -@party.tag_list.each do |tag|
-            =>tag
-        hr
-      .row
-        .textBold Информация:
-        .div
-          =raw @party.summary
-        hr
-      .row
-        .textBold Дата:
-        =<@party.date.to_s
-        hr
-      .row
-        .textCenter.textBold Участники:
-        -cnt = 0
-        -@party.guests.each do |guest|
-          -if guest.accepted
-            div
-              =<link_to guest.user.profile do
-                img.miniava src=guest.user.profile.avatar.url(:thumb)
-                =guest.user.profile.full_name
-            -cnt += 1
-        -if cnt == 0
-          div
-            |Никто не идет
-        hr
-      .row
-        .textCenter.textBold Хотят пойти:
-        -cnt = 0
-        -@party.guests.each do |guest|
-          -unless guest.accepted
-            div
-              =<link_to guest.user.profile do
-                img.miniava src=guest.user.profile.avatar.url(:thumb)
-                =guest.user.profile.full_name
-            -cnt += 1
-        -if cnt == 0
-          div
-            |Никто не хочет
-
-    .col-md-4
-      div.margin20top.wall
-        -if can? :comment, @party
-          div
-            =form_for @comment, url: comment_party_path do |f|
-              .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
-              .RightBottomWallParty    
-                .fr =f.submit "Отправить"
-
-        .wall
-          -@party.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
-            div.message
-              div.AvaCol.fl
-                div.miniava
-                  img.miniavatar src=comment.user.profile.avatar.url(:thumb)
-              div.MessageConParty
-                div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-                div =comment.comment
-            hr
-    .col-md-4
-      div.MapBox.margin20top.wall
-        div.ava
-          img.avatar src=@party.avatar.url(:medium)
-
-      -if !@party.blocked || (can? :manage, @party)
-        br/
-        .row
-          .btn.btn-primary#btns_prty_full=link_to "Полный список гостей", party_guests_path(@party)
-
-          br/
-
-          -if can? :participate, @party
-            -unless @party.check_participation(current_user)
+        .col-sm-6.col-lg-8
+          .panel.panel1
+            .panel-heading
+              |Информация
+            .panel-body
+              =raw @party.summary
+        .col-sm-6.col-lg-4
+          =@party.map_image
+      .panel.panel1
+        .panel-heading
+          .row
+            .col-sm-6
+              |Участники
+            .col-sm-6.text-right
+              =link_to "полный список", party_guests_path(@party), class: "btn-style"
+        .panel-body
+          -cnt = 0
+          -@party.guests.each do |guest|
+            -if guest.accepted
               div
-                .btn.btn-primary#btns_prty_full=link_to "Участвовать", participate_party_path(@party, a: 'participate')
-              br/
-            -else
+                |&nbsp;
+                =link_to guest.user.profile do
+                  img.miniava src=guest.user.profile.avatar.url(:thumb)
+                  =guest.user.profile.full_name
+              -cnt += 1
+          -if cnt == 0
+            div
+              |Никто не идет
+      .panel.panel1
+        .panel-heading
+          |Хотят пойти
+        .panel-body
+          -cnt = 0
+          -@party.guests.each do |guest|
+            -unless guest.accepted
               div
-                .btn.btn-primary#btns_prty_can=link_to "Отказаться", participate_party_path(@party, a: 'refuse')
-              br/
-      -else 
-         | Мероприятие заблокированно администратором.
-
-      div.MapBox
-        #minimap =@party.map_image
-
-
-
-
+                | &nbsp;
+                =link_to guest.user.profile do
+                  img.miniava src=guest.user.profile.avatar.url(:thumb)
+                  =guest.user.profile.full_name
+            -cnt += 1
+          -if cnt == 0
+            div
+              |Никто не хочет
+      .panel.panel-default
+        .panel-heading.backcolor1
+          |Комментарии
+        .panel-body
+          -if can? :comment, @party
+            .container-fluid
+              =form_for @comment, url: comment_party_path do |f|
+                .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
+                .RightBottomWallParty    
+                  .fr =f.submit "Отправить"
+          .margin20top.wall
+            -@party.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
+              div.message
+                div.AvaCol.fl
+                  div.miniava
+                    img.miniavatar src=comment.user.profile.avatar.url(:thumb)
+                div.MessageConParty
+                  div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                  div =comment.comment
