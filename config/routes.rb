@@ -10,6 +10,7 @@ PartySurfing::Application.routes.draw do
     member do
       get :participate
       post :comment
+      get :vote
     end
     collection do
       get :get_parties_in_zone
@@ -20,6 +21,7 @@ PartySurfing::Application.routes.draw do
 
   resources :profiles, only: [:show, :edit, :update] do
     member do
+      get :vote
       post :comment
     end
   end

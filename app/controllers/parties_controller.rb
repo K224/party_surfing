@@ -84,6 +84,35 @@ class PartiesController < ApplicationController
     render json: tags
   end
 
+  def vote
+    if params[:weight].to_i > 5 then
+      params[:weight] = 5
+    end
+    if params[:weight].to_i < 1 then
+      params[:weight] = 1
+    end
+    votes = @party.get_likes(:vote_scope => @current_user.id.to_s)
+    if votes.size == 1 then
+      @party.host.profile.host_rating_sum -= votes[0].vote_weight
+      @party.host.profile.host_rating_num -= 1
+      @party.party_rating_sum -= votes[0].vote_weight
+      @party.party_rating_num -= 1
+    end
+    @party.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => @current_user.id.to_s
+    @party.host.profile.host_rating_num += 1
+    @party.host.profile.host_rating_sum += params[:weight].to_i
+    @party.party_rating_sum += params[:weight].to_i
+    @party.party_rating_num += 1
+    @party.save
+    @party.host.profile.save
+    resp = {}
+    resp[:party_num] = @party.party_rating_num
+    resp[:party_sum] = @party.party_rating_sum
+    resp[:host_num] = @party.host.profile.host_rating_num
+    resp[:host_sum] = @party.host.profile.host_rating_sum
+    render json: resp
+  end
+
 private
   def party_params
     params.require(:party).permit(:title, :type, :date, :summary,

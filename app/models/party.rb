@@ -16,6 +16,7 @@ class Party < ActiveRecord::Base
 
   acts_as_commentable
   acts_as_taggable
+  acts_as_votable
 
   def check_participation(user)
     guests.find_by(user_id: user.id) != nil
