@@ -100,7 +100,12 @@ class PartiesController < ApplicationController
     @party.party_rating_num += 1
     @party.save
     @party.host.profile.save
-    redirect_to @party
+    resp = {}
+    resp[:party_num] = @party.party_rating_num
+    resp[:party_sum] = @party.party_rating_sum
+    resp[:host_num] = @party.host.profile.host_rating_num
+    resp[:host_sum] = @party.host.profile.host_rating_sum
+    render json: resp
   end
 
 private

@@ -125,3 +125,20 @@ window.do_search = () ->
       else
         this.hidden = true
         break
+
+window.party_load_rating = (weight) ->
+  $.ajax(url: '/parties/' + window.party_id + '/vote?weight=' + weight).done (rating) ->
+    div = document.getElementById('rating')
+    div.innerHTML = ''
+    if rating['host_num'] == 0
+      div.innerHTML += '<div class="row">Никто не оценил ни одно мероприятие, организованного этим автором.</div>'
+    else
+      div.innerHTML += '<div class="row">Количество голосов за пользователя в качестве организатора ' +
+                       rating['host_num'] + '. Средняя оценка пользователя как организатора ' +
+                       (rating['host_sum'] / rating['host_num']) + ' / 5.</div>'
+    if rating['party_num'] == 0
+      div.innerHTML += '<div class="row">Никто не оценил данное мероприятие.</div>'
+    else
+      div.innerHTML += '<div class="row">Общее количество голосов за мероприятие ' + 
+                       rating['party_num'] + '. Средний рейтинг мероприятия ' +
+                       rating['party_sum'] / rating['party_num'] + ' / 5.</div>'

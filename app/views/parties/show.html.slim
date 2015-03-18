@@ -1,4 +1,7 @@
-﻿.container#container
+﻿javascript:
+  window.party_id = #{@party.id}
+
+.container#container
   -if (can? :manage, @party) && @party.blocked
       .blocked style="position:absolute"
         = @party.block_message
@@ -7,17 +10,18 @@
       .row
         h2
           .textCenter =@party.title
-      -if @party.host.profile.host_rating_num == 0
-        .row Никто не оценил ни одно мероприятие, организованного этим атором
-      -else
-        .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
-        .row Оценить мероприятие
-      -if @party.party_rating_num == 0
-        .row Никто не оценил данное мероприятие
-      -else
-        .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
+      #rating
+        -if @party.host.profile.host_rating_num == 0
+          .row Никто не оценил ни одно мероприятие, организованного этим автором.
+        -else
+          .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
+        -if @party.party_rating_num == 0
+          .row Никто не оценил данное мероприятие.
+        -else
+          .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
+      .row Оценить мероприятие
       -for i in 1..5
-        =link_to " #{i} ", "/parties/#{@party.id}/vote?weight=#{i}"
+        button onclick="window.party_load_rating(#{i})" #{i}
       .row
         -if can? :manage, @party
           .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)

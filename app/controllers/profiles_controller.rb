@@ -46,7 +46,12 @@ class ProfilesController < ApplicationController
     @profile.profile_rating_num += 1
     @profile.profile_rating_sum += params[:weight].to_i
     @profile.save
-    redirect_to @profile
+    resp = {}
+    resp[:user_num] = @profile.profile_rating_num
+    resp[:user_sum] = @profile.profile_rating_sum
+    resp[:host_num] = @profile.host_rating_num
+    resp[:host_sum] = @profile.host_rating_sum
+    render json: resp
   end
 
 private
