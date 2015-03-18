@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308155121) do
+ActiveRecord::Schema.define(version: 20150314103457) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -45,22 +45,6 @@ ActiveRecord::Schema.define(version: 20150308155121) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-
-  create_table "ckeditor_assets", force: true do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -105,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150308155121) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "party_rating_sum",    default: 0
+    t.integer  "party_rating_num",    default: 0
   end
 
   add_index "parties", ["host_id"], name: "index_parties_on_host_id"
@@ -114,7 +100,7 @@ ActiveRecord::Schema.define(version: 20150308155121) do
     t.string   "name",                default: "Anonymous"
     t.string   "surname",             default: "Anonymous"
     t.string   "photo"
-    t.date     "birthday",            default: '2015-03-03'
+    t.date     "birthday",            default: '2014-12-09'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -132,6 +118,10 @@ ActiveRecord::Schema.define(version: 20150308155121) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "host_rating_sum",     default: 0
+    t.integer  "host_rating_num",     default: 0
+    t.integer  "profile_rating_sum",  default: 0
+    t.integer  "profile_rating_num",  default: 0
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"

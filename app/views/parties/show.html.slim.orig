@@ -1,7 +1,5 @@
-javascript:
-  window.party_id = #{@party.id}
-
-.container
+<<<<<<< HEAD
+﻿.container
     -if (can? :manage, @party) && @party.blocked
       .well.blocked style="position:absolute"
         = @party.block_message
@@ -12,7 +10,7 @@ javascript:
           small
             | , #{@party.date.to_s}
     .col-sm-6.col-md-4
-      img.img-responsive src=@party.avatar.url(:medium)
+      img.avatar src=@party.avatar.url(:medium)
         div
       -if can? :manage, @party
         =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style"
@@ -25,6 +23,40 @@ javascript:
         | Организатор
         br
         =link_to @party.host.profile do
+=======
+﻿javascript:
+  window.party_id = #{@party.id}
+
+.container#container
+  -if (can? :manage, @party) && @party.blocked
+      .blocked style="position:absolute"
+        = @party.block_message
+  .row
+    .col-md-4
+      .row
+        h2
+          .textCenter =@party.title
+      #rating
+        -if @party.host.profile.host_rating_num == 0
+          .row Никто не оценил ни одно мероприятие, организованного этим автором.
+        -else
+          .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
+        -if @party.party_rating_num == 0
+          .row Никто не оценил данное мероприятие.
+        -else
+          .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
+      .row Оценить мероприятие
+      -for i in 1..5
+        button onclick="window.party_load_rating(#{i})" #{i}
+      .row
+        -if can? :manage, @party
+          .btn.btn-primary#btns_prty_ed=link_to "Редактировать", edit_party_path(@party)
+          .btn.btn-primary#btns_prty_del=link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?"
+        hr
+      .row
+        .textBold Организатор:
+        =<link_to @party.host.profile do
+>>>>>>> rating_system
           img.miniava src=@party.host.profile.avatar.url(:thumb)
         =@party.host.profile.full_name
       .textBold Tags:
@@ -97,15 +129,3 @@ javascript:
                 div.MessageConParty
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                   div =comment.comment
-      #rating
-        -if @party.host.profile.host_rating_num == 0
-          .row Никто не оценил ни одно мероприятие, организованного этим автором.
-        -else
-          .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
-        -if @party.party_rating_num == 0
-          .row Никто не оценил данное мероприятие.
-        -else
-          .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
-      .row Оценить мероприятие
-      -for i in 1..5
-        button onclick="window.party_load_rating(#{i})" #{i}

@@ -5,6 +5,8 @@ class Ability
     can :create, Party unless user.nil?
     can :participate, Party unless user.nil?
     can :comment, Profile unless user.nil?
+    can :vote, Profile unless user.nil?
+    can :vote, Party unless user.nil?
 
     user ||= User.new
 
@@ -31,7 +33,6 @@ class Ability
     #   else
     #     can :read, :all
     #   end
-    #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

@@ -1,9 +1,12 @@
-﻿.container
+javascript:
+  window.profile_id = #{@profile.id}
+
+.container
   .panel
     .panel-heading.backcolor1
       h1 
         | #{@profile.name} #{@profile.surname}
-        small  
+        small
           | , #{@profile.age}
 
   .col-sm-6.col-md-4
@@ -56,6 +59,7 @@
       .panel.panel-default
         .panel-heading.backcolor1
           |Мероприятия
+          =link_to "Все", parties_path(user_id: @profile.user.id), class: 'pull-right'
         .panel-body
           -cnt = 0
           -@profile.user.parties.each do |party|
@@ -89,3 +93,14 @@
                 div.block
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                   div =comment.comment
+
+#rating
+  -if @profile.host_rating_num != 0
+    .row Количество голосов за пользователя в качестве организатора #{@profile.host_rating_num}. Средняя оценка пользоваталя как организатора #{@profile.host_rating_sum / @profile.host_rating_num} / 5.
+  -if @profile.profile_rating_num == 0
+    .row Никто не оценивал участие данного пользователя
+  -else
+    .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
+.row Оценить пользователя как участника
+-for i in 1..5
+  button onclick="window.profile_load_rating(#{i})" #{i}

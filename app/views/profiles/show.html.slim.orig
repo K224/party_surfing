@@ -1,0 +1,194 @@
+<<<<<<< HEAD
+﻿.container
+  .panel
+    .panel-heading.backcolor1
+      h1 
+=======
+﻿javascript:
+  window.profile_id = #{@profile.id}
+
+.container
+  .panel.panel-default
+    .panel-heading
+      h1
+>>>>>>> rating_system
+        | #{@profile.name} #{@profile.surname}
+        small
+          | , #{@profile.age}
+<<<<<<< HEAD
+
+  .col-sm-6.col-md-4
+    img.avatar src=@profile.avatar.url(:medium)
+    -if can? :update, @profile
+      div
+        =link_to "Редактировать профиль", edit_profile_path(current_user), class: "btn btn-style"
+        =link_to "Создать мероприятие", new_party_path, class: "btn btn-style"
+        =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-lg btn-style"
+      .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
+    .well
+      script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"
+  .col-sm-6.col-md-8
+    .row
+      .col-sm-12.col-md-4
+        .panel.panel-default.panel1 style="min-height:250px"
+          .panel-heading
+            |Контактная информация
+          .panel-body style="min-height:207px"
+            |Скайп:&nbsp;
+            -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
+              |#{@profile.skype}
+            -else
+              |не указан
+            br
+            |Телефон:&nbsp;
+            -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
+              | #{@profile.phone}
+            -else
+              |не указан
+            br
+            |Вконтакте:&nbsp;
+            -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+              | #{@profile.vk}
+            -else
+              |не указан
+            br
+            |Facebook:&nbsp;
+            -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+              | #{@profile.fb}
+            -else
+              |не указан
+      .col-sm-12.col-md-8
+        .panel.panel-default.panel1 style="min-height:250px"
+          .panel-heading
+            |О себе
+          .panel-body style="min-height:207px"
+            =raw @profile.contacts
+    .row
+      .panel.panel-default
+        .panel-heading.backcolor1
+          |Мероприятия
+          =link_to "Все", parties_path(user_id: @profile.user.id), class: 'pull-right'
+        .panel-body
+          -cnt = 0
+          -@profile.user.parties.each do |party|
+            .col-sm-12.col-md-5.well.well-margin
+              =link_to party do
+                img.miniava src=party.avatar.url(:thumb)
+                =party.title
+            -cnt += 1
+          -cnt = 0
+          -@profile.user.participations.each do |par|
+            -if par.accepted
+              -cnt += 1
+              .col-sm-12.col-md-5.well.well-margin
+                =link_to par.party do
+                  img.miniava src=par.party.avatar.url(:thumb)
+                  =par.party.title
+      .panel.panel-default
+        .panel-heading.backcolor1
+          |Комментарии
+        .panel-body
+          -if user_signed_in?
+            .container-fluid
+              =form_for @comment,class: "input-group", url: comment_profile_path do |f|
+                .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", class: "form-control"
+                .fr =f.submit "Отправить", class: "btn"
+          .margin20top.wall
+            -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
+              div.row.well.comment-well
+                div.comment-ava
+                    img.img-responsive src=@profile.avatar.url(:thumb) 
+                div.block
+                  div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                  div =comment.comment
+=======
+      #rating
+        -if @profile.host_rating_num != 0
+          .row Количество голосов за пользователя в качестве организатора #{@profile.host_rating_num}. Средняя оценка пользоваталя как организатора #{@profile.host_rating_sum / @profile.host_rating_num} / 5.
+        -if @profile.profile_rating_num == 0
+          .row Никто не оценивал участие данного пользователя
+        -else
+          .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
+      .row Оценить пользователя как участника
+      -for i in 1..5
+        button onclick="window.profile_load_rating(#{i})" #{i}
+    .panel-body
+      .col-sm-6.col-md-4
+        img.avatar src=@profile.avatar.url(:medium)
+        -if can? :update, @profile
+          div
+            div.btn.btn-primary#editProfile.margin10bot =link_to "Редактировать профиль", edit_profile_path(current_user)
+            div.btn.btn-primary#creatParty.margin10bot =link_to "Создать мероприятие", new_party_path
+            div
+              =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-primary margin10bot btn-lg"
+          .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
+        script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"
+      .col-sm-6.col-md-8
+        .row
+          .col-sm-12.col-md-6
+            .panel.panel-default
+              .panel-heading
+                |Контактная информация
+              .panel-body
+                |Скайп:
+                -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
+                  | #{@profile.skype}
+                -else
+                  |&nbsp;неуказан
+                -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
+                  div.iconsPlace.margin10bot
+                    img.icons src="/phone.png"
+                    | #{@profile.phone}
+                -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+                  div.iconsPlace.margin10bot
+                    img.icons src="/vk.png"
+                    | #{@profile.vk}
+                -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+                  div.iconsPlace.margin10bot
+                    img.icons src="/fb.png"
+                    | #{@profile.fb}
+          .col-sm-12.col-md-6
+            .panel.panel-default
+              .panel-heading
+                |О себе
+              .panel-body
+                =raw @profile.contacts
+        .row
+          .panel.panel-default
+            .panel-heading
+              |Мероприятия
+            .panel-body
+              -cnt = 0
+              -@profile.user.parties.each do |party|
+                .col-sm-12.col-md-6.well
+                  =link_to party do
+                    img.miniava src=party.avatar.url(:thumb)
+                    =party.title
+                -cnt += 1
+              -cnt = 0
+              -@profile.user.participations.each do |par|
+                -if par.accepted
+                  -cnt += 1
+                  .col-sm-12.col-md-6.well
+                    =link_to par.party do
+                      img.miniava src=par.party.avatar.url(:thumb)
+                      =par.party.title
+          .panel.panel-default
+            .panel-heading
+              |Комментарии
+            .panel-body
+              -if user_signed_in?
+                .container-fluid
+                  =form_for @comment,class: "input-group", url: comment_profile_path do |f|
+                    .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", class: "form-control"
+                    .fr =f.submit "Отправить", class: "btn"
+              .margin20top.wall
+                -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
+                  div.message.well
+                    div.AvaCol.fl
+                      div.miniava
+                        img.miniavatar src=@profile.avatar.url(:thumb) 
+                    div.MessageCon
+                      div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                      div =comment.comment
+>>>>>>> rating_system

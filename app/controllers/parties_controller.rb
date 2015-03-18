@@ -3,9 +3,14 @@ class PartiesController < ApplicationController
   skip_load_resource only: [:create, :get_parties_in_zone, :index]
 
   def index
-    @padding_top = '78px'
-    @navbar_style = 'navbar-fixed-top'
-    @party = Party.new
+    if params[:user_id] == nil
+      @padding_top = '78px'
+      @navbar_style = 'navbar-fixed-top'
+      @party = Party.new
+    else
+      @user = User.find(params[:user_id])
+      render 'user_parties'
+    end
   end
 
   def show
@@ -77,6 +82,35 @@ class PartiesController < ApplicationController
     tags = ActsAsTaggableOn::Tag.where("name LIKE ?", "%#{q}%")
       .most_used.collect { |tag| tag.name }
     render json: tags
+  end
+
+  def vote
+    if params[:weight].to_i > 5 then
+      params[:weight] = 5
+    end
+    if params[:weight].to_i < 1 then
+      params[:weight] = 1
+    end
+    votes = @party.get_likes(:vote_scope => @current_user.id.to_s)
+    if votes.size == 1 then
+      @party.host.profile.host_rating_sum -= votes[0].vote_weight
+      @party.host.profile.host_rating_num -= 1
+      @party.party_rating_sum -= votes[0].vote_weight
+      @party.party_rating_num -= 1
+    end
+    @party.liked_by @current_user, :vote_weight => params[:weight], :vote_scope => @current_user.id.to_s
+    @party.host.profile.host_rating_num += 1
+    @party.host.profile.host_rating_sum += params[:weight].to_i
+    @party.party_rating_sum += params[:weight].to_i
+    @party.party_rating_num += 1
+    @party.save
+    @party.host.profile.save
+    resp = {}
+    resp[:party_num] = @party.party_rating_num
+    resp[:party_sum] = @party.party_rating_sum
+    resp[:host_num] = @party.host.profile.host_rating_num
+    resp[:host_sum] = @party.host.profile.host_rating_sum
+    render json: resp
   end
 
 private
