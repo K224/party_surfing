@@ -9,7 +9,7 @@
           small
             | , #{@party.date.to_s}
     .col-sm-6.col-md-4
-      img.avatar src=@party.avatar.url(:medium)
+      img.img-responsive src=@party.avatar.url(:medium)
         div
       -if can? :manage, @party
         =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style"
