@@ -3,9 +3,14 @@ class PartiesController < ApplicationController
   skip_load_resource only: [:create, :get_parties_in_zone, :index]
 
   def index
-    @padding_top = '78px'
-    @navbar_style = 'navbar-fixed-top'
-    @party = Party.new
+    if params[:user_id] == nil
+      @padding_top = '78px'
+      @navbar_style = 'navbar-fixed-top'
+      @party = Party.new
+    else
+      @user = User.find(params[:user_id])
+      render 'user_parties'
+    end
   end
 
   def show

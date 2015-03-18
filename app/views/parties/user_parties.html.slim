@@ -1,0 +1,35 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      h2
+        |Вписки пользователя #{@user.profile.full_name}
+  .row
+    -@user.parties.each do |party|
+      .col-md-6
+        .well.row.party-long
+          .party-long-ava
+            a href="/parties/#{party.id}"
+              img.party-long-img src="#{party.get_thumb_url}"
+          .party-long-content
+            a.party-long-name.h3 href="/parties/#{party.id}"
+              =party.title
+            h5.party-long-date
+              =party.date
+            .CenTex>
+              | Tags: #{party.tag_list.join(', ')}
+    -@user.participations.each do |par|
+      -if par.accepted
+        -party = par.party
+        .col-md-6
+          .well.row.party-long
+            .party-long-ava
+              a href="/parties/#{party.id}"
+              img.party-long-img src="#{party.get_thumb_url}"
+            .party-long-content
+              a.party-long-name.h3 href="/parties/#{party.id}"
+                =party.title
+              h5.party-long-date
+                =party.date
+              .CenTex>
+                | Tags: #{party.tag_list.join(', ')}
+
