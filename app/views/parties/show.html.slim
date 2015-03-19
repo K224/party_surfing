@@ -14,6 +14,19 @@ javascript:
     .col-sm-6.col-md-4
       img.img-responsive src=@party.avatar.url(:medium)
         div
+      .well
+        #rating
+          -if @party.host.profile.host_rating_num == 0
+            .row Никто не оценил ни одно мероприятие, организованное этим автором.
+          -else
+            .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
+          -if @party.party_rating_num == 0
+            .row Никто не оценил данное мероприятие.
+          -else
+            .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
+        .row Оценить мероприятие
+        -for i in 1..5
+          button onclick="window.party_load_rating(#{i})" #{i}
       -if can? :manage, @party
         =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style"
         =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?", class: "btn btn-style"
@@ -97,15 +110,4 @@ javascript:
                 div.MessageConParty
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                   div =comment.comment
-      #rating
-        -if @party.host.profile.host_rating_num == 0
-          .row Никто не оценил ни одно мероприятие, организованного этим автором.
-        -else
-          .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
-        -if @party.party_rating_num == 0
-          .row Никто не оценил данное мероприятие.
-        -else
-          .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
-      .row Оценить мероприятие
-      -for i in 1..5
-        button onclick="window.party_load_rating(#{i})" #{i}
+      

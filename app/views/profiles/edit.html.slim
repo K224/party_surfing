@@ -3,7 +3,9 @@
 
 .container
   = form_for @profile, :html => { :multipart => true } do |f|
-    h1.textCenter Редактирование профиля
+    panel
+      .panel-heading.backcolor1
+        h1.textCenter Редактирование профиля
     .row
       .col-sm-3.col-lg-4
         div.ava
@@ -12,66 +14,76 @@
           | Аватар
         = f.file_field :avatar
         /div.btn.btn-primary#editAva.margin10bot =link_to "Измнить аватар", edit_profile_path(current_user)
-      .col-sm-8.col-sm-offset-1.col-lg-7.col-lg-offset-1.
-      div =flash[:errors]
-
-
-        .margin20top.form-group
-          label
-            | Имя
-          =f.text_field :name, class: "form-control"
-        .margin20top.form-group
-          label
-            | Фамилия
-          =f.text_field :surname, class: "form-control"
-        .margin20top.form-group
-          label
-            | Дата рождения
-          .input-group
-            =f.date_field :birthday, class: "form-control"
-            span.input-group-addon
-              =f.check_box :birthday_hidden
-              | &nbsp;скрыть
-        .margin20top.form-group
-          label
-            div.iconsPlace
-              img.icons src="/skype.png"
-              | Skype
-          div.input-group
-            =f.text_field :skype, class: "form-control"
-            span.input-group-addon
-              =f.check_box :skype_hidden
-              | &nbsp;скрыть
-        .margin20top.form-group
-          label
-            div.iconsPlace.margin5bot
-              img.icons src="/phone.png" 
-              | &nbsp; Phone
-          div.input-group
-            =f.text_field :phone, class: "form-control"
-            span.input-group-addon
-              =f.check_box :phone_hidden
-              | &nbsp;скрыть
-        .margin20top.form-group
-          label
-            div.iconsPlace.margin5bot
-              img.icons src="/vk.png" 
-                | &nbsp; Vkontakte
-          div.input-group
-            =f.text_field :vk, class: "form-control"
-            span.input-group-addon
-              =f.check_box :vk_hidden
-              | &nbsp;скрыть
-        .margin20top.form-group
-          label
-            div.iconsPlace.margin5bot
-              img.icons src="/fb.png" 
-                | &nbsp; Facebook
-          div.input-group
-            =f.text_field :fb, class: "form-control"
-            span.input-group-addon
-              =f.check_box :fb_hidden
-              | &nbsp;скрыть
-        =f.text_area :contacts, class: "form-control"
-        =f.submit "Сохранить"
+      .col-sm-8.col-sm-offset-1.col-lg-7.col-lg-offset-1
+        div =flash[:errors]
+        panel.panel1
+          .panel-heading
+            |Личная информация
+          .panel-body
+            .col-xs-6.col-md-5.col-lg-2
+              label
+                | Имя
+            .col-xs-6.col-md-7.col-lg-4
+              =f.text_field :name, class: "form-control"
+              
+            .col-xs-6.col-md-5.col-lg-2
+              label
+                | Фамилия
+            .col-xs-6.col-md-7.col-lg-4
+              =f.text_field :surname, class: "form-control"
+              
+            .col-xs-6.col-md-5.col-lg-2
+              label
+                | Дата рождения
+            .col-xs-6.col-md-7.col-lg-4
+              =f.date_field :birthday, class: "form-control"
+          
+            .col-xs-6.col-md-5.col-lg-2
+              label
+                | Пол
+            .col-xs-6.col-md-7.col-lg-4
+              | выбор пола
+        
+        .row
+          .col-lg-6      
+            panel.panel1
+              .panel-heading
+                |Личная информация
+              .panel-body
+                .col-xs-6.col-md-5
+                  label
+                    | Город
+                .col-xs-6.col-md-7
+                   =f.text_field :phone, class: "form-control"
+                                  
+                .col-xs-6.col-md-5
+                  label
+                    | Телефон
+                .col-xs-6.col-md-7
+                  =f.text_field :phone, class: "form-control"
+                   
+                .col-xs-6.col-md-5
+                  label
+                    | Skype
+                .col-xs-6.col-md-7
+                  =f.text_field :skype, class: "form-control"
+ 
+                .col-xs-6.col-md-5
+                  label
+                    | Vkontakte
+                .col-xs-6.col-md-7
+                  =f.text_field :vk, class: "form-control" 
+                  
+                .col-xs-6.col-md-5
+                  label
+                    | Facebook
+                .col-xs-6.col-md-7
+                  =f.text_field :fb, class: "form-control" 
+          .col-lg-6       
+            panel.panel1
+              .panel-heading
+                |Личная информация
+              .panel-body        
+                =f.text_area :contacts, class: "form-control"
+                =f.submit "Сохранить"
 
