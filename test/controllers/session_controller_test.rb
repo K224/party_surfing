@@ -24,4 +24,27 @@ class SessionControllerTest < ActionController::TestCase
     assert has_link? "Выйти"
     click_on "Выйти"
   end
+
+  test "Profile button on main winfow" do
+    puts "
+      6. Кнопка «Профиль» на главном экране.
+        Проверяемое тест требование:
+          1.1.1.7
+        Предварительные шаги
+          1. Зайти на сайт(http://test-party.herokuapp.com/)
+          2. Нажать на кнопку «Вход»
+          3. Войти под учетной записью пользователя (логин – sweet_chery2010@mail.ru ,пароль – 235595an)
+        Шаги:
+          1. Нажать на кнопку «Профиль» 
+        Ожидаемый результат:
+          Осуществляется переход на личную страницу пользователя."
+    visit "/"
+    click_on "Вход"
+    fill_in "Email", with: "lol@lol.lol"
+    fill_in "Password", with: "lolkalolka"
+    click_on "Log in"
+    click_on "Профиль"
+    assert_equal "/profiles/1", current_path
+    click_on "Выйти"
+  end
 end
