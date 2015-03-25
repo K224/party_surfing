@@ -1,38 +1,38 @@
 <div class="container" id="containerCen">
-    <div class="row">
-      <div class="col-xs-8 col-sm-6 col-md-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-4"><div id="centerBlock">
-        <h2>Log in</h2>
-
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-        <div class="form-group" >
-        <%= f.label :email %>
-        <br />
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  <div class="row">
+    <div class="col-xs-8 col-sm-6 col-md-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-4">
+      <div class="panel panel-default panel1 ">
+        <div class="panel-heading text-center">
+          <h2>Log in</h2>
         </div>
-
-        <br>
-
-        <div class="form-group" >
-        <%= f.label :password %>
-        <br />
-        <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
+        <div class="panel-body text-center">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group" >
+              <%= f.label :email %>
+              <br />
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            </div>
+            <br>
+            <div class="form-group" >
+              <%= f.label :password %>
+              <br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+              <div>
+                <%= f.check_box :remember_me %> 
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+            <br>
+            <div>
+              <%= f.submit "Log in", class: "btn btn-success" %>
+            </div>
+          <% end %>
+          <br>
+          <%= render "devise/shared/links" %>
         </div>
-
-        <% if devise_mapping.rememberable? -%>
-        <div>
-        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-        </div>
-        <% end -%>
-
-        <br>
-
-        <div>
-        <%= f.submit "Log in", class: "btn btn-success" %>
-        </div>
-
-        <% end %>
-        <br>
-
-        <%= render "devise/shared/links" %>
-</div></div></div>
+      </div>
+    </div>
+  </div>  
+</div>
