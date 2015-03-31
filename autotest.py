@@ -9,6 +9,8 @@ if len(sys.argv) == 1:
   subprocess.call(["sudo", "chmod", "+x", ".git/hooks/pre-commit"])
 elif len(sys.argv) == 2 and sys.argv[1] == "testing":
   readme = open("README.md", "w")
+  branch_name = subprocess.check_output(["git", "branch"]).decode("utf-8").split("\n")[0].split(" ")[1]
+  readme.write("[![Build Status](https://travis-ci.org/K224/party_surfing.svg?branch=" + branch_name + ")](https://travis-ci.org/K224/party_surfing)")
   readme.write("Для добавления автоматического тестирования при коммите запустите autotest.py\n\n" +
                 "ВНИМАНИЕ! Генерация хука для автотеста затрёт существующий!\n\n")
   author_info = subprocess.check_output(["git", "var", "GIT_AUTHOR_IDENT"]).decode("utf-8")
@@ -21,10 +23,10 @@ elif len(sys.argv) == 2 and sys.argv[1] == "testing":
   except subprocess.CalledProcessError as error:
     test_results = error.output
   readme.write("* " + test_results.decode("utf-8").split("\n")[-2] + "\n\n")
-  readme.write("После тестирования выполняется команда 'git add -A', следите за актуальность списка игнорируемых файлов.\n")
+  #readme.write("После тестирования выполняется команда 'git add -A', следите за актуальность списка игнорируемых файлов.\n")
   readme.write("\nДля коммита без тестирования используйте параметр --no-verify.")
   readme.close()
-  subprocess.call(["git", "add", "-A"])
+  subprocess.call(["git", "add", ":/README.md"])
 else:
   print("wrong parameters")
   exit(1)
