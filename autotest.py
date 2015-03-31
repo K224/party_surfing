@@ -9,7 +9,12 @@ if len(sys.argv) == 1:
   subprocess.call(["sudo", "chmod", "+x", ".git/hooks/pre-commit"])
 elif len(sys.argv) == 2 and sys.argv[1] == "testing":
   readme = open("README.md", "w")
-  branch_name = subprocess.check_output(["git", "branch"]).decode("utf-8").split("\n")[0].split(" ")[1]
+  branch_names = subprocess.check_output(["git", "branch"]).decode("utf-8").split("\n")
+  branch_name = "master"
+  for name in branch_names:
+    if name[0] == '*':
+      branch_name = name.split(' ')[1]
+      break
   readme.write("[![Build Status](https://travis-ci.org/K224/party_surfing.svg?branch=" + branch_name + ")](https://travis-ci.org/K224/party_surfing)")
   readme.write("Для добавления автоматического тестирования при коммите запустите autotest.py\n\n" +
                 "ВНИМАНИЕ! Генерация хука для автотеста затрёт существующий!\n\n")
