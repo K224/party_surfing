@@ -16,6 +16,7 @@ elif len(sys.argv) == 2 and sys.argv[1] == "testing":
       branch_name = name.split(' ')[1]
       break
   readme.write("[![Build Status](https://travis-ci.org/K224/party_surfing.svg?branch=" + branch_name + ")](https://travis-ci.org/K224/party_surfing)")
+  readme.write("[![Coverage Status](https://coveralls.io/repos/K224/party_surfing/badge.svg)](https://coveralls.io/r/K224/party_surfing)")
   readme.write("Для добавления автоматического тестирования при коммите запустите autotest.py\n\n" +
                 "ВНИМАНИЕ! Генерация хука для автотеста затрёт существующий!\n\n")
   author_info = subprocess.check_output(["git", "var", "GIT_AUTHOR_IDENT"]).decode("utf-8")
