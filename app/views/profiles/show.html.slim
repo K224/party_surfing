@@ -75,20 +75,24 @@ javascript:
           =link_to "Все", parties_path(user_id: @profile.user.id), class: 'pull-right'
         .panel-body
           -cnt = 0
-          -@profile.user.parties.each do |party|
+          -@profile.user.parties.sort{|a, b| b.created_at <=> a.created_at}.each do |party|
             .col-sm-12.col-md-5.well.well-margin
               =link_to party do
                 img.miniava src=party.avatar.url(:thumb)
                 =party.title
             -cnt += 1
+            -if cnt == 2
+              -break
           -cnt = 0
-          -@profile.user.participations.each do |par|
+          -@profile.user.participations.sort{|a, b| b.created_at <=> a.created_at}.each do |par|
             -if par.accepted
               -cnt += 1
               .col-sm-12.col-md-5.well.well-margin
                 =link_to par.party do
                   img.miniava src=par.party.avatar.url(:thumb)
                   =par.party.title
+            -if cnt == 2
+              -break
       .panel.panel-default
         .panel-heading.backcolor1
           |Комментарии
