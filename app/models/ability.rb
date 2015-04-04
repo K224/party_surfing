@@ -6,7 +6,6 @@ class Ability
     can :participate, Party unless user.nil?
     can :comment, Profile unless user.nil?
     can :vote, Profile unless user.nil?
-    can :vote, Party unless user.nil?
 
     user ||= User.new
 
@@ -15,6 +14,11 @@ class Ability
     can :get_parties_in_zone, Party
     can :manage, Party, host_id: user.id unless user.id.nil?
     cannot :participate, Party, host_id: user.id
+    can :vote, Party do |party|
+      guest = party.guests.find_by(user_id: user.id)
+      !guest.nil? && guest.accepted
+    end
+    cannot :vote, Party, host_id: user.id unless user.id.nil?
     can :comment, Party do |party|
       guest = party.guests.find_by(user_id: user.id)
       !guest.nil? && guest.accepted
@@ -25,6 +29,7 @@ class Ability
 
     can :read, Profile
     can :manage, Profile, user_id: user.id
+    cannot :vote, Profile, user_id: user.id
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

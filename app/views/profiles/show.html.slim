@@ -19,6 +19,7 @@ javascript:
           .row Никто не оценивал участие данного пользователя
         -else
           .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
+    -if can? :vote, @profile
       .row Оценить пользователя как участника
       -for i in 1..5
         button onclick="window.profile_load_rating(#{i})" #{i}

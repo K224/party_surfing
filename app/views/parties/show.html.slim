@@ -24,9 +24,10 @@ javascript:
             .row Никто не оценил данное мероприятие.
           -else
             .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
-        .row Оценить мероприятие
-        -for i in 1..5
-          button onclick="window.party_load_rating(#{i})" #{i}
+        -if can? :vote, @party
+          .row Оценить мероприятие
+          -for i in 1..5
+            button onclick="window.party_load_rating(#{i})" #{i}
       -if can? :manage, @party
         =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style"
         =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?", class: "btn btn-style"
