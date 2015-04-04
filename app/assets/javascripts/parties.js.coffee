@@ -51,7 +51,7 @@ window.init_map = () ->
         map.fitBounds(bounds)
         zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', (event) ->
           if this.getZoom()
-            this.setZoom(16) )
+            this.setZoom(13) )
         setTimeout(() ->
           google.maps.event.removeListener(zoomChangeBoundsListener)
         , 2000)
