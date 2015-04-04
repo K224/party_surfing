@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
                          provider: auth.provider, uid: auth.uid)
-      user.profile.update(name: auth.info.first_name,
+      user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name)
     end
     return user
