@@ -93,6 +93,7 @@ window.load_parties_in_zone = () ->
     div.innerHTML = ""
     if parties.length == 0
       div.innerHTML = "Ничего не найдено в данной области :("
+    div.innerHTML += '<div id="not-found" >В данной области нет мероприятий, подходящих к вашему запросу</div>'
     for party in parties
       content =
         "<div class='well row party-long'>
@@ -147,14 +148,21 @@ window.init_tag_field = () ->
   $('#party_tag_list_tagsinput').addClass('form-control')
 
 window.do_search = () ->
+  counter = 0
+  all_counter = 0
+  document.getElementById('not-found').hidden = true
   $("div[name='party']").each () ->
     this.hidden = false
+    all_counter++
     for tag in tags
       if this.dataset['tags'].indexOf(tag) > -1
         continue
       else
         this.hidden = true
+        counter++
         break
+  if (counter == all_counter) && tags.length != 0
+    document.getElementById('not-found').hidden = false
 
 window.party_load_rating = (weight) ->
   $.ajax(url: '/parties/' + window.party_id + '/vote?weight=' + weight).done (rating) ->
