@@ -26,7 +26,7 @@ class Profile < ActiveRecord::Base
 
 private
   def validate_birthday
-    if age < 1 || age > 100
+    if age < 18 || age > 100
       errors.add(:birthday, "is incorrect")
     end
   end
