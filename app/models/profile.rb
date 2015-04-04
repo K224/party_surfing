@@ -21,6 +21,7 @@ class Profile < ActiveRecord::Base
   end
 
   def age
+    return 0 if birthday.nil?
     ((Date.today - birthday) / 365.0).to_i
   end
 
