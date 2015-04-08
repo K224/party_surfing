@@ -68,19 +68,31 @@ window.init_map_load_parties = () ->
 
 window.init_map_place_selection = () ->
   init_map()
+  fooLat = document.getElementById('party_coord_latitude')
+  fooLng = document.getElementById('party_coord_longitude')
+  if fooLat.value != 1000 && fooLng.value != 1000
+    google.maps.event.addListenerOnce(map, 'idle', () ->
+      fooLat = document.getElementById('party_coord_latitude')
+      fooLng = document.getElementById('party_coord_longitude')
+      place_marker_for_party(fooLat.value, fooLng.value)
+      map.panTo(new google.maps.LatLng(fooLat.value, fooLng.value))
+    )
   google.maps.event.addListener(window.map, 'click', (e) ->
-    if window.selection_marker?
-      window.selection_marker.setMap(null)
-    window.selection_marker = new google.maps.Marker({
-      position: e.latLng,
-      map: window.map
-    })
+    place_marker_for_party(e.latLng.lat(), e.latLng.lng())
     window.map.panTo(e.latLng)
     foo = document.getElementById('party_coord_latitude')
     foo.value = e.latLng.lat()
     foo = document.getElementById('party_coord_longitude')
     foo.value = e.latLng.lng()
   )
+
+window.place_marker_for_party = (lat, lng) ->
+  if window.selection_marker?
+    window.selection_marker.setMap(null)
+  window.selection_marker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
+    map: window.map
+  })
 
 window.load_parties_in_zone = () ->
   for marker in window.markers
