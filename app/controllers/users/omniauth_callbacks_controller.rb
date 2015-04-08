@@ -11,7 +11,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def auth
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.nil?
-      redirect_to :root #TODO error page
+      flash[:alert] = "Email has already been taken"
+      redirect_to new_user_session_path
       return
     end
 
