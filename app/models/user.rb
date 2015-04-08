@@ -29,7 +29,9 @@ class User < ActiveRecord::Base
                          password: Devise.friendly_token[0,20],
                          provider: auth.provider, uid: auth.uid)
       user.create_profile(name: auth.info.first_name,
-                         surname: auth.info.last_name)
+                         surname: auth.info.last_name,
+                         birthday: Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
+                         )
     end
     return user
   end
