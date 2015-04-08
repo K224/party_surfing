@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  validate :validate_birthday, :validate_name
+  validate :validate_birthday, :validate_name, :validate_phone
 
   acts_as_commentable
   acts_as_votable
@@ -44,6 +44,12 @@ private
     end
     if surname.length > 255
       errors.add(:surname, "is too long")
+    end
+  end
+
+  def validate_phone
+    unless /^[\d\-\+]{5,20}$/ =~ phone
+      errors.add(:phone, "is not valid")
     end
   end
 
