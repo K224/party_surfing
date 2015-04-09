@@ -25,7 +25,9 @@ class User < ActiveRecord::Base
     if user.nil?
       user = User.find_by(email: auth.info.email)
       return nil unless user.nil?
-      bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bday
+      bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bdate
+      format = '%d.%m.%Y'
+      format = '%m/%d/%Y' unless auth.extra.raw_info.birthday.nil?
       med_avatar = nil
       if auth.provider == "vkontakte" then
         med_avatar = auth.extra.raw_info.photo_big
@@ -38,7 +40,7 @@ class User < ActiveRecord::Base
                          provider: auth.provider, uid: auth.uid)
       user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name,
-                         birthday: Date.strptime(bday,'%m/%d/%Y'),
+                         birthday: Date.strptime(bday,format),
                          thumb_social_avatar: auth.info.image,
                          medium_social_avatar: med_avatar
                          )
