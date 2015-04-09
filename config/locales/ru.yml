@@ -1,0 +1,59 @@
+ru:
+  activerecord:
+    models:
+      user: "Пользователь"
+      profile: "Профиль"
+      party: "Мероприятие"
+      comment: "Комментарий"
+
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Пароль"
+        password_confirmation: "Пароли"
+      profile:
+        name: "Имя"
+        surname: "Фамилия"
+        birthday: "Дата рождения"
+        phone: "Номер телефона"
+      party:
+        title: "Название"
+        date: "Дата"
+
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "не введен"
+              taken: "уже используется"
+            password:
+              blank: "не введен"
+              too_short: "слишком короткий"
+            password_confirmation:
+              confirmation: "не совпадают"
+        profile:
+          attributes:
+            birthday:
+              invalid: "некорректна"
+            name:
+              blank: "не должно быть пустым"
+              too_long: "слишком длинное"
+            surname:
+              blank: "не должна быть пустой"
+              too_long: "слишком длинная"
+            phone:
+              invalid: "некорректен"
+        party:
+          attributes:
+            base:
+              coords_invalid: "Местоположение не задано"
+            title:
+              blank: "не должно быть пустым"
+              too_long: "слишком длинное"
+            date:
+              invalid: "некорректна"
+              blank: "не установлена"
+            
+
+            

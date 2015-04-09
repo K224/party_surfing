@@ -41,22 +41,22 @@ class Profile < ActiveRecord::Base
 private
   def validate_birthday
     if age <= 18 || age > 100
-      errors.add(:birthday, "is incorrect")
+      errors.add(:birthday)
     end
   end
 
   def validate_name
     if name.length < 1
-      errors.add(:name, "must not be blank")
+      errors.add(:name, :blank)
     end
     if name.length > 255
-      errors.add(:name, "is too long")
+      errors.add(:name, :too_long)
     end
     if surname.length < 1
-      errors.add(:surname, "must not be blank")
+      errors.add(:surname, :blank)
     end
     if surname.length > 255
-      errors.add(:surname, "is too long")
+      errors.add(:surname, :too_long)
     end
   end
 
@@ -66,7 +66,7 @@ private
     phone.gsub!('(', ' ')
     phone.gsub!(')', ' ')
     unless /^\+?[\d\s]{0,256}$/ =~ phone
-      errors.add(:phone, "is not valid")
+      errors.add(:phone)
     end
   end
 

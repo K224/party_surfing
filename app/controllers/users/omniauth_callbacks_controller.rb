@@ -11,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def auth
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.nil?
-      flash[:alert] = "Email has already been taken"
+      flash[:alert] = I18n.t('activerecord.attributes.user.email') + ' ' + I18n.t('activerecord.errors.models.user.attributes.email.taken')
       redirect_to new_user_session_path
       return
     end

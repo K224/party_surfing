@@ -30,24 +30,24 @@ private
   def validate_coor
     if(coord_latitude < -180 || coord_latitude > 180 ||
       coord_longitude < -180 || coord_longitude > 180)
-      errors.add(:base, "coordinates are incorrect")
+      errors.add(:base, :coords_invalid)
     end
   end
 
   def validate_date
     if date.nil?
-      errors.add(:date, "is not set")
+      errors.add(:date, :blank)
     elsif Date.today >= date
-      errors.add(:date, "must be at least tomorrow")
+      errors.add(:date)
     end
   end
 
   def validate_title
     if title.length < 1
-      errors.add(:title, "must not be blank")
+      errors.add(:title, :blank)
     end
     if title.length > 255
-      errors.add(:title, "is too long")
+      errors.add(:title, :too_long)
     end
   end
 
