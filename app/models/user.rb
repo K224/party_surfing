@@ -26,13 +26,21 @@ class User < ActiveRecord::Base
       user = User.find_by(email: auth.info.email)
       return nil unless user.nil?
       bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bday
+      med_avatar = nil
+      if auth.provider == "vkontakte" then
+        med_avatar = auth.extra.raw_info.photo_big
+      else
+        #TODO
+        med_avatar = auth.info.image
+      end
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
                          provider: auth.provider, uid: auth.uid)
       user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name,
                          birthday: Date.strptime(bday,'%m/%d/%Y'),
-                         social_avatar: auth.info.image
+                         thumb_social_avatar: auth.info.image,
+                         medium_social_avatar: med_avatar
                          )
     end
     return user

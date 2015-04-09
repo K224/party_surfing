@@ -27,8 +27,12 @@ class Profile < ActiveRecord::Base
 
   def get_avatar(type)
     if avatar_file_name.nil? then
-      if not social_avatar.nil? then
-        return social_avatar
+      if not thumb_social_avatar.nil? then
+        if type == :thumb then
+          return thumb_social_avatar
+        else
+          return medium_social_avatar
+        end
       end
     end
     return avatar.url(type)

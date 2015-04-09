@@ -97,10 +97,10 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "parties", ["type_id"], name: "index_parties_on_type_id"
 
   create_table "profiles", force: true do |t|
-    t.string   "name",                default: "Anonymous"
-    t.string   "surname",             default: "Anonymous"
+    t.string   "name",                 default: "Anonymous"
+    t.string   "surname",              default: "Anonymous"
     t.string   "photo"
-    t.date     "birthday",            default: '2014-10-16'
+    t.date     "birthday",             default: '2015-04-09'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -118,11 +118,12 @@ ActiveRecord::Schema.define(version: 20150403160617) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "host_rating_sum",     default: 0
-    t.integer  "host_rating_num",     default: 0
-    t.integer  "profile_rating_sum",  default: 0
-    t.integer  "profile_rating_num",  default: 0
-    t.string   "social_avatar"
+    t.integer  "host_rating_sum",      default: 0
+    t.integer  "host_rating_num",      default: 0
+    t.integer  "profile_rating_sum",   default: 0
+    t.integer  "profile_rating_num",   default: 0
+    t.string   "thumb_social_avatar"
+    t.string   "medium_social_avatar"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
