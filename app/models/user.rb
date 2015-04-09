@@ -25,12 +25,13 @@ class User < ActiveRecord::Base
     if user.nil?
       user = User.find_by(email: auth.info.email)
       return nil unless user.nil?
+      bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bday
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
                          provider: auth.provider, uid: auth.uid)
       user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name,
-                         birthday: Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y'),
+                         birthday: Date.strptime(bday,'%m/%d/%Y'),
                          social_avatar: auth.info.image
                          )
     end
