@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314103457) do
+ActiveRecord::Schema.define(version: 20150403160617) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150314103457) do
     t.integer  "host_rating_num",     default: 0
     t.integer  "profile_rating_sum",  default: 0
     t.integer  "profile_rating_num",  default: 0
+    t.string   "social_avatar"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
