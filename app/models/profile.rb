@@ -49,7 +49,10 @@ private
 
   def validate_phone
     return if phone.nil?
-    unless /^[\d\-\+]{5,20}$/ =~ phone
+    phone.gsub!('-', ' ')
+    phone.gsub!('(', ' ')
+    phone.gsub!(')', ' ')
+    unless /^\+?[\d\s]{0,256}$/ =~ phone
       errors.add(:phone, "is not valid")
     end
   end
