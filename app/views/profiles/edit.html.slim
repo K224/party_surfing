@@ -9,7 +9,9 @@
     .row
       .col-sm-3.col-lg-4
         div.ava
-          img.avatar.img-responsive src=@profile.avatar.url(:medium)
+          img.avatar.img-responsive src=@profile.get_avatar(:medium)
+        =link_to "Удалить PartySurfing аватар", erase_avatar_profile_path(current_user), class: "btn btn-style"
+        =link_to "Удалить аватар из соцсети", erase_social_avatar_profile_path(current_user), class: "btn btn-style"
         label
           | Аватар
         = f.file_field :avatar
@@ -25,27 +27,27 @@
                 | Имя
             .col-xs-6.col-md-7.col-lg-4
               =f.text_field :name, class: "form-control"
-              
+
             .col-xs-6.col-md-5.col-lg-2
               label
                 | Фамилия
             .col-xs-6.col-md-7.col-lg-4
               =f.text_field :surname, class: "form-control"
-              
+
             .col-xs-6.col-md-5.col-lg-2
               label
                 | Дата рождения
             .col-xs-6.col-md-7.col-lg-4
               =f.date_field :birthday, class: "form-control"
-          
+
             .col-xs-6.col-md-5.col-lg-2
               label
                 | Пол
             .col-xs-6.col-md-7.col-lg-4
               | выбор пола
-        
+
         .row
-          .col-lg-6      
+          .col-lg-6
             panel.panel1
               .panel-heading
                 |Личная информация
@@ -55,29 +57,29 @@
                     | Телефон
                 .col-xs-6.col-md-7
                   =f.text_field :phone, class: "form-control"
-                   
+
                 .col-xs-6.col-md-5
                   label
                     | Skype
                 .col-xs-6.col-md-7
                   =f.text_field :skype, class: "form-control"
- 
+
                 .col-xs-6.col-md-5
                   label
                     | Vkontakte
                 .col-xs-6.col-md-7
                   =f.text_field :vk, class: "form-control" 
-                  
+
                 .col-xs-6.col-md-5
                   label
                     | Facebook
                 .col-xs-6.col-md-7
                   =f.text_field :fb, class: "form-control" 
-          .col-lg-6       
+          .col-lg-6
             panel.panel1
               .panel-heading
                 |Личная информация
-              .panel-body        
+              .panel-body
                 =f.text_area :contacts, class: "form-control"
                 =f.submit "Сохранить"
 

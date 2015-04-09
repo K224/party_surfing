@@ -25,6 +25,15 @@ class Profile < ActiveRecord::Base
     ((Date.today - birthday) / 365.0).to_i
   end
 
+  def get_avatar(type)
+    if avatar_file_name.nil? then
+      if not social_avatar.nil? then
+        return social_avatar
+      end
+    end
+    return avatar.url(type)
+  end
+
 private
   def validate_birthday
     if age <= 18 || age > 100

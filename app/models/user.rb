@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
                          provider: auth.provider, uid: auth.uid)
       user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name,
-                         birthday: Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
+                         birthday: Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y'),
+                         social_avatar: auth.info.image
                          )
     end
     return user
