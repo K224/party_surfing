@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    puts auth.provider
+    puts auth.inspect
+    puts auth.provider.inspect
     user = where(provider: auth.provider, uid: auth.uid).first
     if user.nil?
       user = User.find_by(email: auth.info.email)
