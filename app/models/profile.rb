@@ -48,6 +48,7 @@ private
   end
 
   def validate_phone
+    return if phone.nil?
     unless /^[\d\-\+]{5,20}$/ =~ phone
       errors.add(:phone, "is not valid")
     end
