@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    puts auth.inspect
-    puts auth.provider.inspect
     user = where(provider: auth.provider, uid: auth.uid).first
     if user.nil?
       user = User.find_by(email: auth.info.email)
@@ -32,10 +30,9 @@ class User < ActiveRecord::Base
       format = '%m/%d/%Y' unless auth.extra.raw_info.birthday.nil?
       med_avatar = nil
       if auth.provider == "vkontakte" then
-        med_avatar = auth.extra.raw_info.photo_big
+        med_avatar = auth.extra.raw_info.photo_200_orig
       else
-        #TODO
-        med_avatar = auth.info.image
+        med_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=large"
       end
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
