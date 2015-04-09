@@ -29,10 +29,13 @@ class User < ActiveRecord::Base
       format = '%d.%m.%Y'
       format = '%m/%d/%Y' unless auth.extra.raw_info.birthday.nil?
       med_avatar = nil
+      thumb_avatar = nil
       if auth.provider == "vkontakte" then
         med_avatar = auth.extra.raw_info.photo_200_orig
+        thumb_avatar = auth.extra.raw_info.photo_100
       else
         med_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=large"
+        thumb_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=small"
       end
       user = User.create!(email: auth.info.email,
                          password: Devise.friendly_token[0,20],
@@ -40,7 +43,7 @@ class User < ActiveRecord::Base
       user.create_profile(name: auth.info.first_name,
                          surname: auth.info.last_name,
                          birthday: Date.strptime(bday,format),
-                         thumb_social_avatar: auth.info.image,
+                         thumb_social_avatar: thumb_avatar,
                          medium_social_avatar: med_avatar
                          )
     end
