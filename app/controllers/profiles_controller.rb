@@ -32,7 +32,8 @@ class ProfilesController < ApplicationController
   end
 
   def erase_social_avatar
-    @profile.social_avatar = nil
+    @profile.thumb_social_avatar = nil
+    @profile.medium_social_avatar = nil
     @profile.save
     redirect_to :back
   end
