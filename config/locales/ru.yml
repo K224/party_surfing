@@ -54,6 +54,22 @@ ru:
             date:
               invalid: "некорректна"
               blank: "не установлена"
-            
-
+  helpers:
+    label:
+      user:
+        password_confirmation: "Подтверждение пароля"
+        remember_me: "Запомнить"          
+  headers:
+    sign_up: "Регистрация"
+    log_in: "Авторизация"
+    forgot_pass: "Забыли пароль?"
+  links:
+    log_in: "Авторизация"
+    sign_up: "Регистрация"
+    forgot_pass: "Забыли пароль?"
+    sign_in_with: "Авторизоваться через %{title}"
+  buttons:
+    log_in: "Войти"
+    sign_up: "Зарегистрироваться"
+    send: "Отправить"
             

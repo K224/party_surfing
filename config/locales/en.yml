@@ -21,3 +21,17 @@
 
 en:
   hello: "Hello world"
+  
+  headers:
+    sign_up: "Sign up"
+    log_in: "Log in"
+    forgot_pass: "Forgot your password?"
+  links:
+    log_in: "Log in"
+    sign_up: "Sign up"
+    forgot_pass: "Forgot your password?"
+    sign_in_with: "Sign in with %{title}"
+  buttons:
+    log_in: "Log in"
+    sign_up: "Sign up"
+    send: "Send"

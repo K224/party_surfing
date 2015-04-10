@@ -1,7 +1,7 @@
 <div class="container" id="containerCen">
     <div class="row">
       <div class="col-xs-8 col-sm-6 col-md-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-4"><div id="centerBlock">
-    <h2>Forgot your password?</h2>
+    <h2><%= I18n.t('headers.forgot_pass') %></h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
@@ -11,7 +11,7 @@
 
 <br>
 
-      <div><%= f.submit "Send" %></div>
+      <div><%= f.submit I18n.t('buttons.send') %></div>
     <% end %>
 
 <br>
