@@ -1,3 +1,10 @@
+.bhref, .bhref:hover, .bhref:link, .bhref:visited, .bhref:active{
+color:white;
+background-color: rgba(0, 0, 0, 0.8);
+}
+.bhref:hover{
+background-color: rgba(30, 30, 30, 0.8);
+}
 .panel1{
   border-color: rgba(0,0,0,0.06) !important;
 }
@@ -63,7 +70,6 @@
     height:78px;
     position:relative;
     float:left;
-    border:1px black solid;
 }
 .party-long-img{
   max-height:78px;
@@ -104,7 +110,6 @@ div{
   background-color: white;
   height:80px;
   width:80px;
-  border:1px solid black;
   margin-right:6px;
   float:left;
 }
