@@ -70,6 +70,6 @@ ru:
     sign_in_with: "Авторизоваться через %{title}"
   buttons:
     log_in: "Войти"
-    sign_up: "Зарегистрироваться"
+    sign_up: "Регистрация"
     send: "Отправить"
             
