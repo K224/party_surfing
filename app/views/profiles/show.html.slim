@@ -26,8 +26,8 @@ javascript:
 
     -if can? :update, @profile
       div
-        =link_to "Редактировать профиль", edit_profile_path(current_user), class: "btn btn-style"
-        =link_to "Создать мероприятие", new_party_path, class: "btn btn-style"
+        =link_to "Редактировать профиль", edit_profile_path(current_user), class: "btn btn-style bhref"
+        =link_to "Создать мероприятие", new_party_path, class: "btn btn-style bhref"
         =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-lg btn-style"
       .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
     .well
