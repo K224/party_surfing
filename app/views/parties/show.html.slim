@@ -111,6 +111,6 @@ javascript:
                     img.miniavatar src=comment.user.profile.get_avatar(:thumb)
                 div.MessageConParty
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-                  div =comment.comment
-                  div =comment.created_at.to_s
+                  span =comment.created_at.to_s
+                div =comment.comment
 
