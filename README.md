@@ -4,8 +4,8 @@
 
 **Информация о последнем протестированном коммите:**
 * Автор : diplay
-* Дата : 12:47  11.04.15
-* 21 tests, 23 assertions, 0 failures, 0 errors, 0 skips
+* Дата : 13:22  11.04.15
+* 24 tests, 23 assertions, 0 failures, 0 errors, 0 skips
 
 
 Для коммита без тестирования используйте параметр --no-verify.

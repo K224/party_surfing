@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
     if user.nil?
-      return nil, 'activerecord.errors.models.user.attributes.email.null' if auth.info.email.nil?
+      return nil, 'activerecord.errors.models.user.attributes.email.blank' if auth.info.email.nil?
       user = User.find_by(email: auth.info.email)
-      return nil, 'activerecord.errors.models.user.attributes.email.blank' unless user.nil?
+      return nil, 'activerecord.errors.models.user.attributes.email.taken' unless user.nil?
       bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bdate
       format = '%d.%m.%Y'
       format = '%m/%d/%Y' unless auth.extra.raw_info.birthday.nil?
