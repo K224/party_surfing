@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
     if user.nil?
+      return nil, 'activerecord.errors.models.user.attributes.email.null' if auth.info.email.nil?
       user = User.find_by(email: auth.info.email)
-      return nil unless user.nil?
+      return nil, 'activerecord.errors.models.user.attributes.email.blank' unless user.nil?
       bday = auth.extra.raw_info.birthday || auth.extra.raw_info.bdate
       format = '%d.%m.%Y'
       format = '%m/%d/%Y' unless auth.extra.raw_info.birthday.nil?
@@ -37,17 +38,19 @@ class User < ActiveRecord::Base
         med_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=large"
         thumb_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=small"
       end
-      user = User.create!(email: auth.info.email,
-                         password: Devise.friendly_token[0,20],
-                         provider: auth.provider, uid: auth.uid)
-      user.create_profile(name: auth.info.first_name,
-                         surname: auth.info.last_name,
-                         birthday: Date.strptime(bday,format),
-                         thumb_social_avatar: thumb_avatar,
-                         medium_social_avatar: med_avatar
-                         )
+      ActiveRecord::Base.transaction do
+        user = User.create!(email: auth.info.email,
+                            password: Devise.friendly_token[0,20],
+                            provider: auth.provider, uid: auth.uid)
+        user.create_profile(name: auth.info.first_name,
+                            surname: auth.info.last_name,
+                            birthday: Date.strptime(bday,format),
+                            thumb_social_avatar: thumb_avatar,
+                            medium_social_avatar: med_avatar
+                           )
+      end
     end
-    return user
+    return user, :ok
   end
 
   def self.new_with_session(params, session)
