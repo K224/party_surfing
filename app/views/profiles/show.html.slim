@@ -100,7 +100,7 @@ javascript:
           -if user_signed_in?
             .container-fluid
               =form_for @comment,class: "input-group", url: comment_profile_path do |f|
-                .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", class: "form-control"
+                .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", pattern: ".{1,2000}", class: "form-control"
                 .fr =f.submit "Отправить", class: "btn"
           .margin20top.wall
             -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
