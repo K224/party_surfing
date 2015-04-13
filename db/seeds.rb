@@ -14,7 +14,7 @@ user.create_profile(name: 'ara', surname: 'arara', photo: nil,
                    birthday: Date.new(1980,5,4), contacts: '8 916 123 45 67')
 type = Type.create!(title: 'Вписка', description: 'Просто вписка')
 
-user.parties.create(title: 'Вписон', summary: 'Все на вписку',
+user.parties.create(title: 'Праздник', summary: 'Все на вписку',
                     date: Date.today + 30, coord_latitude: 55.6457,
                     coord_longitude: 37.67682, type: type);
 
