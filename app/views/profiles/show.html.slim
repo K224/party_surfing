@@ -14,15 +14,33 @@ javascript:
     .well
       #rating
         -if @profile.host_rating_num != 0
-          .row Количество голосов за пользователя в качестве организатора #{@profile.host_rating_num}. Средняя оценка пользоваталя как организатора #{@profile.host_rating_sum / @profile.host_rating_num} / 5.
+          .row
+            |Организатор: 
+            -rating = @profile.host_rating_sum / @profile.host_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                span.glyphicon.glyphicon-star.stars
+              -else
+                span.glyphicon.glyphicon-star-empty.stars
+            |(#{@profile.host_rating_num})
         -if @profile.profile_rating_num == 0
           .row Никто не оценивал участие данного пользователя
         -else
-          .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
-    -if can? :vote, @profile
-      .row Оценить пользователя как участника
-      -for i in 1..5
-        button onclick="window.profile_load_rating(#{i})" #{i}
+          .row
+            |Участник: 
+            -rating = @profile.profile_rating_sum / @profile.profile_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                -if can? :vote, @profile
+                  span.glyphicon.glyphicon-star.active-stars.stars onclick="window.profile_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star.active-stars.stars
+              -else
+                -if can? :vote, @profile
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars onclick="window.profile_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars
+            |(#{@profile.profile_rating_num})
 
     -if can? :update, @profile
       div

@@ -175,3 +175,12 @@ white-space:pre-wrap;
 #parties{
 
 }
+
+.active-stars:hover{
+  color: black;
+}
+
+.stars{
+  font-size: 14pt;
+  color: gold;
+}
