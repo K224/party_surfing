@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
         med_avatar = auth.extra.raw_info.photo_200_orig
         thumb_avatar = auth.extra.raw_info.photo_100
       else
-        med_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=large"
-        thumb_avatar = "http://graph.facebook.com/" + auth.info.id.to_s + "picture?type=small"
+        med_avatar = "http://graph.facebook.com/" + auth.uid.to_s + "/picture?type=large"
+        thumb_avatar = auth.info.image
       end
       ActiveRecord::Base.transaction do
         user = User.create!(email: auth.info.email,

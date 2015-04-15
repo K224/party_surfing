@@ -106,7 +106,7 @@ javascript:
             -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
               div.row.well.comment-well
                 div.comment-ava
-                    img.img-responsive src=comment.user.profile.get_avatar(:thumb)
+                    img.img-responsive.miniava src=comment.user.profile.get_avatar(:thumb)
                 div.block
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                   span =comment.created_at.to_s
