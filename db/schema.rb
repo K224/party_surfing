@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150403160617) do
 
-  create_table "active_admin_comments", force: true do |t|
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
     t.string   "resource_id",   null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
-  create_table "admin_users", force: true do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "comment"
     t.integer  "commentable_id"
     t.string   "commentable_type"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "guests", force: true do |t|
+  create_table "guests", force: :cascade do |t|
     t.integer  "party_id"
     t.integer  "user_id"
     t.boolean  "accepted"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "guests", ["party_id"], name: "index_guests_on_party_id"
   add_index "guests", ["user_id"], name: "index_guests_on_user_id"
 
-  create_table "parties", force: true do |t|
+  create_table "parties", force: :cascade do |t|
     t.string   "title"
     t.text     "summary"
     t.float    "coord_longitude",     default: 1000.0
@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "parties", ["host_id"], name: "index_parties_on_host_id"
   add_index "parties", ["type_id"], name: "index_parties_on_type_id"
 
-  create_table "profiles", force: true do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string   "name",                 default: "Anonymous"
     t.string   "surname",              default: "Anonymous"
     t.string   "photo"
-    t.date     "birthday",             default: '2015-04-09'
+    t.date     "birthday",             default: '2015-04-15'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -141,19 +141,19 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
-  create_table "types", force: true do |t|
+  create_table "types", force: :cascade do |t|
     t.string "title"
     t.text   "description"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
     t.integer  "voter_id"
