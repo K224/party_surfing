@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20150403160617) do
     t.string   "name",                 default: "Anonymous"
     t.string   "surname",              default: "Anonymous"
     t.string   "photo"
-    t.date     "birthday",             default: '2015-04-09'
+    t.date     "birthday",             default: '2015-04-15'
     t.text     "contacts"
     t.integer  "user_id"
     t.datetime "created_at"
