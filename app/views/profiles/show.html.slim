@@ -13,16 +13,15 @@ javascript:
     img.avatar src=@profile.get_avatar(:medium)
     .well
       #rating
-        -if @profile.host_rating_num != 0
-          .row
-            |Организатор: 
-            -rating = @profile.host_rating_sum / @profile.host_rating_num
-            -(1..5).each do |i|
-              -if i <= rating
-                span.glyphicon.glyphicon-star.stars
-              -else
-                span.glyphicon.glyphicon-star-empty.stars
-            |(#{@profile.host_rating_num})
+        .row
+          |Организатор: 
+          -rating = @profile.host_rating_sum / @profile.host_rating_num
+          -(1..5).each do |i|
+            -if i <= rating
+              span.glyphicon.glyphicon-star.stars
+            -else
+              span.glyphicon.glyphicon-star-empty.stars
+          |(#{@profile.host_rating_num})
         -if @profile.profile_rating_num == 0
           .row Никто не оценивал участие данного пользователя
         -else
