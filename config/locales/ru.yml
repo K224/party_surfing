@@ -26,6 +26,7 @@ ru:
           attributes:
             email:
               blank: "не введен"
+              invalid: "некорректен"
               taken: "уже используется"
             password:
               blank: "не введен"
