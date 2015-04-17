@@ -63,7 +63,7 @@ javascript:
             .col-sm-6
               |Участники
             .col-sm-6.text-right
-              =link_to "полный список", party_guests_path(@party), class: "btn-style"
+              =link_to "полный список", party_guests_path(@party), class: "btn-style bhref bfull"
         .panel-body
           -cnt = 0
           -@party.guests.each do |guest|
