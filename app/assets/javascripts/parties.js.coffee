@@ -125,7 +125,7 @@ window.load_parties_in_zone = () ->
             </a>
           </div>
         </div>"
-      div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ')}' >" +
+      div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ').toLowerCase()}' >" +
         content + "</div>"
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
@@ -169,6 +169,7 @@ window.do_search = () ->
     this.hidden = false
     all_counter++
     for tag in tags
+      tag = tag.toLowerCase()
       if this.dataset['tags'].indexOf(tag) > -1
         continue
       else
