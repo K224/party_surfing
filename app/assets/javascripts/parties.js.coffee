@@ -101,7 +101,7 @@ window.load_parties_in_zone = () ->
     marker.setMap(null)
   window.markers = []
   bounds = window.map.getBounds()
-  $.ajax(url: "/parties/get_parties_in_zone?zone="+bounds.toUrlValue()).done (json) ->
+  $.ajax(url: "/parties/get_parties_in_zone?limit=20&zone="+bounds.toUrlValue()).done (json) ->
     parties = json
     div = document.getElementById('parties')
     div.innerHTML = ""
