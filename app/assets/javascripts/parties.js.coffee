@@ -75,7 +75,6 @@ window.init_map_place_selection = () ->
       fooLat = document.getElementById('party_coord_latitude')
       fooLng = document.getElementById('party_coord_longitude')
       place_marker_for_party(fooLat.value, fooLng.value)
-      map.panTo(new google.maps.LatLng(fooLat.value, fooLng.value))
     )
   google.maps.event.addListener(window.map, 'click', (e) ->
     place_marker_for_party(e.latLng.lat(), e.latLng.lng())
@@ -87,12 +86,15 @@ window.init_map_place_selection = () ->
   )
 
 window.place_marker_for_party = (lat, lng) ->
+  if lat == "1000.0" or lng == "1000.0"
+    return
   if window.selection_marker?
     window.selection_marker.setMap(null)
   window.selection_marker = new google.maps.Marker({
     position: new google.maps.LatLng(lat, lng),
     map: window.map
   })
+  map.panTo(new google.maps.LatLng(lat, lng))
 
 window.load_parties_in_zone = () ->
   for marker in window.markers
