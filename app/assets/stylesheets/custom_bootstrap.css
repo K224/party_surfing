@@ -5,6 +5,15 @@ background-color: rgba(0, 0, 0, 0.8);
 .bhref:hover{
 background-color: rgba(30, 30, 30, 0.8);
 }
+.bfull{
+text-decoration: none;
+padding-left: 5px;
+padding-right:5px;
+border-radius: 2px
+}
+.bfull:hover{
+text-decoration: none;
+}
 .panel1{
   border-color: rgba(0,0,0,0.06) !important;
 }
@@ -59,7 +68,6 @@ background-color: rgba(30, 30, 30, 0.8);
 
 
 .party-long{
-  background-color:gold;
   display:block;
   margin: 5px 0px 0px 0px;
   padding:3px;
