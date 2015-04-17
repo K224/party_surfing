@@ -75,7 +75,6 @@ window.init_map_place_selection = () ->
       fooLat = document.getElementById('party_coord_latitude')
       fooLng = document.getElementById('party_coord_longitude')
       place_marker_for_party(fooLat.value, fooLng.value)
-      map.panTo(new google.maps.LatLng(fooLat.value, fooLng.value))
     )
   google.maps.event.addListener(window.map, 'click', (e) ->
     place_marker_for_party(e.latLng.lat(), e.latLng.lng())
@@ -87,19 +86,22 @@ window.init_map_place_selection = () ->
   )
 
 window.place_marker_for_party = (lat, lng) ->
+  if lat == "1000.0" or lng == "1000.0"
+    return
   if window.selection_marker?
     window.selection_marker.setMap(null)
   window.selection_marker = new google.maps.Marker({
     position: new google.maps.LatLng(lat, lng),
     map: window.map
   })
+  map.panTo(new google.maps.LatLng(lat, lng))
 
 window.load_parties_in_zone = () ->
   for marker in window.markers
     marker.setMap(null)
   window.markers = []
   bounds = window.map.getBounds()
-  $.ajax(url: "/parties/get_parties_in_zone?zone="+bounds.toUrlValue()).done (json) ->
+  $.ajax(url: "/parties/get_parties_in_zone?limit=20&zone="+bounds.toUrlValue()).done (json) ->
     parties = json
     div = document.getElementById('parties')
     div.innerHTML = ""
@@ -123,7 +125,7 @@ window.load_parties_in_zone = () ->
             </a>
           </div>
         </div>"
-      div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ')}' >" +
+      div.innerHTML += "<div name='party' data-tags='#{party.tag_list.join(', ').toLowerCase()}' >" +
         content + "</div>"
       coords = new google.maps.LatLng(party.coord_latitude,
                                       party.coord_longitude)
@@ -167,6 +169,7 @@ window.do_search = () ->
     this.hidden = false
     all_counter++
     for tag in tags
+      tag = tag.toLowerCase()
       if this.dataset['tags'].indexOf(tag) > -1
         continue
       else

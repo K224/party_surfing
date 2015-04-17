@@ -6,6 +6,11 @@ javascript:
 .container-fluid
   .row
     .col-md-3
+      h2
+       |Отметьте точку на карте
+       span.glyphicon.glyphicon-arrow-right.pull-right
+  .row
+    .col-md-3
       div =flash[:errors]
       =form_for @party do |f|
         fieldset
@@ -26,6 +31,7 @@ javascript:
           label Дата
           =f.date_field :date, class: 'form-control'
         .form-group
+          label Описание
           =f.text_area :summary, class: 'form-control', placeholder: 'Описание'
         .form-group
           =f.submit locals[:button_text], class: 'btn btn-orange btn-lg'

@@ -13,16 +13,36 @@ javascript:
     img.avatar src=@profile.get_avatar(:medium)
     .well
       #rating
-        -if @profile.host_rating_num != 0
-          .row Количество голосов за пользователя в качестве организатора #{@profile.host_rating_num}. Средняя оценка пользоваталя как организатора #{@profile.host_rating_sum / @profile.host_rating_num} / 5.
+        .row
+          |Организатор: 
+          -rating = 0
+          -if @profile.host_rating_num != 0
+            -rating = @profile.host_rating_sum / @profile.host_rating_num
+          -(1..5).each do |i|
+            -if i <= rating
+              span.glyphicon.glyphicon-star.stars
+            -else
+              span.glyphicon.glyphicon-star-empty.stars
+          |(#{@profile.host_rating_num})
+        .row
+          |Участник: 
+          -rating = 0
+          -if @profile.profile_rating_num != 0
+            -rating = @profile.profile_rating_sum / @profile.profile_rating_num
+          -(1..5).each do |i|
+            -if i <= rating
+              -if can? :vote, @profile
+                span.glyphicon.glyphicon-star.active-stars.stars onclick="window.profile_load_rating(#{i})"
+              -else
+                span.glyphicon.glyphicon-star.active-stars.stars
+            -else
+              -if can? :vote, @profile
+                span.glyphicon.glyphicon-star-empty.active-stars.stars onclick="window.profile_load_rating(#{i})"
+              -else
+                span.glyphicon.glyphicon-star-empty.active-stars.stars
+          |(#{@profile.profile_rating_num})
         -if @profile.profile_rating_num == 0
           .row Никто не оценивал участие данного пользователя
-        -else
-          .row Общее количество голосов #{@profile.profile_rating_num}. Средний рейтинг #{@profile.profile_rating_sum / @profile.profile_rating_num} / 5.
-    -if can? :vote, @profile
-      .row Оценить пользователя как участника
-      -for i in 1..5
-        button onclick="window.profile_load_rating(#{i})" #{i}
 
     -if can? :update, @profile
       div
@@ -30,8 +50,6 @@ javascript:
         =link_to "Создать мероприятие", new_party_path, class: "btn btn-style bhref"
         =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-lg btn-style"
       .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
-    .well
-      script type="text/javascript" charset="UTF-8" src="http://z1380.takru.com/in.php?id=1387654"
   .col-sm-6.col-md-8
     .row
       .col-sm-12.col-md-4
@@ -106,7 +124,7 @@ javascript:
             -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
               div.row.well.comment-well
                 div.comment-ava
-                    img.img-responsive src=comment.user.profile.get_avatar(:thumb)
+                    img.img-responsive.miniava src=comment.user.profile.get_avatar(:thumb)
                 div.block
                   div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
                   span =comment.created_at.to_s

@@ -2,7 +2,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :avatar,
-    :styles => { :medium => "300x300>", :thumb => "100x100#" },
+    :styles => { :medium => "300x300>", :thumb => "80x80#" },
     :default_url => "/images/ava.jpg",
     :storage => :dropbox,
     :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
