@@ -2,132 +2,135 @@ javascript:
   window.profile_id = #{@profile.id}
 
 .container
-  .panel
-    .panel-heading.backcolor1
-      h1 
-        | #{@profile.name} #{@profile.surname}
-        small
-          | , #{@profile.age}
+  .row
+    .col-md-12
+      .panel
+        .panel-heading.backcolor1
+          h1
+            | #{@profile.name} #{@profile.surname}
+            small
+              | , #{@profile.age}
 
-  .col-sm-6.col-md-4
-    img.avatar src=@profile.get_avatar(:medium)
-    .well
-      #rating
-        .row
-          |Организатор: 
-          -rating = 0
-          -if @profile.host_rating_num != 0
-            -rating = @profile.host_rating_sum / @profile.host_rating_num
-          -(1..5).each do |i|
-            -if i <= rating
-              span.glyphicon.glyphicon-star.stars
-            -else
-              span.glyphicon.glyphicon-star-empty.stars
-          |(#{@profile.host_rating_num})
-        .row
-          |Участник: 
-          -rating = 0
-          -if @profile.profile_rating_num != 0
-            -rating = @profile.profile_rating_sum / @profile.profile_rating_num
-          -(1..5).each do |i|
-            -if i <= rating
-              -if can? :vote, @profile
-                span.glyphicon.glyphicon-star.active-stars.stars onclick="window.profile_load_rating(#{i})"
+  .row
+    .col-sm-6.col-md-4
+      img.avatar src=@profile.get_avatar(:medium)
+      .well
+        #rating
+          .row
+            |Организатор: 
+            -rating = 0
+            -if @profile.host_rating_num != 0
+              -rating = @profile.host_rating_sum / @profile.host_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                span.glyphicon.glyphicon-star.stars
               -else
-                span.glyphicon.glyphicon-star.active-stars.stars
-            -else
-              -if can? :vote, @profile
-                span.glyphicon.glyphicon-star-empty.active-stars.stars onclick="window.profile_load_rating(#{i})"
+                span.glyphicon.glyphicon-star-empty.stars
+            |(#{@profile.host_rating_num})
+          .row
+            |Участник: 
+            -rating = 0
+            -if @profile.profile_rating_num != 0
+              -rating = @profile.profile_rating_sum / @profile.profile_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                -if can? :vote, @profile
+                  span.glyphicon.glyphicon-star.active-stars.stars onclick="window.profile_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star.active-stars.stars
               -else
-                span.glyphicon.glyphicon-star-empty.active-stars.stars
-          |(#{@profile.profile_rating_num})
-        -if @profile.profile_rating_num == 0
-          .row Никто не оценивал участие данного пользователя
+                -if can? :vote, @profile
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars onclick="window.profile_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars
+            |(#{@profile.profile_rating_num})
+          -if @profile.profile_rating_num == 0
+            .row Никто не оценивал участие данного пользователя
 
-    -if can? :update, @profile
-      div
-        =link_to "Редактировать профиль", edit_profile_path(current_user), class: "btn btn-style bhref"
-        =link_to "Создать мероприятие", new_party_path, class: "btn btn-style bhref"
-        =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-lg btn-style"
-      .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
-  .col-sm-6.col-md-8
-    .row
-      .col-sm-12.col-md-4
-        .panel.panel-default.panel1 style="min-height:250px"
-          .panel-heading
-            |Контактная информация
-          .panel-body style="min-height:207px"
-            |Скайп:&nbsp;
-            -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
-              |#{@profile.skype}
-            -else
-              |не указан
-            br
-            |Телефон:&nbsp;
-            -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
-              | #{@profile.phone}
-            -else
-              |не указан
-            br
-            |Вконтакте:&nbsp;
-            -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
-              | #{@profile.vk}
-            -else
-              |не указан
-            br
-            |Facebook:&nbsp;
-            -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
-              | #{@profile.fb}
-            -else
-              |не указан
-      .col-sm-12.col-md-8
-        .panel.panel-default.panel1 style="min-height:250px"
-          .panel-heading
-            |О себе
-          .panel-body style="min-height:207px"
-            =raw @profile.contacts
-    .row
-      .col-sm-12.col-md-12
-        .panel.panel-default
-          .panel-heading.backcolor1
-            |Мероприятия
-            =link_to "Все", parties_path(user_id: @profile.user.id), class: 'pull-right'
-          .panel-body
-            -cnt = 0
-            -@profile.user.parties.sort{|a, b| b.created_at <=> a.created_at}.each do |party|
-              .col-sm-12.col-md-5.well.well-margin
-                =link_to party do
-                  img.miniava src=party.avatar.url(:thumb)
-                  =party.title
-              -cnt += 1
-              -if cnt == 2
-                -break
-            -cnt = 0
-            -@profile.user.participations.sort{|a, b| b.created_at <=> a.created_at}.each do |par|
-              -if par.accepted
-                -cnt += 1
+      -if can? :update, @profile
+        div
+          =link_to "Редактировать профиль", edit_profile_path(current_user), class: "btn btn-style bhref"
+          =link_to "Создать мероприятие", new_party_path, class: "btn btn-style bhref"
+          =link_to "Start Surfing", parties_path, id: "StartSurf", class: "btn btn-lg btn-style"
+        .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
+    .col-sm-6.col-md-8
+      .row
+        .col-sm-12.col-md-4
+          .panel.panel-default.panel1 style="min-height:250px"
+            .panel-heading
+              |Контактная информация
+            .panel-body style="min-height:207px"
+              |Скайп:&nbsp;
+              -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
+                |#{@profile.skype}
+              -else
+                |не указан
+              br
+              |Телефон:&nbsp;
+              -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
+                | #{@profile.phone}
+              -else
+                |не указан
+              br
+              |Вконтакте:&nbsp;
+              -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+                | #{@profile.vk}
+              -else
+                |не указан
+              br
+              |Facebook:&nbsp;
+              -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+                | #{@profile.fb}
+              -else
+                |не указан
+        .col-sm-12.col-md-8
+          .panel.panel-default.panel1 style="min-height:250px"
+            .panel-heading
+              |О себе
+            .panel-body style="min-height:207px"
+              =raw @profile.contacts
+      .row
+        .col-sm-12.col-md-12
+          .panel.panel-default
+            .panel-heading.backcolor1
+              |Мероприятия
+              =link_to "Все", parties_path(user_id: @profile.user.id), class: 'pull-right'
+            .panel-body
+              -cnt = 0
+              -@profile.user.parties.sort{|a, b| b.created_at <=> a.created_at}.each do |party|
                 .col-sm-12.col-md-5.well.well-margin
-                  =link_to par.party do
-                    img.miniava src=par.party.avatar.url(:thumb)
-                    =par.party.title
-              -if cnt == 2
-                -break
-      .col-sm-12.col-md-12
-        .panel.panel-default
-          .panel-heading.backcolor1
-            |Комментарии
-          .panel-body
-            -if user_signed_in?
-              .container-fluid
-                =form_for @comment,class: "input-group", url: comment_profile_path do |f|
-                  .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", pattern: ".{1,2000}", class: "form-control"
-                  .fr =f.submit "Отправить", class: "btn"
-            .margin20top.wall
-              -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
-                div.row.well.comment-well
-                  div.comment-ava
-                      img.img-responsive.miniava src=comment.user.profile.get_avatar(:thumb)
-                  div.block
-                    div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
-                    span =comment.created_at.to_s
-                  div =comment.comment
+                  =link_to party do
+                    img.miniava src=party.avatar.url(:thumb)
+                    =party.title
+                -cnt += 1
+                -if cnt == 2
+                  -break
+              -cnt = 0
+              -@profile.user.participations.sort{|a, b| b.created_at <=> a.created_at}.each do |par|
+                -if par.accepted
+                  -cnt += 1
+                  .col-sm-12.col-md-5.well.well-margin
+                    =link_to par.party do
+                      img.miniava src=par.party.avatar.url(:thumb)
+                      =par.party.title
+                -if cnt == 2
+                  -break
+        .col-sm-12.col-md-12
+          .panel.panel-default
+            .panel-heading.backcolor1
+              |Комментарии
+            .panel-body
+              -if user_signed_in?
+                .container-fluid
+                  =form_for @comment,class: "input-group", url: comment_profile_path do |f|
+                    .margin10bot.form-group =f.text_area :comment, placeholder: "Оставьте комментарий", pattern: ".{1,2000}", class: "form-control"
+                    .fr =f.submit "Отправить", class: "btn"
+              .margin20top.wall
+                -@profile.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
+                  div.row.well.comment-well
+                    div.comment-ava
+                        img.img-responsive.miniava src=comment.user.profile.get_avatar(:thumb)
+                    div.block
+                      div.bold =link_to comment.user.profile.full_name, profile_path(comment.user.profile)
+                      span =comment.created_at.to_s
+                    div =comment.comment
