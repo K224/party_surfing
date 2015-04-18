@@ -12,8 +12,8 @@ javascript:
           small
             | , #{@party.date.to_s}
     .col-sm-6.col-md-4
-      img.img-responsive src=@party.avatar.url(:medium)
-        div
+	  .margin5bot
+        img.img-responsive src=@party.avatar.url(:medium)
       .well
         #rating
           .row
@@ -60,26 +60,27 @@ javascript:
         =@party.host.profile.full_name
       .textBold Теги:
       .div
-        -@party.tag_list.each do |tag|
-          | &nbsp;
-          span.label.label-default =tag
+	    -if @party.tag_list.empty?
+		  | Не заданы
+		-else  
+          -@party.tag_list.each do |tag|
+            | &nbsp;
+            span.label.label-default =tag
     .col-sm-6.col-md-8
       .row
         .col-sm-6.col-lg-8
           .panel.panel1
             .panel-heading
               |Информация
-            .panel-body
+            .panel-body style="min-height: 181px"
               =raw @party.summary
         .col-sm-6.col-lg-4
-          =@party.map_image
+		  .margin5bot
+            =@party.map_image
       .panel.panel1
         .panel-heading
-          .row
-            .col-sm-6
-              |Участники
-            .col-sm-6.text-right
-              =link_to "полный список", party_guests_path(@party), class: "btn-style bhref bfull"
+          | Участники
+          =link_to "Все", party_guests_path(@party), class: "pull-right"
         .panel-body
           -cnt = 0
           -@party.guests.each do |guest|
@@ -96,6 +97,7 @@ javascript:
       .panel.panel1
         .panel-heading
           |Хотят пойти
+		  =link_to "Все", party_guests_path(@party), class: "pull-right"
         .panel-body
           -cnt = 0
           -@party.guests.each do |guest|
@@ -119,7 +121,7 @@ javascript:
                 .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
                 .RightBottomWallParty
                   .fr =f.submit "Отправить"
-          .margin20top.wall
+		  .margin20top.wall
             -@party.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
               div.row.well.comment-well
                 div.comment-ava
