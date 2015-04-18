@@ -42,11 +42,11 @@ javascript:
         =link_to @party.host.profile do
           img.miniava src=@party.host.profile.get_avatar(:thumb)
         =@party.host.profile.full_name
-      .textBold Tags:
+      .textBold Теги:
       .div
         -@party.tag_list.each do |tag|
           | &nbsp;
-          =tag
+          span.label.label-default =tag
     .col-sm-6.col-md-8
       .row
         .col-sm-6.col-lg-8

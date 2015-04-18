@@ -97,6 +97,8 @@ window.place_marker_for_party = (lat, lng) ->
   map.panTo(new google.maps.LatLng(lat, lng))
 
 window.load_parties_in_zone = () ->
+  make_tag_span = (tag) ->
+    '<span class="label label-default">' + tag + '</span>'
   for marker in window.markers
     marker.setMap(null)
   window.markers = []
@@ -119,7 +121,7 @@ window.load_parties_in_zone = () ->
           <div class='party-long-content'>
             <a class='party-long-name h3' href='/parties/#{party.id}'>#{party.title}</a>
             <h5 class='party-long-date'>#{party.date}</h5>
-            <div class='CenTex'>Tags: #{party.tag_list.join(', ')}</div>
+            <div class='CenTex'>#{party.tag_list.map((tag) -> make_tag_span(tag)).join(' ')}</div>
             <a class='party-long-host h4' href='/profiles/#{party.host_id}'>
               #{party.host.profile.name}&nbsp;#{party.host.profile.surname}
             </a>
