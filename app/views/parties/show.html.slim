@@ -16,18 +16,34 @@ javascript:
         div
       .well
         #rating
-          -if @party.host.profile.host_rating_num == 0
-            .row Никто не оценил ни одно мероприятие, организованное этим автором.
-          -else
-            .row Общее количество голосов у организатора #{@party.host.profile.host_rating_num}. Средний рейтинг организатора #{@party.host.profile.host_rating_sum / @party.host.profile.host_rating_num} / 5.
-          -if @party.party_rating_num == 0
-            .row Никто не оценил данное мероприятие.
-          -else
-            .row Общее количество голосов за мероприятие #{@party.party_rating_num}. Средний рейтинг мероприятия #{@party.party_rating_sum / @party.party_rating_num} / 5.
-        -if can? :vote, @party
-          .row Оценить мероприятие
-          -for i in 1..5
-            button onclick="window.party_load_rating(#{i})" #{i}
+          .row
+            |Организатор: 
+            -rating = 0
+            -if @party.host.profile.host_rating_num != 0
+              -rating = @party.host.profile.host_rating_sum / @party.host.profile.host_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                span.glyphicon.glyphicon-star.stars
+              -else
+                span.glyphicon.glyphicon-star-empty.stars
+            |(#{@party.host.profile.host_rating_num})
+          .row
+            |Мероприятие: 
+            -rating = 0
+            -if @party.party_rating_num != 0
+              -rating = @party.party_rating_sum / @party.party_rating_num
+            -(1..5).each do |i|
+              -if i <= rating
+                -if can? :vote, @party
+                  span.glyphicon.glyphicon-star.active-stars.stars onclick="window.party_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star.active-stars.stars
+              -else
+                -if can? :vote, @party
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars onclick="window.party_load_rating(#{i})"
+                -else
+                  span.glyphicon.glyphicon-star-empty.active-stars.stars
+            |(#{@party.party_rating_num})
       -if can? :manage, @party
         =link_to "Редактировать", edit_party_path(@party), class: "btn btn-style bhref"
         =link_to "Удалить", party_path(@party), method: :delete, confirm: "Точно уверены?", class: "btn btn-style bhref"

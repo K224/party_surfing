@@ -29,6 +29,4 @@ window.profile_load_rating = (weight) ->
         new_rating_html += '<span class="glyphicon glyphicon-star-empty active-stars stars" onclick="window.profile_load_rating(' + i.toString() + ')"></span>'
     new_rating_html += '(' + rating['user_num'].toString() + ')'
     new_rating_html += '</div>'
-    if rating['user_num'] == 0
-      new_rating_html += '<div class="row">Никто не оценивал участие данного пользователя</div>'
     div.innerHTML = new_rating_html
