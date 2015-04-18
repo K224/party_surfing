@@ -6,10 +6,15 @@
   background-image: url('/party_background.jpg');
   margin-top: -30px;
   text-align: center;
-  background-size: 100%;
   background-repeat: no-repeat;
-
 }
+
+@media(min-width:1080px){
+	.party-background{
+		background-size: 100%;
+	}
+}
+
 .big-letters{
   font-size: 40pt;
   font-family: 'Century Gothic Bold';
@@ -35,7 +40,7 @@
 }
 .main-page-line{
   padding-top: 85px;
-  padding-bottom: 570px;
+  padding-bottom: 40%;
   color: dark-gray;
 }
 .btn-black{
