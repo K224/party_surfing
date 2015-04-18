@@ -33,5 +33,5 @@
                 =guest.user.profile.full_name
               -if can?(:update, guest)
                 =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
-                  party_guest_path(@party, guest), method: :put, class: "btn btn-style"
+                  party_guest_path(@party, guest), method: :put, class: "btn btn-style bhref"
 

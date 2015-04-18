@@ -60,9 +60,9 @@ javascript:
         =@party.host.profile.full_name
       .textBold Теги:
       .div
-	    -if @party.tag_list.empty?
-		  | Не заданы
-		-else  
+        -if @party.tag_list.empty?
+          | Не заданы
+        -else
           -@party.tag_list.each do |tag|
             | &nbsp;
             span.label.label-default =tag
@@ -75,35 +75,35 @@ javascript:
             .panel-body style="min-height: 181px"
               =raw @party.summary
         .col-sm-6.col-lg-4
-		  .margin5bot
+          .margin5bot
             =@party.map_image
       .panel.panel1
         .panel-heading
-          | Участники
+          | Участники (#{@party.guests.where(accepted: true).count})
           =link_to "Все", party_guests_path(@party), class: "pull-right"
         .panel-body
-		  -if !@party.guests.where(accepted: true).empty?
-            -@party.guests.where(accepted: true).take(3).each do |guest|
+          -if !@party.guests.where(accepted: true).empty?
+            -@party.guests.where(accepted: true).shuffle.take(3).each do |guest|
               div
                 =link_to guest.user.profile do
                   img.miniava src=guest.user.profile.get_avatar(:thumb)
                   =guest.user.profile.full_name
           -else
-	        div
+            div
               | На данное мероприятие нет подтвержденных участников
       .panel.panel1
         .panel-heading
-          |Хотят пойти
-		  =link_to "Все", party_guests_path(@party), class: "pull-right"
+          |Хотят пойти (#{@party.guests.where(accepted: false).count})
+          =link_to "Все", party_guests_path(@party), class: "pull-right"
         .panel-body
-		  -if !@party.guests.where(accepted: false).empty?
-            -@party.guests.where(accepted: false).take(3).each do |guest|
+          -if !@party.guests.where(accepted: false).empty?
+            -@party.guests.where(accepted: false).shuffle.take(3).each do |guest|
               div
                 =link_to guest.user.profile do
                   img.miniava src=guest.user.profile.get_avatar(:thumb)
                   =guest.user.profile.full_name
           -else
-	        div
+            div
               | Нет желающих посетить данное мероприятие
       .panel.panel-default
         .panel-heading.backcolor1
@@ -115,7 +115,7 @@ javascript:
                 .margin10bot =f.text_area :comment, placeholder: "Оставьте комментарий"
                 .RightBottomWallParty
                   .fr =f.submit "Отправить"
-		  .margin20top.wall
+                    .margin20top.wall
             -@party.comments.sort{|a, b| b.created_at <=> a.created_at}.each do |comment|
               div.row.well.comment-well
                 div.comment-ava
