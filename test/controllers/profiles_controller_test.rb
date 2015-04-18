@@ -75,5 +75,6 @@ class ProfilesControllerTest < ActionController::TestCase
     click_on "Профиль"
     click_on "Редактировать профиль"
     click_on "Выйти"
+    assert true
   end
 end
