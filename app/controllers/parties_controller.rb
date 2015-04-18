@@ -76,7 +76,7 @@ class PartiesController < ApplicationController
       Date.today, zone[0], zone[1], zone[2], zone[3])
     limit = [(params[:limit] || parties.size).to_i, parties.size].min
     p limit
-    parties = parties.sort { |a, b| a.guests.count <=> b.guests.count}[0, limit]
+    parties = parties.sort { |a, b| b.guests.count <=> a.guests.count}[0, limit]
     render json: parties.to_json(:methods => [:get_thumb_url, :tag_list], :include => {host: { include: :profile}})
   end
 

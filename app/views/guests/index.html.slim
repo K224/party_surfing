@@ -1,13 +1,21 @@
-.container#containerCen
+.container
   .row
-    .col-xs-8.col-sm-6.col-md-4.col-xs-offset-2.col-sm-offset-3.col-md-offset-4
-      #centerBlock
-        h2 =link_to @party.title, @party
-
-
-        div
-          |Гости:
-          -@guests.each do |guest|
+    .col-md-12
+      h2.text-center
+        |Гости мероприятия 
+        =link_to @party.title, @party
+  .row
+    .col-md-6
+      h2.text-center
+        |Идут
+    .col-md-6
+      h2.text-center
+        |Хотят пойти
+  .row
+    .col-md-6
+      -@guests.where(accepted: true).each do |guest|
+        .row
+          .col-md-12
             .panel-body
               =>link_to guest.user.profile do
                 img.miniava src=guest.user.profile.get_avatar(:thumb)
@@ -15,4 +23,15 @@
               -if can?(:update, guest)
                 =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
                   party_guest_path(@party, guest), method: :put, class: "btn btn-style bhref"
+    .col-md-6
+      -@guests.where(accepted: false).each do |guest|
+        .row
+          .col-md-12
+            .panel-body
+              =>link_to guest.user.profile do
+                img.miniava src=guest.user.profile.get_avatar(:thumb)
+                =guest.user.profile.full_name
+              -if can?(:update, guest)
+                =link_to ( guest.accepted ? "Отказать" : "Подтвердить участие"),
+                  party_guest_path(@party, guest), method: :put, class: "btn btn-style"
 
