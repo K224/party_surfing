@@ -4,32 +4,43 @@
       h2
         |Мероприятия пользователя #{@user.profile.full_name}
   .row
-    -@user.parties.each do |party|
-      .col-md-6
-        .well.row.party-long
-          .party-long-ava
-            a href="/parties/#{party.id}"
-              img.party-long-img src="#{party.get_thumb_url}"
-          .party-long-content
-            a.party-long-name.h3 href="/parties/#{party.id}"
-              =party.title
-            h5.party-long-date
-              =party.date
-            .CenTex>
-              | Tags: #{party.tag_list.join(', ')}
-    -@user.participations.each do |par|
-      -if par.accepted
-        -party = par.party
-        .col-md-6
-          .well.row.party-long
-            .party-long-ava
-              a href="/parties/#{party.id}"
-              img.party-long-img src="#{party.get_thumb_url}"
-            .party-long-content
-              a.party-long-name.h3 href="/parties/#{party.id}"
-                =party.title
-              h5.party-long-date
-                =party.date
-              .CenTex>
-                | Tags: #{party.tag_list.join(', ')}
+    .col-md-6
+      h2.text-center
+        |Создавал
+    .col-md-6
+      h2.text-center
+        |Участвовал
+  .row
+    .col-md-6
+      -@user.parties.each do |party|
+        .row
+          .col-md-12
+            .well.row.party-long
+              .party-long-ava
+                a href="/parties/#{party.id}"
+                  img.party-long-img src="#{party.get_thumb_url}"
+              .party-long-content
+                a.party-long-name.h3 href="/parties/#{party.id}"
+                  =party.title
+                h5.party-long-date
+                  =party.date
+                .CenTex>
+                  =party.tag_list.map{|tag| '<span class="label label-default">' + tag + '</span>'}.join(' ').html_safe
+    .col-md-6
+      -@user.participations.each do |par|
+        -if par.accepted
+          -party = par.party
+          .row
+            .col-md-12
+              .well.row.party-long
+                .party-long-ava
+                  a href="/parties/#{party.id}"
+                  img.party-long-img src="#{party.get_thumb_url}"
+                .party-long-content
+                  a.party-long-name.h3 href="/parties/#{party.id}"
+                    =party.title
+                  h5.party-long-date
+                    =party.date
+                  .CenTex>
+                  =party.tag_list.map{|tag| '<span class="label label-default">' + tag + '</span>'}.join(' ').html_safe
 
