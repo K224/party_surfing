@@ -55,39 +55,56 @@ javascript:
         .visible-xs-block.BlackBox.textCenter.btn data-toggle="collapse" href="#collapseParties" aria-expanded="false" aria-controls="#collapseParties"
     .col-sm-6.col-md-8
       .row
-        .col-sm-12.col-md-4
-          .panel.panel-default.panel1 style="min-height:250px"
+        .col-sm-12.col-md-5
+          .panel.panel-default.panel1
             .panel-heading
               |Контактная информация
-            .panel-body style="min-height:207px"
-              |Скайп:&nbsp;
-              -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
-                |#{@profile.skype}
-              -else
-                |не указан
-              br
-              |Телефон:&nbsp;
-              -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
-                | #{@profile.phone}
-              -else
-                |не указан
-              br
-              |Вконтакте:&nbsp;
-              -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
-                | #{@profile.vk}
-              -else
-                |не указан
-              br
-              |Facebook:&nbsp;
-              -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
-                | #{@profile.fb}
-              -else
-                |не указан
-        .col-sm-12.col-md-8
-          .panel.panel-default.panel1 style="min-height:250px"
+            .panel-body style="min-height:130px"
+			  .container-fluid 
+				  .row
+					.col-xs-6.col-md-5
+					  label
+						| Телефон
+					.col-xs-6.col-md-7
+					  -if !@profile.phone_hidden && !@profile.phone.nil? && @profile.phone.length > 0
+						| #{@profile.phone}
+					  -else
+						| не указан
+				  .row
+					.col-xs-6.col-md-5
+					  label
+						| Skype
+					.col-xs-6.col-md-7	  
+					  -if !@profile.skype_hidden && !@profile.skype.nil? && @profile.skype.length > 0
+						| #{@profile.skype}
+					  -else
+						| не указан
+					  
+				  .row	  
+					.col-xs-6.col-md-5
+					  label
+						| Вконтакте
+					.col-xs-6.col-md-7  
+					  -if !@profile.vk_hidden && !@profile.vk.nil? && @profile.vk.length > 0
+						| #{@profile.vk}
+					  -else
+						| не указан
+				  
+				  .row	  
+					.col-xs-6.col-md-5
+					  label
+						| Facebook
+					.col-xs-6.col-md-7			  
+					  -if !@profile.fb_hidden && !@profile.fb.nil? && @profile.fb.length > 0
+						| #{@profile.fb}
+					  -else
+						| не указан
+				  
+        .col-sm-12.col-md-7
+          .panel.panel-default.panel1
             .panel-heading
               |О себе
-            .panel-body style="min-height:207px"
+            .panel-body style="min-height:130px"
               =raw @profile.contacts
       .row
         .col-sm-12.col-md-12
