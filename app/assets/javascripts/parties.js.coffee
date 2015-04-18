@@ -182,16 +182,28 @@ window.do_search = () ->
 window.party_load_rating = (weight) ->
   $.ajax(url: '/parties/' + window.party_id + '/vote?weight=' + weight).done (rating) ->
     div = document.getElementById('rating')
-    div.innerHTML = ''
-    if rating['host_num'] == 0
-      div.innerHTML += '<div class="row">Никто не оценил ни одно мероприятие, организованного этим автором.</div>'
-    else
-      div.innerHTML += '<div class="row">Количество голосов за пользователя в качестве организатора ' +
-                       rating['host_num'] + '. Средняя оценка пользователя как организатора ' +
-                       (rating['host_sum'] / rating['host_num']) + ' / 5.</div>'
-    if rating['party_num'] == 0
-      div.innerHTML += '<div class="row">Никто не оценил данное мероприятие.</div>'
-    else
-      div.innerHTML += '<div class="row">Общее количество голосов за мероприятие ' + 
-                       rating['party_num'] + '. Средний рейтинг мероприятия ' +
-                       rating['party_sum'] / rating['party_num'] + ' / 5.</div>'
+    org_rating = 0
+    if rating['host_num'] != 0
+      org_rating = rating['host_sum'] / rating['host_num']
+    party_rating = 0
+    if rating['party_num'] != 0
+      party_rating = rating['party_sum'] / rating['party_num']
+    new_rating_html = '<div class="row">'
+    new_rating_html += 'Организотор: '
+    for i in [1..5]
+      if i <= org_rating
+        new_rating_html += '<span class="glyphicon glyphicon-star active-stars stars"></span>'
+      else
+        new_rating_html += '<span class="glyphicon glyphicon-star-empty stars"></span>'
+    new_rating_html += '(' + rating['host_num'].toString() + ')'
+    new_rating_html += '</div>'
+    new_rating_html += '<div class="row">'
+    new_rating_html += 'Мероприятие: '
+    for i in [1..5]
+      if i <= party_rating
+        new_rating_html += '<span class="glyphicon glyphicon-star active-stars stars" onclick="window.party_load_rating(' + i.toString() + ')"></span>'
+      else
+        new_rating_html += '<span class="glyphicon glyphicon-star-empty active-stars stars" onclick="window.party_load_rating(' + i.toString() + ')"></span>'
+    new_rating_html += '(' + rating['party_num'].toString() + ')'
+    new_rating_html += '</div>'
+    div.innerHTML = new_rating_html
